@@ -1,0 +1,15 @@
+<svg width="240" height="80" viewBox="0 0 240 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Hexagon Symbol (APIX 07 Style) -->
+  <path d="M40 10L66 25V55L40 70L14 55V25L40 10Z" fill="#FFD23F"/>
+  <!-- Circuit Symbol Interior (Representational) -->
+  <circle cx="40" cy="30" r="4" fill="#111111"/>
+  <circle cx="28" cy="45" r="4" fill="#111111"/>
+  <circle cx="52" cy="45" r="4" fill="#111111"/>
+  <path d="M40 70V55" stroke="#111111" stroke-width="3" stroke-linecap="round"/>
+  <path d="M40 55L28 45" stroke="#111111" stroke-width="3" stroke-linecap="round"/>
+  <path d="M40 55L52 45" stroke="#111111" stroke-width="3" stroke-linecap="round"/>
+  <path d="M40 55V30" stroke="#111111" stroke-width="3" stroke-linecap="round"/>
+  
+  <!-- Brand Text -->
+  <text x="85" y="52" font-family="Outfit, Inter, sans-serif" font-weight="700" font-size="32" fill="white" letter-spacing="0.05em">APIXTECH</text>
+</svg>
