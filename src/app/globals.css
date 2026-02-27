@@ -30,10 +30,18 @@
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 html,
 body {
   max-width: 100vw;
   overflow-x: hidden;
+}
+
+#contato {
+  scroll-margin-top: 100px;
 }
 
 body {

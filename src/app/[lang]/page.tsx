@@ -1,5 +1,6 @@
 import { Locale, siteConfig } from "@/config/siteConfig";
 import Image from "next/image";
+import Link from "next/link";
 import StrategicStatement from "@/components/home/StrategicStatement";
 import StrategicPillars from "@/components/home/StrategicPillars";
 import AuditCTASection from "@/components/home/AuditCTASection";
@@ -43,10 +44,10 @@ export default async function HomePage({
 
         {/* Hero Background Overlay - Frosted Glass Effect (Left Side) */}
         <div
-          className="absolute inset-y-0 left-0 w-full sm:w-[70%] lg:w-[55%] bg-white/10 backdrop-blur-lg z-10 pointer-events-none transition-all duration-700"
+          className="absolute inset-y-0 left-0 w-full md:w-[55%] bg-white/10 backdrop-blur-lg z-10 pointer-events-none transition-all duration-700"
           style={{
-            maskImage: 'linear-gradient(to right, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 70%, rgba(0,0,0,0) 100%)',
-            WebkitMaskImage: 'linear-gradient(to right, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 70%, rgba(0,0,0,0) 100%)'
+            maskImage: 'linear-gradient(to right, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 90%, rgba(0,0,0,0) 100%)',
+            WebkitMaskImage: 'linear-gradient(to right, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 90%, rgba(0,0,0,0) 100%)'
           }}
         />
 
@@ -59,7 +60,7 @@ export default async function HomePage({
               </span>
             </div>
 
-            <h1 className="font-outfit tracking-tight mb-12 flex flex-col text-white">
+            <h1 className="font-outfit tracking-tight mb-8 flex flex-col text-white">
               <span className="text-3xl md:text-4xl lg:text-5xl opacity-80 font-light mb-2">
                 {siteConfig.home.hero.headline.line1[lang]}
               </span>
@@ -68,13 +69,26 @@ export default async function HomePage({
               </span>
             </h1>
 
+            {/* Subheadline Segment */}
+            <p className="text-lg md:text-xl text-white/70 font-inter mb-12 max-w-2xl leading-relaxed">
+              {siteConfig.home.hero.subheadline[lang]}
+            </p>
+
             <div className="flex flex-wrap gap-6 items-center">
-              <button className="inline-flex items-center justify-center bg-[#FFD23F] border-2 border-[#E6B800] text-[#111111] font-semibold py-4 px-8 md:px-12 rounded-xl hover:brightness-95 hover:scale-[1.02] hover:shadow-xl hover:shadow-black/30 active:scale-[0.99] shadow-lg shadow-black/25 transition-all duration-200 ease-out min-h-[52px] min-w-[200px] md:min-w-[240px] whitespace-nowrap uppercase !tracking-wide !text-[11px] md:!text-[12px]">
+              <Link
+                href={`/${lang}/contato`}
+                className="inline-flex items-center justify-center bg-[#FFD23F] border-2 border-[#E6B800] text-[#111111] font-semibold py-4 px-8 md:px-12 rounded-full hover:brightness-95 hover:scale-[1.02] hover:shadow-xl hover:shadow-black/30 active:scale-[0.99] shadow-lg shadow-black/25 transition-all duration-200 ease-out min-h-[52px] min-w-[200px] md:min-w-[240px] whitespace-nowrap uppercase !tracking-wide !text-[11px] md:!text-[12px]"
+              >
                 {siteConfig.home.hero.primaryCTA[lang]}
-              </button>
-              <button className="inline-flex items-center justify-center bg-black/35 border-2 border-white/25 text-white font-semibold py-4 px-8 md:px-12 rounded-xl hover:bg-black/45 hover:border-white/35 hover:-translate-y-0.5 active:translate-y-0 shadow-md shadow-black/20 transition-all duration-200 min-h-[52px] min-w-[200px] md:min-w-[240px] whitespace-nowrap uppercase !tracking-wide !text-[11px] md:!text-[12px]">
+              </Link>
+              <Link
+                href="https://wa.me/5541991934437"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center bg-black/35 border-2 border-white/25 text-white font-semibold py-4 px-8 md:px-12 rounded-full hover:bg-black/45 hover:border-white/35 hover:-translate-y-0.5 active:translate-y-0 shadow-md shadow-black/20 transition-all duration-200 min-h-[52px] min-w-[200px] md:min-w-[240px] whitespace-nowrap uppercase !tracking-wide !text-[11px] md:!text-[12px]"
+              >
                 {siteConfig.home.hero.secondaryCTA[lang]}
-              </button>
+              </Link>
             </div>
           </div>
         </div>

@@ -8,20 +8,20 @@ export default function ServicesOverview({ lang }: { lang: Locale }) {
             <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
                 <div className="max-w-2xl">
                     <h2 className="text-3xl md:text-5xl font-outfit font-bold mb-6 tracking-tight text-slate-900 uppercase">
-                        {lang === "pt" ? "Especialidades Estratégicas" : lang === "en" ? "Strategic Specialties" : "Especialidades Estratégicas"}
+                        {lang === "pt" ? "Componentes Operacionais MaaS™" : lang === "en" ? "MaaS™ Operational Components" : "Componentes Operativos MaaS™"}
                     </h2>
                     <div className="w-20 h-1 bg-secondary mb-6"></div>
                     <p className="text-slate-600 text-xl font-inter leading-relaxed">
                         {lang === "pt"
-                            ? "Não executamos apenas tarefas. Estruturamos ambientes de alto impacto com governança e previsibilidade total."
+                            ? "Cada solução técnica é um componente integrado ao nosso framework de governança, garantindo que a infraestrutura opere sob rigor executivo."
                             : lang === "en"
-                                ? "We don't just execute tasks. We structure high-impact environments with full governance and predictability."
-                                : "No ejecutamos solo tareas. Estructuramos entornos de alto impacto con gobernanza y previsibilidad total."
+                                ? "Each technical solution is a component integrated into our governance framework, ensuring that infrastructure operates under executive rigor."
+                                : "Cada solución técnica es un componente integrado en nuestro marco de gobernanza, asegurando que la infraestructura opere bajo rigor ejecutivo."
                         }
                     </p>
                 </div>
                 <Link href={`/${lang}/servicos`} className="text-slate-700 font-bold uppercase tracking-widest text-sm border-b-2 border-slate-200 pb-1 hover:text-secondary hover:border-secondary transition-all flex items-center gap-2">
-                    {lang === "pt" ? "Catálogo de Serviços" : lang === "en" ? "Service Catalog" : "Catálogo de Servicios"}
+                    {lang === "pt" ? "Framework MaaS™" : lang === "en" ? "MaaS™ Framework" : "Framework MaaS™"}
                     <span>→</span>
                 </Link>
             </div>

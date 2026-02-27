@@ -1,9 +1,12 @@
+import Link from "next/link";
 import { Locale, siteConfig } from "@/config/siteConfig";
 import { Section } from "../Section";
 
 export default function FinalCTA({ lang }: { lang: Locale }) {
+    const waLink = "https://wa.me/5541991934437?text=Ol%C3%A1%2C%20gostaria%20de%20iniciar%20o%20Diagn%C3%B3stico%20MaaS%20da%20Apix%20Technologies%20para%20avaliar%20minha%20infraestrutura";
+
     return (
-        <Section className="bg-premium-dark text-white overflow-hidden relative border-t border-white/5">
+        <Section className="bg-premium-dark text-white overflow-hidden relative border-t border-white/5" id="contato">
             {/* Decorative background logo */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[40rem] font-bold text-white/[0.02] select-none -z-0">
                 A
@@ -27,12 +30,20 @@ export default function FinalCTA({ lang }: { lang: Locale }) {
                 </p>
 
                 <div className="flex flex-wrap justify-center gap-6">
-                    <button className="h-12 md:h-14 bg-[#FFD23F] border-2 border-[#E6B800] text-[#111111] font-bold px-12 rounded-full hover:brightness-95 hover:scale-[1.02] hover:shadow-2xl hover:shadow-black/40 transition-all duration-300 uppercase tracking-widest text-xs md:text-sm">
+                    <Link
+                        href={`/${lang}/contato`}
+                        className="h-12 md:h-14 inline-flex items-center justify-center bg-[#FFD23F] border-2 border-[#E6B800] text-[#111111] font-bold px-12 rounded-full hover:brightness-95 hover:scale-[1.02] hover:shadow-2xl hover:shadow-black/40 transition-all duration-300 uppercase tracking-widest text-xs md:text-sm"
+                    >
                         {siteConfig.home.hero.primaryCTA[lang]}
-                    </button>
-                    <button className="h-12 md:h-14 border-2 border-white/20 text-white font-bold px-12 rounded-full hover:bg-white/10 hover:border-white/40 hover:-translate-y-1 transition-all duration-300 uppercase tracking-widest text-xs md:text-sm">
-                        {lang === "pt" ? "Falar com Consultor" : "Talk to a Consultant"}
-                    </button>
+                    </Link>
+                    <a
+                        href={waLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="h-12 md:h-14 inline-flex items-center justify-center border-2 border-white/20 text-white font-bold px-12 rounded-full hover:bg-white/10 hover:border-white/40 hover:-translate-y-1 transition-all duration-300 uppercase tracking-widest text-xs md:text-sm"
+                    >
+                        {lang === "pt" ? "Falar com Consultor" : lang === "en" ? "Talk to Consultant" : "Hablar con Consultor"}
+                    </a>
                 </div>
             </div>
         </Section>

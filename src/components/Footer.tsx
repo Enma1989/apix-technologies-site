@@ -18,9 +18,9 @@ export default function Footer({ lang }: { lang: Locale }) {
 
                 <div className="relative z-10 border-t border-white/10 pt-24 pb-12">
                     <div className="container-premium">
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-20">
-                            {/* Brand Info */}
-                            <div className="lg:col-span-1">
+                        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-12 mb-20">
+                            {/* Método MaaS™ */}
+                            <div>
                                 <Link
                                     href={`/${lang}`}
                                     className="group flex items-center gap-3 mb-6 hover:opacity-95 transition-opacity"
@@ -28,36 +28,55 @@ export default function Footer({ lang }: { lang: Locale }) {
                                     <Image
                                         src="/images/apix-07.png"
                                         alt="Apix Technologies"
-                                        width={44}
-                                        height={44}
+                                        width={40}
+                                        height={40}
                                         className="object-contain"
                                     />
-
                                     <div className="flex items-baseline leading-none">
-                                        <span className="text-white font-semibold tracking-wide text-2xl group-hover:text-white transition-colors">
-                                            APIX
-                                        </span>
-                                        <span className="text-gray-400 font-light tracking-wide text-2xl ml-1 group-hover:text-gray-400 transition-colors">
-                                            TECH
-                                        </span>
+                                        <span className="text-white font-semibold tracking-wide text-xl">APIX</span>
+                                        <span className="text-gray-500 font-light tracking-wide text-xl ml-1">TECH</span>
                                     </div>
                                 </Link>
-                                <p className="text-white/70 text-sm leading-relaxed max-w-xs">
-                                    {siteConfig.home.hero.subheadline[lang].substring(0, 120)}...
+                                <h4 className="text-white font-bold text-xs uppercase tracking-[0.2em] mb-4">
+                                    Método MaaS™
+                                </h4>
+                                <p className="text-white/50 text-xs leading-relaxed">
+                                    {lang === "pt"
+                                        ? "Framework proprietário de Governança Tecnológica."
+                                        : "Proprietary Technology Governance Framework."}
                                 </p>
                             </div>
 
-                            {/* Specialties */}
+                            {/* Governança */}
                             <div>
-                                <h4 className="text-white font-bold text-sm uppercase tracking-widest mb-6">
-                                    {lang === "pt" ? "Especialidades" : lang === "en" ? "Specialties" : "Especialidades"}
+                                <h4 className="text-white font-bold text-xs uppercase tracking-[0.2em] mb-6">
+                                    {lang === "pt" ? "Governança" : lang === "en" ? "Governance" : "Gobernanza"}
+                                </h4>
+                                <ul className="space-y-4">
+                                    {siteConfig.home.pillars.map((pillar) => (
+                                        <li key={pillar.title[lang]}>
+                                            <Link
+                                                href={`/${lang}/servicos`}
+                                                className="text-white/60 hover:text-secondary text-sm transition-colors"
+                                            >
+                                                {pillar.title[lang]}
+                                            </Link>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+
+                            {/* Soluções */}
+                            <div>
+                                <h4 className="text-white font-bold text-xs uppercase tracking-[0.2em] mb-6">
+                                    {lang === "pt" ? "Soluções" : lang === "en" ? "Solutions" : "Soluciones"}
                                 </h4>
                                 <ul className="space-y-4">
                                     {siteConfig.services.slice(0, 5).map((service) => (
                                         <li key={service.slug}>
                                             <Link
                                                 href={`/${lang}/servicos/${service.slug}`}
-                                                className="text-white/65 hover:text-secondary text-sm transition-colors"
+                                                className="text-white/60 hover:text-secondary text-sm transition-colors"
                                             >
                                                 {service.title[lang]}
                                             </Link>
@@ -66,75 +85,48 @@ export default function Footer({ lang }: { lang: Locale }) {
                                 </ul>
                             </div>
 
-                            {/* Corporate */}
+                            {/* Institucional */}
                             <div>
-                                <h4 className="text-white font-bold text-sm uppercase tracking-widest mb-6">
+                                <h4 className="text-white font-bold text-xs uppercase tracking-[0.2em] mb-6">
                                     {lang === "pt" ? "Institucional" : lang === "en" ? "Corporate" : "Institucional"}
                                 </h4>
                                 <ul className="space-y-4">
-                                    <li>
-                                        <Link
-                                            href={`/${lang}/privacidade`}
-                                            className="text-white/65 hover:text-secondary text-sm transition-colors"
-                                        >
-                                            {lang === "pt" ? "Política de Privacidade" : lang === "en" ? "Privacy Policy" : "Política de Privacidad"}
-                                        </Link>
-                                    </li>
-                                    <li>
-                                        <Link
-                                            href={`/${lang}/termos`}
-                                            className="text-white/65 hover:text-secondary text-sm transition-colors"
-                                        >
-                                            {lang === "pt" ? "Termos de Uso" : lang === "en" ? "Terms of Use" : "Términos de Uso"}
-                                        </Link>
-                                    </li>
-                                    <li>
-                                        <Link
-                                            href={`/${lang}/cookies`}
-                                            className="text-white/65 hover:text-secondary text-sm transition-colors"
-                                        >
-                                            {lang === "pt" ? "Política de Cookies" : lang === "en" ? "Cookies Policy" : "Política de Cookies"}
-                                        </Link>
-                                    </li>
-                                    {siteConfig.navigation.links.slice(1).map((link) => (
+                                    {siteConfig.navigation.links.map((link) => (
                                         <li key={link.href}>
                                             <Link
                                                 href={`/${lang}${link.href}`}
-                                                className="text-white/65 hover:text-secondary text-sm transition-colors"
+                                                className="text-white/60 hover:text-secondary text-sm transition-colors"
                                             >
                                                 {link.name[lang]}
                                             </Link>
                                         </li>
                                     ))}
+                                    <li>
+                                        <Link
+                                            href={`/${lang}/privacidade`}
+                                            className="text-white/60 hover:text-secondary text-sm transition-colors"
+                                        >
+                                            {lang === "pt" ? "Privacidade" : "Privacy"}
+                                        </Link>
+                                    </li>
                                 </ul>
                             </div>
 
-                            {/* Global */}
+                            {/* Contato */}
                             <div>
-                                <h4 className="text-white font-bold text-sm uppercase tracking-widest mb-6">
-                                    Global
+                                <h4 className="text-white font-bold text-xs uppercase tracking-[0.2em] mb-6">
+                                    {lang === "pt" ? "Contato" : "Contact"}
                                 </h4>
-                                <p className="text-white/70 text-sm mb-4">{siteConfig.contact.brasil.email}</p>
-
-                                <div className="mb-8 flex justify-start">
-                                    <a
-                                        href="https://cybermap.kaspersky.com/pt"
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="text-secondary/80 hover:text-secondary text-[10px] md:text-xs font-bold uppercase tracking-wider flex items-center gap-2 transition-colors whitespace-nowrap -ml-[14px]"
-                                    >
-                                        <span className="shrink-0 w-1.5 h-1.5 bg-secondary rounded-full animate-pulse" />
-                                        {lang === "pt" ? "Acompanhe Ameaças em Tempo Real" : lang === "en" ? "Track Threats in Real Time" : "Acompañe Amenazas en tiempo Real"}
-                                    </a>
-                                </div>
-
+                                <p className="text-white/50 text-xs mb-6 break-all">
+                                    {siteConfig.contact.brasil.email}
+                                </p>
                                 <a
-                                    href="https://wa.me/5541919344437"
+                                    href="https://wa.me/5541991934437"
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="inline-block border border-secondary/50 text-secondary text-xs font-bold uppercase tracking-widest px-8 py-4 rounded-sm hover:bg-secondary hover:text-dark transition-all transform hover:-translate-y-1 shadow-lg shadow-secondary/5"
+                                    className="inline-block border border-secondary/40 text-secondary text-[10px] font-bold uppercase tracking-widest px-6 py-3 rounded-full hover:bg-secondary hover:text-dark transition-all transform hover:-translate-y-1"
                                 >
-                                    {lang === "pt" ? "CONTATO" : lang === "en" ? "CONTACT" : "CONTACTO"}
+                                    WhatsApp
                                 </a>
                             </div>
                         </div>

@@ -106,7 +106,7 @@ export function ContactForm({ lang }: ContactFormProps) {
     const handleWhatsApp = () => {
         if (!isValid) return;
         const msg = encodeURIComponent(getFormMessage());
-        window.open(`https://wa.me/5541919344437?text=${msg}`, "_blank");
+        window.open(`https://wa.me/5541991934437?text=${msg}`, "_blank");
     };
 
     const handleEmail = () => {

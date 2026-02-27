@@ -11,16 +11,16 @@ export default function StrategicPillars({ lang }: { lang: Locale }) {
                 <div className="mt-6 w-20 h-1 bg-secondary mx-auto"></div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-10 mb-20">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mt-10 mb-20">
                 {siteConfig.home.pillars.map((pillar, index) => (
                     <div
                         key={pillar.title[lang]}
-                        className="group p-10 bg-white border border-[#FFD23F]/40 hover:border-[#FFD23F] rounded-3xl shadow-sm transition-all duration-300"
+                        className="group p-8 bg-white border border-[#FFD23F]/40 hover:border-[#FFD23F] rounded-3xl shadow-sm transition-all duration-300"
                     >
                         <div className="w-14 h-14 bg-white border border-[#FFD23F]/40 rounded-xl flex items-center justify-center mb-8 transition-all duration-300 text-[#FFD23F]">
                             {index === 0 && (
                                 <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                                 </svg>
                             )}
                             {index === 1 && (
@@ -30,14 +30,19 @@ export default function StrategicPillars({ lang }: { lang: Locale }) {
                             )}
                             {index === 2 && (
                                 <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z" />
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                                </svg>
+                            )}
+                            {index === 3 && (
+                                <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
                                 </svg>
                             )}
                         </div>
-                        <h3 className="text-2xl font-outfit font-bold mb-4 text-slate-900 group-hover:text-secondary transition-colors">
+                        <h3 className="text-xl font-outfit font-bold mb-4 text-slate-900 group-hover:text-secondary transition-colors">
                             {pillar.title[lang]}
                         </h3>
-                        <p className="text-slate-600 font-inter leading-relaxed text-lg">
+                        <p className="text-slate-600 font-inter leading-relaxed text-sm">
                             {pillar.text[lang]}
                         </p>
                     </div>

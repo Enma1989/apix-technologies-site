@@ -30,13 +30,13 @@ export default function CaseStudies({ lang }: { lang: Locale }) {
         <Section className="bg-premium-white text-dark border-y border-zinc-100">
             <div className="mb-16 text-center lg:text-left">
                 <h2 className="text-3xl md:text-5xl font-outfit font-bold mb-6 tracking-tight text-slate-900 uppercase">
-                    {lang === "pt" ? "Estudos de Caso: Abordagem Estratégica" : lang === "en" ? "Case Studies: Strategic Approach" : "Estudios de Caso: Enfoque Estratégico"}
+                    {lang === "pt" ? "Método MaaS™ em Ação" : lang === "en" ? "MaaS™ Method in Action" : "Método MaaS™ en Acción"}
                 </h2>
                 <div className="mt-8 w-20 h-1 bg-secondary mx-auto lg:mx-0 mb-8"></div>
                 <p className="text-slate-800 text-xl font-inter max-w-2xl leading-relaxed">
                     {lang === "pt"
-                        ? "Resultados concretos derivados de diagnóstico rigoroso e execução impecável."
-                        : "Concrete results derived from rigorous diagnosis and flawless execution."
+                        ? "Estudos de caso que demonstram a eficiência do nosso framework de governança em ambientes complexos."
+                        : "Case studies demonstrating the efficiency of our governance framework in complex environments."
                     }
                 </p>
             </div>
