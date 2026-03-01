@@ -6,9 +6,9 @@ const credibilityItems = [
     {
         title: { pt: "Documentação & Padrão", en: "Documentation & Standard", es: "Documentación y Estándar" },
         desc: {
-            pt: "Entregamos topologias detalhadas e inventários completos integrados ao framework MaaS™. Sua TI nunca mais será uma 'caixa preta'.",
-            en: "We deliver detailed topologies and complete inventories integrated into the MaaS™ framework. Your IT will never be a 'black box' again.",
-            es: "Entregamos topologías detalladas e inventarios completos integrados al framework MaaS™. Su TI nunca más será una 'caja negra'."
+            pt: "Entregamos topologias detalhadas e inventários completos integrados ao método MaaS™. Sua TI nunca mais será uma 'caixa preta'.",
+            en: "We deliver detailed topologies and complete inventories integrated into the MaaS™ method. Your IT will never be a 'black box' again.",
+            es: "Entregamos topologías detalladas e inventarios completos integrados al método MaaS™. Su TI nunca más será una 'caja negra'."
         }
     },
     {

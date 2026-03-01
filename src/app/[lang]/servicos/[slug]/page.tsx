@@ -6,10 +6,14 @@ import Link from "next/link";
 export async function generateStaticParams() {
     const params: { lang: Locale; slug: string }[] = [];
 
+    const specializedSlugs = ["redes-wireless", "cabeamento-estruturado", "servidores", "ciberseguranca"];
+
     locales.forEach((lang) => {
-        siteConfig.services.forEach((service) => {
-            params.push({ lang, slug: service.slug });
-        });
+        siteConfig.services
+            .filter((service) => !specializedSlugs.includes(service.slug))
+            .forEach((service) => {
+                params.push({ lang, slug: service.slug });
+            });
     });
 
     return params;

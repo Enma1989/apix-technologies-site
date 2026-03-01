@@ -1,5 +1,6 @@
 import { Locale, siteConfig } from "@/config/siteConfig";
 import { Section } from "../Section";
+import Image from "next/image";
 
 export default function ConsultativeAuditCTA({ lang }: { lang: Locale }) {
     const { audit } = siteConfig.home;
@@ -7,8 +8,13 @@ export default function ConsultativeAuditCTA({ lang }: { lang: Locale }) {
     return (
         <Section className="bg-premium-dark text-white overflow-hidden relative" id="consultative-cta">
             {/* Background Decorative Element */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[30rem] font-bold text-white/[0.02] select-none -z-0">
-                APIX
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[600px] aspect-square opacity-[0.03] blur-[2px] select-none pointer-events-none -z-0">
+                <Image
+                    src="/images/APIX-09.png"
+                    alt="Apix logo watermark"
+                    fill
+                    className="object-contain grayscale brightness-200"
+                />
             </div>
 
             <div className="relative z-10">

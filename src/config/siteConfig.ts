@@ -127,7 +127,7 @@ export const siteConfig = {
       },
     ],
     methodology: {
-      title: { pt: "Método MaaS™ — Framework de Governança Tecnológica", en: "MaaS™ Method — Technology Governance Framework", es: "Método MaaS™ — Framework de Gobernanza Tecnológica" },
+      title: { pt: "Método MaaS™ — Governança Tecnológica", en: "MaaS™ Method — Technological Governance", es: "Método MaaS™ — Gobernanza Tecnológica" },
       subtitle: {
         pt: "O MaaS™ (Management as a Service) transforma a gestão de TI em um modelo estruturado, auditável e orientado à estratégia do negócio.",
         en: "MaaS™ (Management as a Service) transforms IT management into a structured, auditable and business strategy-oriented model.",
@@ -147,9 +147,9 @@ export const siteConfig = {
           number: "02",
           title: { pt: "Estruturação & Design", en: "Structuring & Design", es: "Estructuración y Diseño" },
           desc: {
-            pt: "Desenho do framework operacional, políticas de segurança e padrões de escalabilidade.",
-            en: "Operational framework design, security policies and scalability standards.",
-            es: "Diseño del framework operativo, políticas de seguridad y estándares de escalabilidad.",
+            pt: "Desenho do método operacional, políticas de segurança e padrões de escalabilidade.",
+            en: "Operational method design, security policies and scalability standards.",
+            es: "Diseño del método operativo, políticas de seguridad y estándares de escalabilidad.",
           },
         },
         {
@@ -288,9 +288,9 @@ export const siteConfig = {
       slug: "servidores",
       title: { pt: "Servidores & Virtualização", en: "Servers & Virtualization", es: "Servidores y Virtualización" },
       desc: {
-        pt: "Ambientes desenhados para alta disponibilidade e escalabilidade documentada, garantindo a continuidade do framework MaaS™.",
-        en: "Environments designed for high availability and documented scalability, ensuring the continuity of the MaaS™ framework.",
-        es: "Entornos diseñados para alta disponibilidad y escalabilidad documentada, asegurando la continuidad del framework MaaS™.",
+        pt: "Ambientes desenhados para alta disponibilidade e escalabilidade documentada, garantindo a continuidade do método MaaS™.",
+        en: "Environments designed for high availability and documented scalability, ensuring the continuity of the MaaS™ method.",
+        es: "Entornos diseñados para alta disponibilidad y escalabilidad documentada, asegurando la continuidad del método MaaS™.",
       },
     },
     {
@@ -321,12 +321,21 @@ export const siteConfig = {
       },
     },
     {
+      slug: "continuidade-resiliencia",
+      title: { pt: "Continuidade & Resiliência", en: "Continuity & Resilience", es: "Continuidad y Resiliencia" },
+      desc: {
+        pt: "Garantia de operação crítica com planos formais de recuperação e redundância inteligente como pilar do MaaS™.",
+        en: "Guarantee of critical operation with formal recovery plans and intelligent redundancy as a pillar of MaaS™.",
+        es: "Garantía de operación crítica con planos formales de recuperación y redundancia inteligente como pilar de MaaS™.",
+      },
+    },
+    {
       slug: "microsoft-365",
       title: { pt: "Microsoft 365", en: "Microsoft 365", es: "Microsoft 365" },
       desc: {
-        pt: "Tenant governado: conformidade de dados, gestão de identidade e produtividade estruturada sob o framework MaaS™.",
-        en: "Governed tenant: data compliance, identity management and structured productivity under the MaaS™ framework.",
-        es: "Tenant gobernado: cumplimiento de datos, gestión de identidad y productividad estructurada bajo el framework MaaS™.",
+        pt: "Tenant governado: conformidade de dados, gestão de identidade e produtividade estruturada sob o método MaaS™.",
+        en: "Governed tenant: data compliance, identity management and structured productivity under the MaaS™ method.",
+        es: "Tenant gobernado: cumplimiento de datos, gestión de identidad y productividad estructurada bajo el método MaaS™.",
       },
     },
     {
@@ -355,6 +364,227 @@ export const siteConfig = {
       es: "Cobertura de servicio: Brasil (base) · Perú (soporte técnico local) · España (atención remota).",
     },
   },
+  methodologyPage: {
+    intro: {
+      badge: {
+        pt: "ARQUITETURA MaaS™ • GOVERNANÇA TECNOLÓGICA",
+        en: "MaaS™ ARCHITECTURE • TECHNOLOGICAL GOVERNANCE",
+        es: "ARQUITECTURA MaaS™ • GOBERNANZA TECNOLÓGICA",
+      },
+      headline: {
+        pt: "Serviços governados pelo método MaaS™",
+        en: "Services governed by the MaaS™ method",
+        es: "Servicios gobernados por el método MaaS™",
+      },
+      subheadline: {
+        pt: "Infraestrutura corporativa projetada para previsibilidade, governança rigorosa e segurança operacional.",
+        en: "Corporate infrastructure designed for predictability, rigorous governance, and operational security.",
+        es: "Infraestructura corporativa diseñada para la previsibilidad, gobernanza rigurosa y seguridad operativa.",
+      },
+    },
+    layers: [
+      {
+        id: 1,
+        title: { pt: "Camada 1 — Infra & Rede", en: "Layer 1 — Infra & Network", es: "Capa 1 — Infra y Red" },
+        text: {
+          pt: "A fundação física e lógica: conectividade de alta performance e disponibilidade.",
+          en: "The physical and logical foundation: high-performance connectivity and availability.",
+          es: "La base física y lógica: conectividad de alto rendimiento y disponibilidad.",
+        },
+        services: ["redes-wireless", "cabeamento-estruturado", "servidores"],
+      },
+      {
+        id: 2,
+        title: { pt: "Camada 2 — Segurança & Risco", en: "Layer 2 — Security & Risk", es: "Capa 2 — Seguridad y Riesgo" },
+        text: {
+          pt: "Proteção de ativos e mitigação de ameaças através de hardening e resiliência.",
+          en: "Asset protection and threat mitigation through hardening and resilience.",
+          es: "Protección de activos y mitigación de amenazas a través de hardening y resiliencia.",
+        },
+        services: ["ciberseguranca", "gestao-de-backup", "continuidade-resiliencia"],
+      },
+      {
+        id: 3,
+        title: { pt: "Camada 3 — Cloud & Identidade", en: "Layer 3 — Cloud & Identity", es: "Capa 3 — Cloud e Identidad" },
+        text: {
+          pt: "Ecossistemas colaborativos seguros e gestão centralizada de acessos.",
+          en: "Secure collaborative ecosystems and centralized access management.",
+          es: "Ecosistemas colaborativos seguros y gestión centralizada de accesos.",
+        },
+        services: ["microsoft-365", "google-workspace"],
+      },
+      {
+        id: 4,
+        title: { pt: "Camada 4 — Operação & Suporte MaaS™", en: "Layer 4 — Operation & MaaS™ Support", es: "Capa 4 — Operación y Soporte MaaS™" },
+        text: {
+          pt: "Sustentação contínua da governança com SLAs rigorosos e visão executiva.",
+          en: "Continuous governance support with strict SLAs and executive vision.",
+          es: "Soporte continuo de la gobernanza con SLAs rigurosos y visión ejecutiva.",
+        },
+        services: ["suporte-tecnico"],
+      },
+    ],
+    deliverables: {
+      title: { pt: "O que você recebe", en: "What you receive", es: "Lo que recibes" },
+      items: [
+        {
+          title: { pt: "Inventário + topologia", en: "Inventory + topology", es: "Inventario + topología" },
+          desc: { pt: "Visibilidade total dos ativos e fluxos do ambiente.", en: "Full visibility of assets and environment flows.", es: "Visibilidad total de activos y flujos del entorno." }
+        },
+        {
+          title: { pt: "Matriz de riscos", en: "Risk matrix", es: "Matriz de riesgos" },
+          desc: { pt: "Priorização (P1/P2/P3) baseada em impacto ao negócio.", en: "Prioritization (P1/P2/P3) based on business impact.", es: "Priorización (P1/P2/P3) basada en el impacto al negocio." }
+        },
+        {
+          title: { pt: "Plano de ação 30-60-90", en: "30-60-90 action plan", es: "Plan de acción 30-60-90" },
+          desc: { pt: "Roteiro claro de correções e evoluções imediatas.", en: "Clear roadmap for corrections and immediate evolutions.", es: "Hoja de ruta clara para correcciones y evoluciones inmediatas." }
+        },
+        {
+          title: { pt: "Padrões e políticas", en: "Standards and policies", es: "Estándares y políticas" },
+          desc: { pt: "Definição formal de acessos, backup e mudanças.", en: "Formal definition of access, backup, and changes.", es: "Definición formal de accesos, respaldo y cambios." }
+        },
+        {
+          title: { pt: "SLA + rotina operacional", en: "SLA + operational routine", es: "SLA + rutina operativa" },
+          desc: { pt: "Compromisso de tempo e processos de suporte claros.", en: "Time commitment and clear support processes.", es: "Compromiso de tiempo y procesos de soporte claros." }
+        },
+        {
+          title: { pt: "Relatório executivo mensal", en: "Monthly executive report", es: "Informe ejecutivo mensual" },
+          desc: { pt: "Status de governança e próximos passos estratégicos.", en: "Governance status and strategic next steps.", es: "Estado de la gobernanza y próximos pasos estratégicos." }
+        },
+      ]
+    },
+    plans: {
+      title: { pt: "Planos MaaS™", en: "MaaS™ Plans", es: "Planes MaaS™" },
+      items: [
+        {
+          name: "MaaS™ Base",
+          focus: {
+            pt: "FOCO: ESTRUTURA E ESTABILIDADE OPERACIONAL",
+            en: "FOCUS: STRUCTURE AND OPERATIONAL STABILITY",
+            es: "ENFOQUE: ESTRUCTURA Y ESTABILIDAD OPERATIVA"
+          },
+          desc: {
+            pt: "Organização técnica inicial e controle mínimo para sair do improviso.",
+            en: "Initial technical organization and minimum control to move beyond improvisation.",
+            es: "Organización técnica inicial y control mínimo para salir de la improvisación."
+          },
+          features: {
+            pt: [
+              "Organização estrutural de ativos",
+              "Padronização de contas e permissões",
+              "Backup validado e monitoramento básico",
+              "Estrutura mínima de segurança (MFA e controle inicial)",
+              "Suporte operacional estruturado",
+              "Relatório gerencial periódico"
+            ],
+            en: [
+              "Structural organization of assets",
+              "Standardization of accounts and permissions",
+              "Validated backup and basic monitoring",
+              "Minimum security structure (MFA and initial control)",
+              "Structured operational support",
+              "Periodic management report"
+            ],
+            es: [
+              "Organización estructural de activos",
+              "Estandarización de cuentas y permisos",
+              "Respaldo validado y monitoreo básico",
+              "Estructura mínima de seguridad (MFA y control inicial)",
+              "Soporte operativo estructurado",
+              "Informe de gestión periódico"
+            ],
+          }
+        },
+        {
+          name: "MaaS™ Governança",
+          focus: {
+            pt: "FOCO: GOVERNANÇA E CONTROLE OPERACIONAL",
+            en: "FOCUS: GOVERNANCE AND OPERATIONAL CONTROL",
+            es: "ENFOQUE: GOBERNANZA Y CONTROL OPERATIVO"
+          },
+          desc: {
+            pt: "Aplicação formal de políticas, processos e controle contínuo da operação.",
+            en: "Formal application of policies, processes, and continuous operation control.",
+            es: "Aplicación formal de políticas, procesos y control continuo de la operación."
+          },
+          features: {
+            pt: [
+              "Governança formal documentada",
+              "Onboarding & Offboarding estruturado",
+              "Matriz de acessos por função",
+              "Políticas aplicadas em arquitetura Multi-Cloud governada",
+              "DRP documentado e testado",
+              "Gestão de ciclo de vida dos dados",
+              "Controle contínuo e hardening",
+              "Relatório executivo mensal"
+            ],
+            en: [
+              "Documented formal governance",
+              "Structured Onboarding & Offboarding",
+              "Access matrix by role",
+              "Policies applied in governed Multi-Cloud architecture",
+              "Documented and tested DRP",
+              "Data lifecycle management",
+              "Continuous control and hardening",
+              "Monthly executive report"
+            ],
+            es: [
+              "Gobernanza formal documentada",
+              "Onboarding y Offboarding estructurado",
+              "Matriz de accesos por función",
+              "Políticas aplicadas en arquitectura Multi-Cloud gobernada",
+              "DRP documentado y probado",
+              "Gestión del ciclo de vida de los datos",
+              "Control continuo y hardening",
+              "Informe ejecutivo mensual"
+            ],
+          }
+        },
+        {
+          name: "MaaS™ Estratégico",
+          focus: {
+            pt: "FOCO: EVOLUÇÃO E DIREÇÃO EXECUTIVA",
+            en: "FOCUS: EVOLUTION AND EXECUTIVE DIRECTION",
+            es: "ENFOQUE: EVOLUCIÓN Y DIRECCIÓN EJECUTIVA"
+          },
+          desc: {
+            pt: "Arquitetura evolutiva e direcionamento estratégico para crescimento sustentável.",
+            en: "Evolutionary architecture and strategic direction for sustainable growth.",
+            es: "Arquitectura evolutiva y dirección estratégica para un crecimiento sostenible."
+          },
+          features: {
+            pt: [
+              "Planejamento de arquitetura evolutiva",
+              "Infraestrutura como Código (quando aplicável)",
+              "Auditoria e otimização de custos cloud",
+              "Gestão de ambientes híbridos",
+              "Indicadores de maturidade tecnológica",
+              "Acompanhamento C-Level",
+              "Roadmap tecnológico anual"
+            ],
+            en: [
+              "Evolutionary architecture planning",
+              "Infrastructure as Code (when applicable)",
+              "Audit and optimization of cloud costs",
+              "Hybrid environment management",
+              "Technological maturity indicators",
+              "C-Level support",
+              "Annual technology roadmap"
+            ],
+            es: [
+              "Planificación de arquitectura evolutiva",
+              "Infraestructura como Código (cuando sea aplicable)",
+              "Auditoría y optimización de costos en la nube",
+              "Gestión de entornos híbridos",
+              "Indicadores de madurez tecnológica",
+              "Acompañamiento C-Level",
+              "Roadmap tecnológico anual"
+            ],
+          }
+        }
+      ]
+    }
+  }
 };
 
 export type Locale = "pt" | "en" | "es";

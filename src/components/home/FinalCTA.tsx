@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Locale, siteConfig } from "@/config/siteConfig";
 import { Section } from "../Section";
 
@@ -8,8 +9,13 @@ export default function FinalCTA({ lang }: { lang: Locale }) {
     return (
         <Section className="bg-premium-dark text-white overflow-hidden relative border-t border-white/5" id="contato">
             {/* Decorative background logo */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[40rem] font-bold text-white/[0.02] select-none -z-0">
-                A
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[300px] md:max-w-[500px] lg:max-w-[700px] aspect-square opacity-[0.04] blur-[1px] select-none pointer-events-none -z-0">
+                <Image
+                    src="/images/APIX-09.png"
+                    alt="Apix logo watermark"
+                    fill
+                    className="object-contain"
+                />
             </div>
 
             <div className="relative z-10 flex flex-col items-center text-center">

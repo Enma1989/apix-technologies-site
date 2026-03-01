@@ -35,8 +35,8 @@ export default function CaseStudies({ lang }: { lang: Locale }) {
                 <div className="mt-8 w-20 h-1 bg-secondary mx-auto lg:mx-0 mb-8"></div>
                 <p className="text-slate-800 text-xl font-inter max-w-2xl leading-relaxed">
                     {lang === "pt"
-                        ? "Estudos de caso que demonstram a eficiência do nosso framework de governança em ambientes complexos."
-                        : "Case studies demonstrating the efficiency of our governance framework in complex environments."
+                        ? "Estudos de caso que demonstram a eficiência do nosso método de governança em ambientes complexos."
+                        : "Case studies demonstrating the efficiency of our governance method in complex environments."
                     }
                 </p>
             </div>

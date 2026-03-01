@@ -42,8 +42,8 @@ export default function Footer({ lang }: { lang: Locale }) {
                                 </h4>
                                 <p className="text-white/50 text-xs leading-relaxed">
                                     {lang === "pt"
-                                        ? "Framework proprietário de Governança Tecnológica."
-                                        : "Proprietary Technology Governance Framework."}
+                                        ? "Método proprietário de Governança Tecnológica."
+                                        : "Proprietary Technology Governance Method."}
                                 </p>
                             </div>
 
