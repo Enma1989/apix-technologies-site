@@ -6,7 +6,7 @@ import Link from "next/link";
 export async function generateStaticParams() {
     const params: { lang: Locale; slug: string }[] = [];
 
-    const specializedSlugs = ["redes-wireless", "cabeamento-estruturado", "servidores", "ciberseguranca"];
+    const specializedSlugs = ["redes-wireless", "cabeamento-estruturado", "servidores", "ciberseguranca", "gestao-de-backup", "continuidade-resiliencia", "microsoft-365", "google-workspace", "suporte-tecnico"];
 
     locales.forEach((lang) => {
         siteConfig.services

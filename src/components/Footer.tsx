@@ -41,9 +41,8 @@ export default function Footer({ lang }: { lang: Locale }) {
                                     Método MaaS™
                                 </h4>
                                 <p className="text-white/50 text-xs leading-relaxed">
-                                    {lang === "pt"
-                                        ? "Método proprietário de Governança Tecnológica."
-                                        : "Proprietary Technology Governance Method."}
+                                    {siteConfig.home.hero.headline.line1[lang]}<br />
+                                    {siteConfig.home.hero.headline.line2[lang]}
                                 </p>
                             </div>
 
