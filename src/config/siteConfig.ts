@@ -50,7 +50,6 @@ export const siteConfig = {
   },
   navigation: {
     links: [
-      { name: { pt: "Home", en: "Home", es: "Inicio" }, href: "/" },
       { name: { pt: "Arquitetura MaaS™", en: "MaaS™ Architecture", es: "Arquitectura MaaS™" }, href: "/arquitetura-maas" },
       { name: { pt: "Serviços", en: "Services", es: "Servicios" }, href: "/servicos" },
       { name: { pt: "Sobre", en: "About", es: "Sobre nosotros" }, href: "/sobre" },

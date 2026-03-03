@@ -61,9 +61,8 @@ export default async function ArquiteturaMaaSPage({
                         </Link>
 
                         <div className="flex justify-center mb-8">
-                            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-[#FFD23F] text-xs md:text-sm font-medium tracking-wide">
-                                <span className="w-1.5 h-1.5 rounded-full bg-[#FFD23F] shadow-[0_0_8px_rgba(255,210,63,0.5)]"></span>
-                                MÉTODO PROPRIETÁRIO
+                            <div className="inline-flex items-center px-4 md:px-5 py-1.5 rounded-full bg-black/40 border border-[#FFD23F]/60 text-[#FFD23F] text-xs md:text-sm font-semibold uppercase tracking-wider hover:shadow-[0_0_15px_rgba(255,210,63,0.2)] transition-shadow duration-300">
+                                GOVERNANÇA ARQUITETÔNICA
                             </div>
                         </div>
 
@@ -129,39 +128,101 @@ export default async function ArquiteturaMaaSPage({
                 </div>
             </Section>
 
-            {/* 3. O MODELO MAAS™ (Fundo Claro) */}
-            <Section className="bg-white text-dark py-24 border-b border-zinc-200">
-                <div className="container-premium max-w-5xl mx-auto">
-                    <div className="text-center mb-16">
-                        <h2 className="text-3xl md:text-4xl lg:text-5xl font-outfit font-bold text-slate-900 uppercase tracking-tight leading-none mb-6">
+            {/* 3. O MODELO MAAS™ (Arquitetura Visual Premium) */}
+            <section className="bg-zinc-950 text-white py-24 md:py-32 border-b border-white/5 relative overflow-hidden">
+                {/* Background Glows for Depth */}
+                <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#FFD23F]/5 rounded-full blur-[150px] pointer-events-none translate-x-1/3 -translate-y-1/3"></div>
+                <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-blue-900/10 rounded-full blur-[150px] pointer-events-none -translate-x-1/3 translate-y-1/3"></div>
+
+                <div className="container-premium max-w-5xl mx-auto relative z-10">
+                    <div className="text-center mb-20 md:mb-28">
+                        <h2 className="text-3xl md:text-4xl lg:text-5xl font-outfit font-bold text-white uppercase tracking-tight leading-none mb-6">
                             O Modelo MaaS™ organiza <br className="hidden md:block" />
-                            <span className="text-secondary">tecnologia por camadas</span>
+                            <span className="text-[#FFD23F] drop-shadow-[0_0_15px_rgba(255,210,63,0.15)]">tecnologia por camadas</span>
                         </h2>
-                        <p className="text-lg md:text-xl text-slate-600 font-inter max-w-3xl mx-auto leading-relaxed">
-                            A Arquitetura MaaS™ estrutura infraestrutura corporativa em camadas interdependentes, conectando base técnica, proteção e governança sob método formal.
+                        <p className="text-lg md:text-xl text-slate-400 font-inter max-w-3xl mx-auto leading-relaxed">
+                            A Arquitetura MaaS™ estrutura a infraestrutura corporativa em camadas interdependentes, conectando base técnica, proteção e governança sob um método formal e contínuo.
                         </p>
                     </div>
 
-                    <div className="max-w-[900px] mx-auto my-16">
-                        <Image
-                            src="/images/Diagrama.png"
-                            alt="Diagrama do Modelo MaaS™"
-                            width={1200}
-                            height={800}
-                            className="w-full h-auto object-contain"
-                            quality={100}
-                            priority
-                        />
+                    {/* Componente Arquitetônico Premium */}
+                    <div className="max-w-4xl mx-auto my-16">
+                        <div className="relative flex flex-col md:flex-row items-stretch justify-center gap-8 md:gap-12 pl-4 md:pl-0">
+
+                            {/* Linha Dourada Lateral (Conector Vertical) */}
+                            <div className="hidden md:flex flex-col items-center relative py-8 ml-4">
+                                <div className="absolute top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-[#FFD23F]/40 to-transparent"></div>
+                            </div>
+
+                            {/* Camadas Empilhadas */}
+                            <div className="w-full flex-1 flex flex-col gap-6 md:gap-8 relative">
+                                {[
+                                    {
+                                        id: "04",
+                                        title: "Orquestração & Governança",
+                                        desc: "Gestão executiva, compliance e indicadores estratégicos."
+                                    },
+                                    {
+                                        id: "03",
+                                        title: "Continuidade Empresarial",
+                                        desc: "Resiliência operacional, backup e alta disponibilidade."
+                                    },
+                                    {
+                                        id: "02",
+                                        title: "Blindagem & Identidade",
+                                        desc: "Segurança de borda, zero trust e proteção de dados."
+                                    },
+                                    {
+                                        id: "01",
+                                        title: "Base Estrutural",
+                                        desc: "Fundação de conectividade, servidores e infraestrutura física."
+                                    }
+                                ].map((layer, idx) => (
+                                    <div
+                                        key={idx}
+                                        className="group relative flex items-center w-full"
+                                    >
+                                        {/* Elementos de Conexão Laterais (Desktop) */}
+                                        <div className="hidden md:block absolute -left-12 w-8 h-px bg-gradient-to-r from-[#FFD23F]/20 to-transparent group-hover:from-[#FFD23F]/60 transition-colors duration-500"></div>
+                                        <div className="hidden md:block absolute -left-[51px] w-1.5 h-1.5 rounded-full border border-[#FFD23F]/40 bg-zinc-950 group-hover:bg-[#FFD23F] group-hover:shadow-[0_0_10px_rgba(255,210,63,0.6)] group-hover:scale-150 transition-all duration-500"></div>
+
+                                        {/* Bloco da Camada (Glassmorphism & Sombra 3D leve) */}
+                                        <div className="w-full bg-zinc-900/40 border border-[#FFD23F]/10 p-6 md:p-8 rounded-xl backdrop-blur-sm 
+                                            hover:bg-zinc-800/60 hover:border-[#FFD23F]/30 hover:-translate-y-1 hover:shadow-[0_20px_40px_-10px_rgba(0,0,0,0.8),_0_0_20px_rgba(255,210,63,0.05)] 
+                                            transition-all duration-500 ease-out relative overflow-hidden flex flex-col md:flex-row md:items-center justify-between gap-4 cursor-default">
+
+                                            {/* Micro-glow interno na borda superior durante o hover */}
+                                            <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#FFD23F]/0 to-transparent group-hover:via-[#FFD23F]/40 transition-all duration-700 opacity-0 group-hover:opacity-100"></div>
+
+                                            <div className="relative z-10 flex flex-col">
+                                                <span className="text-[#FFD23F]/50 text-xs font-semibold uppercase tracking-widest mb-1 shadow-sm">
+                                                    CAMADA {layer.id}
+                                                </span>
+                                                <h3 className="text-xl md:text-2xl font-outfit font-semibold text-slate-100 group-hover:text-white transition-colors duration-300 tracking-wide drop-shadow-sm">
+                                                    {layer.title}
+                                                </h3>
+                                            </div>
+
+                                            <div className="relative z-10 text-sm text-slate-400 font-inter md:max-w-[280px] lg:max-w-[340px] md:text-right group-hover:text-slate-300 transition-colors duration-300 leading-relaxed">
+                                                {layer.desc}
+                                            </div>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
                     </div>
 
-                    <div className="text-center">
-                        <p className="text-2xl md:text-3xl font-outfit text-slate-800 leading-normal tracking-wide">
-                            Arquitetura não é ferramenta.<br />
-                            <span className="text-slate-500 font-light">É estrutura organizada sob método.</span>
+                    <div className="text-center mt-20">
+                        <p className="text-xl md:text-2xl font-outfit text-slate-300 leading-normal tracking-wide uppercase font-light">
+                            Estrutura <span className="text-[#FFD23F] font-bold mx-2">&gt;</span> Ferramenta
+                            <span className="hidden md:inline mx-6 text-white/20">|</span>
+                            <br className="md:hidden mt-2" />
+                            Método <span className="text-[#FFD23F] font-bold mx-2">&gt;</span> Serviço
                         </p>
                     </div>
                 </div>
-            </Section>
+            </section>
 
             {/* 4. COMO FUNCIONA (Fundo Claro) */}
             <Section className="bg-premium-white text-dark py-24 border-b border-zinc-200">
