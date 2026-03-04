@@ -29,14 +29,15 @@ export default async function CibersegurancaPage({ params }: PageProps) {
                         alt="Cibersegurança Governada"
                         fill
                         className="object-cover opacity-60 lg:opacity-80 hero-bg-filter"
+                        style={{ filter: 'blur(0px) brightness(0.78) contrast(0.95)' }}
                         priority
                         quality={75}
                         sizes="100vw"
                     />
                 </div>
 
-                 {/* Global Hero Overlay */}
-                <div className="hero-overlay-premium" />
+                {/* Global Hero Overlay */}
+                <div className="hero-overlay-premium" style={{ backdropFilter: 'blur(2px)' }} />
 
                 {/* Layer D: Content */}
                 <div className="container-premium relative z-30 pt-32 pb-20 md:pt-40 md:pb-32">
@@ -156,6 +157,6 @@ export default async function CibersegurancaPage({ params }: PageProps) {
                     </div>
                 </div>
             </Section>
-        </main>
+        </main >
     );
 }
