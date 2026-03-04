@@ -2,7 +2,7 @@
 
 export default function SvgWorldMap({ activeCountry, isHoveringMap }: { activeCountry: string | null; isHoveringMap: boolean }) {
     // Todos os países em cinza claro no estado inicial
-    const baseStyle = "fill-zinc-200 stroke-white stroke-[0.5] transition-all duration-300 ease-out";
+    const baseStyle = "fill-zinc-300 stroke-white stroke-[0.5] transition-all duration-300 ease-out";
 
     // País em destaque no hover do card
     const highlightStyle = "fill-[#FFD23F] stroke-white stroke-[0.5] opacity-85 drop-shadow-[0_0_8px_rgba(255,210,63,0.4)]";
@@ -12,7 +12,7 @@ export default function SvgWorldMap({ activeCountry, isHoveringMap }: { activeCo
             viewBox="0 0 1000 600"
             className={`w-full h-auto ${!isHoveringMap ? "animate-breath" : ""}`}
             style={{
-                filter: "drop-shadow(0px 10px 30px rgba(0,0,0,0.03))"
+                filter: "drop-shadow(0px 20px 40px rgba(0,0,0,0.08)) drop-shadow(0px 4px 10px rgba(0,0,0,0.04))"
             }}
         >
             <style jsx>{`
@@ -31,9 +31,18 @@ export default function SvgWorldMap({ activeCountry, isHoveringMap }: { activeCo
                 .country-path {
                     transform-origin: center;
                 }
-                .country-active {
-                    transform: scale(1.015);
+                ${activeCountry ? `
+                #country-${activeCountry} {
+                    fill: #FFD23F !important;
+                    stroke: white !important;
+                    stroke-width: 1 !important;
+                    opacity: 1 !important;
+                    filter: drop-shadow(0px 8px 16px rgba(0,0,0,0.15)) drop-shadow(0px 0px 4px rgba(255,210,63,0.3)) !important;
+                    transform: scale(1.02);
+                    transform-origin: center;
+                    transition: all 0.3s ease-out;
                 }
+                ` : ""}
             `}</style>
 
             <g className="world-base">

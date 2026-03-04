@@ -3,12 +3,14 @@
 import { useState, useEffect } from "react";
 import { Locale } from "@/config/siteConfig";
 import Link from "next/link";
+import { Dictionary } from "@/dictionaries";
 
 interface CookieConsentProps {
     lang: Locale;
+    dict?: Dictionary;
 }
 
-export default function CookieConsent({ lang }: CookieConsentProps) {
+export default function CookieConsent({ lang, dict }: CookieConsentProps) {
     const [isVisible, setIsVisible] = useState(false);
     const [shouldRender, setShouldRender] = useState(false);
 
@@ -31,25 +33,9 @@ export default function CookieConsent({ lang }: CookieConsentProps) {
 
     if (!shouldRender) return null;
 
-    const content = {
-        pt: {
-            text: "Valorizamos sua privacidade. Utilizamos cookies para melhorar sua experiência e analisar nosso tráfego conforme nossa",
-            linkText: "Política de Cookies",
-            button: "Aceitar",
-        },
-        en: {
-            text: "We value your privacy. We use cookies to improve your experience and analyze our traffic according to our",
-            linkText: "Cookies Policy",
-            button: "Accept",
-        },
-        es: {
-            text: "Valoramos su privacidad. Utilizamos cookies para mejorar su experiencia y analizar nuestro tráfico según nuestra",
-            linkText: "Política de Cookies",
-            button: "Aceptar",
-        }
-    };
+    if (!shouldRender || !dict) return null;
 
-    const t = content[lang] || content.pt;
+    const t = dict.legal;
 
     return (
         <div
@@ -59,12 +45,12 @@ export default function CookieConsent({ lang }: CookieConsentProps) {
             <div className="bg-white/80 backdrop-blur-xl border border-neutral-200 p-5 md:p-6 rounded-2xl shadow-[0_20px_40px_rgba(0,0,0,0.1)] flex flex-col md:flex-row items-center justify-between gap-5 ring-1 ring-black/5">
                 <div className="flex-1">
                     <p className="text-neutral-600 font-inter text-sm leading-relaxed text-center md:text-left">
-                        {t.text}{" "}
+                        {t.cookieText}{" "}
                         <Link
                             href={`/${lang}/cookies`}
                             className="text-neutral-900 font-semibold hover:text-black underline underline-offset-4 transition-all"
                         >
-                            {t.linkText}
+                            {t.cookieLink}
                         </Link>.
                     </p>
                 </div>
@@ -73,7 +59,7 @@ export default function CookieConsent({ lang }: CookieConsentProps) {
                         onClick={handleAccept}
                         className="bg-black hover:bg-neutral-800 text-white font-medium text-sm px-8 py-2.5 rounded-full transition-all duration-300 active:scale-95 shadow-sm hover:shadow-md cursor-pointer w-full md:w-auto text-center"
                     >
-                        {t.button}
+                        {t.cookieAccept}
                     </button>
                 </div>
             </div>

@@ -1,20 +1,23 @@
-import { Locale, siteConfig } from "@/config/siteConfig";
+import { Locale } from "@/config/siteConfig";
+import { getDictionary } from "@/dictionaries";
 import { Section } from "../Section";
 
-export default function StrategicPillars({ lang }: { lang: Locale }) {
+export default async function StrategicPillars({ lang }: { lang: Locale }) {
+    const dict = await getDictionary(lang);
+
     return (
         <Section className="bg-premium-zinc text-dark border-y border-zinc-100">
             <div className="text-center mb-16">
                 <h2 className="text-3xl md:text-5xl font-outfit font-bold tracking-tight text-slate-900 uppercase">
-                    {lang === "pt" ? "Pilares Estratégicos" : lang === "en" ? "Strategic Pillars" : "Pilares Estratégicos"}
+                    {dict.homeData.pillarsTitle}
                 </h2>
                 <div className="mt-6 w-20 h-1 bg-secondary mx-auto"></div>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mt-10 mb-20">
-                {siteConfig.home.pillars.map((pillar, index) => (
+                {dict.home.pillars.map((pillar, index) => (
                     <div
-                        key={pillar.title[lang]}
+                        key={pillar.title}
                         className="group p-8 bg-white border border-[#FFD23F]/40 hover:border-[#FFD23F] rounded-3xl shadow-sm transition-all duration-300"
                     >
                         <div className="w-14 h-14 bg-white border border-[#FFD23F]/40 rounded-xl flex items-center justify-center mb-8 transition-all duration-300 text-[#FFD23F]">
@@ -40,10 +43,10 @@ export default function StrategicPillars({ lang }: { lang: Locale }) {
                             )}
                         </div>
                         <h3 className="text-xl font-outfit font-bold mb-4 text-slate-900 group-hover:text-secondary transition-colors">
-                            {pillar.title[lang]}
+                            {pillar.title}
                         </h3>
                         <p className="text-slate-600 font-inter leading-relaxed text-sm">
-                            {pillar.text[lang]}
+                            {pillar.text}
                         </p>
                     </div>
                 ))}

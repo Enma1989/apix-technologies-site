@@ -1,4 +1,5 @@
 import { Locale, siteConfig } from "@/config/siteConfig";
+import { getDictionary } from "@/dictionaries";
 import Image from "next/image";
 import Link from "next/link";
 import StrategicStatement from "@/components/home/StrategicStatement";
@@ -8,7 +9,6 @@ import ServicesOverview from "@/components/home/ServicesOverview";
 import Methodology from "@/components/home/Methodology";
 import ConsultativeAuditCTA from "@/components/home/ConsultativeAuditCTA";
 import CredibilitySection from "@/components/home/CredibilitySection";
-import CaseStudies from "@/components/home/CaseStudies";
 import FinalCTA from "@/components/home/FinalCTA";
 
 export default async function HomePage({
@@ -18,6 +18,7 @@ export default async function HomePage({
 }) {
   const { lang: langParam } = await params;
   const lang = langParam as Locale;
+  const dict = await getDictionary(lang);
 
   return (
     <main className="min-h-screen">
@@ -33,21 +34,13 @@ export default async function HomePage({
             priority
             className="object-cover object-right saturate-[0.85] brightness-[0.9]"
           />
-          {/* Cinematic Radial Depth Overlay */}
-          <div
-            className="absolute inset-0 z-0 pointer-events-none"
-            style={{
-              background: 'radial-gradient(circle at 80% 50%, rgba(0, 0, 0, 0.18) 0%, rgba(0, 0, 0, 0.12) 30%, rgba(0, 0, 0, 0.06) 55%, rgba(0, 0, 0, 0.00) 75%)'
-            }}
-          />
         </div>
 
-        {/* Hero Background Overlay - Frosted Glass Effect (Left Side) */}
+        {/* Custom Hero Overlay - Horizontal Gradient for Home */}
         <div
-          className="absolute inset-y-0 left-0 w-full md:w-[55%] bg-white/10 backdrop-blur-lg z-10 pointer-events-none transition-all duration-700"
+          className="absolute inset-0 z-10 pointer-events-none"
           style={{
-            maskImage: 'linear-gradient(to right, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 90%, rgba(0,0,0,0) 100%)',
-            WebkitMaskImage: 'linear-gradient(to right, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 90%, rgba(0,0,0,0) 100%)'
+            background: 'linear-gradient(90deg, rgba(0,0,0,0.80) 0%, rgba(0,0,0,0.70) 20%, rgba(0,0,0,0.50) 35%, rgba(0,0,0,0.25) 45%, rgba(0,0,0,0.10) 50%, rgba(0,0,0,0.00) 60%)'
           }}
         />
 
@@ -55,23 +48,23 @@ export default async function HomePage({
           <div className="max-w-4xl py-16 md:py-32 lg:-translate-x-12 transition-transform duration-500">
             {/* Eyebrow Tagline */}
             <div className="mb-8">
-              <span className="text-[#FFD23F] font-bold tracking-[0.2em] uppercase text-xs md:text-sm">
-                {siteConfig.brand.slogan[lang]}
+              <span className="text-[#FFD23F] font-bold tracking-[0.2em] uppercase text-xs md:text-sm drop-shadow-[0_0_15px_rgba(255,210,63,0.3)]">
+                {dict.brand.slogan}
               </span>
             </div>
 
-            <h1 className="font-outfit tracking-tight mb-8 flex flex-col text-white">
+            <h1 className="font-outfit tracking-tight mb-8 flex flex-col text-white text-shadow-premium">
               <span className="text-3xl md:text-4xl lg:text-5xl opacity-80 font-light mb-2">
-                {siteConfig.home.hero.headline.line1[lang]}
+                {dict.home.hero.headline.line1}
               </span>
               <span className="text-5xl md:text-6xl lg:text-8xl leading-[1.05] font-bold">
-                {siteConfig.home.hero.headline.line2[lang]}
+                {dict.home.hero.headline.line2}
               </span>
             </h1>
 
             {/* Subheadline Segment */}
-            <p className="text-lg md:text-xl text-white/70 font-inter mb-12 max-w-2xl leading-relaxed">
-              {siteConfig.home.hero.subheadline[lang]}
+            <p className="text-lg md:text-xl text-white/85 text-shadow-premium font-inter mb-12 max-w-2xl leading-relaxed">
+              {dict.home.hero.subheadline}
             </p>
 
             <div className="flex flex-wrap gap-6 items-center">
@@ -79,7 +72,7 @@ export default async function HomePage({
                 href={`/${lang}/contato`}
                 className="inline-flex items-center justify-center bg-[#FFD23F] border-2 border-[#E6B800] text-[#111111] font-semibold py-4 px-8 md:px-12 rounded-full hover:brightness-95 hover:scale-[1.02] hover:shadow-xl hover:shadow-black/30 active:scale-[0.99] shadow-lg shadow-black/25 transition-all duration-200 ease-out min-h-[52px] min-w-[200px] md:min-w-[240px] whitespace-nowrap uppercase !tracking-wide !text-[11px] md:!text-[12px]"
               >
-                {siteConfig.home.hero.primaryCTA[lang]}
+                {dict.home.hero.primaryCTA}
               </Link>
               <Link
                 href="https://wa.me/5541991934437"
@@ -87,7 +80,7 @@ export default async function HomePage({
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center bg-black/35 border-2 border-white/25 text-white font-semibold py-4 px-8 md:px-12 rounded-full hover:bg-black/45 hover:border-white/35 hover:-translate-y-0.5 active:translate-y-0 shadow-md shadow-black/20 transition-all duration-200 min-h-[52px] min-w-[200px] md:min-w-[240px] whitespace-nowrap uppercase !tracking-wide !text-[11px] md:!text-[12px]"
               >
-                {siteConfig.home.hero.secondaryCTA[lang]}
+                {dict.home.hero.secondaryCTA}
               </Link>
             </div>
           </div>
@@ -102,7 +95,6 @@ export default async function HomePage({
         <Methodology lang={lang} />
         <ConsultativeAuditCTA lang={lang} />
         <CredibilitySection lang={lang} />
-        <CaseStudies lang={lang} />
         <FinalCTA lang={lang} />
       </div>
     </main>

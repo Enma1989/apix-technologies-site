@@ -1,10 +1,12 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Locale, siteConfig } from "@/config/siteConfig";
+import { getDictionary } from "@/dictionaries";
 import { Section } from "../Section";
 
-export default function ServicesOverview({ lang }: { lang: Locale }) {
-    const { methodologyPage } = siteConfig;
+export default async function ServicesOverview({ lang }: { lang: Locale }) {
+    const dict = await getDictionary(lang);
+    const { methodologyPage } = dict;
 
     return (
         <Section className="bg-premium-zinc text-dark border-t border-zinc-100 py-24">
@@ -12,24 +14,19 @@ export default function ServicesOverview({ lang }: { lang: Locale }) {
                 <div className="max-w-3xl">
                     <div className="inline-block px-3 py-1 border border-secondary/30 bg-secondary/5 rounded-full mb-6">
                         <span className="text-[10px] font-bold tracking-widest text-[#E6B800] uppercase">
-                            {methodologyPage.intro.badge[lang]}
+                            {methodologyPage.intro.badge}
                         </span>
                     </div>
                     <h2 className="text-3xl md:text-5xl font-outfit font-bold mb-6 tracking-tight text-slate-900 uppercase">
-                        {lang === "pt" ? "Componentes Operacionais MaaS™" : lang === "en" ? "MaaS™ Operational Components" : "Componentes Operativos MaaS™"}
+                        {dict.homeData.servicesOverviewTitle}
                     </h2>
                     <div className="w-20 h-1 bg-secondary mb-6"></div>
                     <p className="text-slate-600 text-xl font-inter leading-relaxed">
-                        {lang === "pt"
-                            ? "Cada solução técnica é um componente integrado ao nosso método de governança, garantindo que a infraestrutura opere sob rigor executivo."
-                            : lang === "en"
-                                ? "Each technical solution is a component integrated into our governance method, ensuring that infrastructure operates under executive rigor."
-                                : "Cada solución técnica es un componente integrado en nuestro método de gobernanza, asegurando que la infraestructura opere bajo rigor ejecutivo."
-                        }
+                        {dict.homeData.servicesOverviewDesc}
                     </p>
                 </div>
                 <Link href={`/${lang}/servicos`} className="text-slate-700 font-bold uppercase tracking-widest text-sm border-b-2 border-slate-200 pb-1 hover:text-secondary hover:border-secondary transition-all flex items-center gap-2 mb-2">
-                    {lang === "pt" ? "Método MaaS™" : lang === "en" ? "MaaS™ Method" : "Método MaaS™"}
+                    {dict.homeData.maasMethodLink}
                     <span>→</span>
                 </Link>
             </div>
@@ -39,13 +36,13 @@ export default function ServicesOverview({ lang }: { lang: Locale }) {
                     <div key={layer.id}>
                         <div className="flex items-center gap-4 mb-8">
                             <h3 className="text-sm font-bold uppercase tracking-[0.2em] text-slate-400">
-                                {layer.title[lang]}
+                                {layer.title}
                             </h3>
                             <div className="h-px flex-grow bg-slate-100"></div>
                         </div>
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
                             {layer.services.map((slug) => {
-                                const service = siteConfig.services.find(s => s.slug === slug);
+                                const service = dict.services.find(s => s.slug === slug);
                                 if (!service) return null;
                                 return (
                                     <Link
@@ -112,13 +109,13 @@ export default function ServicesOverview({ lang }: { lang: Locale }) {
                                             )}
                                         </div>
                                         <h3 className="text-xl font-outfit font-bold mb-4 text-slate-900 group-hover:text-secondary transition-colors">
-                                            {service.title[lang]}
+                                            {service.title}
                                         </h3>
                                         <p className="text-sm text-slate-500 font-inter leading-relaxed group-hover:text-slate-600 transition-colors">
-                                            {service.desc[lang]}
+                                            {service.desc}
                                         </p>
                                         <div className="mt-8 pt-6 border-t border-zinc-50 w-full text-xs font-bold uppercase tracking-widest text-slate-900 group-hover:text-secondary flex items-center gap-2 transition-all duration-300">
-                                            {lang === "pt" ? "Saiba mais" : lang === "en" ? "Learn more" : "Saber más"}
+                                            {dict.common.learnMore}
                                             <span className="transform transition-transform group-hover:translate-x-2">→</span>
                                         </div>
                                     </Link>

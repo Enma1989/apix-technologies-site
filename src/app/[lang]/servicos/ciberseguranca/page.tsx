@@ -28,24 +28,15 @@ export default async function CibersegurancaPage({ params }: PageProps) {
                         src="/images/cybersecurity.jpg"
                         alt="Cibersegurança Governada"
                         fill
-                        className="object-cover opacity-60 lg:opacity-80"
+                        className="object-cover opacity-60 lg:opacity-80 hero-bg-filter"
                         priority
                         quality={75}
                         sizes="100vw"
                     />
                 </div>
 
-                {/* Layer B: Global Overlay */}
-                <div className="absolute inset-0 z-10 bg-black/40" />
-
-                {/* Layer C: Frosted Glass Lateral (Desktop) / Central Overlay (Mobile) */}
-                <div
-                    className="absolute inset-y-0 left-0 w-full lg:w-[55%] bg-zinc-950/70 lg:bg-gradient-to-r lg:from-zinc-950/90 lg:via-zinc-900/60 lg:to-transparent backdrop-blur-md lg:backdrop-blur-xl border-white/10 lg:border-r z-20 pointer-events-none"
-                    style={{
-                        maskImage: 'linear-gradient(to right, black 85%, transparent)',
-                        WebkitMaskImage: 'linear-gradient(to right, black 85%, transparent)'
-                    }}
-                />
+                 {/* Global Hero Overlay */}
+                <div className="hero-overlay-premium" />
 
                 {/* Layer D: Content */}
                 <div className="container-premium relative z-30 pt-32 pb-20 md:pt-40 md:pb-32">
@@ -59,14 +50,14 @@ export default async function CibersegurancaPage({ params }: PageProps) {
                         </Link>
 
                         <div className="space-y-6">
-                            <h1 className="text-4xl md:text-6xl lg:text-7xl font-outfit font-bold mb-8 tracking-tight leading-tight text-white uppercase">
+                            <h1 className="text-4xl md:text-6xl lg:text-7xl font-outfit font-bold mb-8 tracking-tight leading-tight text-white text-shadow-premium uppercase">
                                 CIBERSEGURANÇA<br />
-                                <span className="text-apix-yellow drop-shadow-[0_0_30px_rgba(255,210,63,0.3)]">GOVERNADA</span>
+                                <span className="text-apix-yellow drop-shadow-[0_0_20px_rgba(255,210,63,0.4)]">GOVERNADA</span>
                             </h1>
 
                             <div className="w-20 h-1 bg-apix-yellow mb-10 drop-shadow-[0_0_10px_rgba(255,210,63,0.5)]"></div>
 
-                            <p className="text-xl md:text-2xl text-slate-200 font-inter leading-relaxed max-w-xl drop-shadow-sm">
+                            <p className="text-xl md:text-2xl text-white/85 text-shadow-premium font-inter leading-relaxed max-w-xl ">
                                 Proteção contínua sob o modelo <span className="text-white font-medium">MaaS™</span>, com monitoramento, políticas aplicadas e controle executivo de riscos digitais.
                             </p>
 

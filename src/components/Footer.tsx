@@ -1,8 +1,9 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Locale, siteConfig } from "@/config/siteConfig";
+import { Dictionary } from "@/dictionaries";
 
-export default function Footer({ lang }: { lang: Locale }) {
+export default function Footer({ lang, dict }: { lang: Locale; dict: Dictionary }) {
     const currentYear = new Date().getFullYear();
 
     return (
@@ -41,24 +42,24 @@ export default function Footer({ lang }: { lang: Locale }) {
                                     Método MaaS™
                                 </h4>
                                 <p className="text-white/50 text-xs leading-relaxed">
-                                    {siteConfig.home.hero.headline.line1[lang]}<br />
-                                    {siteConfig.home.hero.headline.line2[lang]}
+                                    {dict.home.hero.headline.line1}<br />
+                                    {dict.home.hero.headline.line2}
                                 </p>
                             </div>
 
                             {/* Governança */}
                             <div>
                                 <h4 className="text-white font-bold text-xs uppercase tracking-[0.2em] mb-6">
-                                    {lang === "pt" ? "Governança" : lang === "en" ? "Governance" : "Gobernanza"}
+                                    {dict.footerData.governance}
                                 </h4>
                                 <ul className="space-y-4">
-                                    {siteConfig.home.pillars.map((pillar) => (
-                                        <li key={pillar.title[lang]}>
+                                    {dict.home.pillars.map((pillar) => (
+                                        <li key={pillar.title}>
                                             <Link
                                                 href={`/${lang}/servicos`}
                                                 className="text-white/60 hover:text-secondary text-sm transition-colors"
                                             >
-                                                {pillar.title[lang]}
+                                                {pillar.title}
                                             </Link>
                                         </li>
                                     ))}
@@ -68,16 +69,16 @@ export default function Footer({ lang }: { lang: Locale }) {
                             {/* Soluções */}
                             <div>
                                 <h4 className="text-white font-bold text-xs uppercase tracking-[0.2em] mb-6">
-                                    {lang === "pt" ? "Soluções" : lang === "en" ? "Solutions" : "Soluciones"}
+                                    {dict.footerData.solutions}
                                 </h4>
                                 <ul className="space-y-4">
-                                    {siteConfig.services.slice(0, 5).map((service) => (
+                                    {dict.services.slice(0, 5).map((service) => (
                                         <li key={service.slug}>
                                             <Link
                                                 href={`/${lang}/servicos/${service.slug}`}
                                                 className="text-white/60 hover:text-secondary text-sm transition-colors"
                                             >
-                                                {service.title[lang]}
+                                                {service.title}
                                             </Link>
                                         </li>
                                     ))}
@@ -87,16 +88,16 @@ export default function Footer({ lang }: { lang: Locale }) {
                             {/* Institucional */}
                             <div>
                                 <h4 className="text-white font-bold text-xs uppercase tracking-[0.2em] mb-6">
-                                    {lang === "pt" ? "Institucional" : lang === "en" ? "Corporate" : "Institucional"}
+                                    {dict.footerData.corporate}
                                 </h4>
                                 <ul className="space-y-4">
-                                    {siteConfig.navigation.links.map((link) => (
+                                    {dict.navigation.links.map((link) => (
                                         <li key={link.href}>
                                             <Link
                                                 href={`/${lang}${link.href}`}
                                                 className="text-white/60 hover:text-secondary text-sm transition-colors"
                                             >
-                                                {link.name[lang]}
+                                                {link.name}
                                             </Link>
                                         </li>
                                     ))}
@@ -105,7 +106,7 @@ export default function Footer({ lang }: { lang: Locale }) {
                                             href={`/${lang}/privacidade`}
                                             className="text-white/60 hover:text-secondary text-sm transition-colors"
                                         >
-                                            {lang === "pt" ? "Privacidade" : "Privacy"}
+                                            {dict.footerData.privacy}
                                         </Link>
                                     </li>
                                 </ul>
@@ -114,10 +115,10 @@ export default function Footer({ lang }: { lang: Locale }) {
                             {/* Contato */}
                             <div>
                                 <h4 className="text-white font-bold text-xs uppercase tracking-[0.2em] mb-6">
-                                    {lang === "pt" ? "Contato" : "Contact"}
+                                    {dict.common.talkToConsultant}
                                 </h4>
                                 <p className="text-white/50 text-xs mb-6 break-all">
-                                    {siteConfig.contact.brasil.email}
+                                    {dict.contact.brasil.email}
                                 </p>
                                 <a
                                     href="https://wa.me/5541991934437"
@@ -132,11 +133,11 @@ export default function Footer({ lang }: { lang: Locale }) {
 
                         {/* Bottom Bar */}
                         <div className="border-t border-white/10 pt-10 flex flex-col md:flex-row justify-between items-center gap-6">
-                            <p className="text-white/50 text-[10px] md:text-xs tracking-wide uppercase">
-                                {siteConfig.footer.presence[lang]}
+                            <p className="text-white/50 text-[10px] md:text-xs tracking-wide uppercase text-center md:text-left">
+                                {dict.footer.presence}
                             </p>
                             <p className="text-white/40 text-[10px] uppercase tracking-widest">
-                                © {currentYear} {siteConfig.brand.name}
+                                © {currentYear} {dict.brand.name}
                             </p>
                         </div>
                     </div>

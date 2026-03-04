@@ -4,9 +4,9 @@ import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { Locale } from "@/config/siteConfig";
 
-import SvgWorldMap from "@/components/about/SvgWorldMap";
+import GlobeMap from "@/components/about/GlobeMap";
 
-export default function OperationalPresenceSection({ lang }: { lang: Locale }) {
+export default function OperationalPresenceSection({ lang, dict }: { lang: Locale, dict: any }) {
     const [activeCountry, setActiveCountry] = useState<string | null>(null);
     const [isHoveringMap, setIsHoveringMap] = useState(false);
     const [isVisible, setIsVisible] = useState(false);
@@ -31,45 +31,11 @@ export default function OperationalPresenceSection({ lang }: { lang: Locale }) {
         return () => observer.disconnect();
     }, []);
 
-    const countries = [
-        {
-            id: "br",
-            name: { pt: "Brasil", en: "Brazil", es: "Brasil" },
-            items: [
-                { text: { pt: "Curitiba — Atendimento presencial", en: "Curitiba — On-site service", es: "Curitiba — Atención presencial" }, type: "primary" },
-                { text: { pt: "Brasil — Operação remota", en: "Brazil — Remote operation", es: "Brasil — Operación remota" }, type: "secondary" }
-            ]
-        },
-        {
-            id: "pe",
-            name: { pt: "Peru", en: "Peru", es: "Perú" },
-            items: [
-                { text: { pt: "Lima — Atendimento presencial", en: "Lima — On-site service", es: "Lima — Atención presencial" }, type: "primary" },
-                { text: { pt: "Peru — Operação remota", en: "Peru — Remote operation", es: "Perú — Operación remota" }, type: "secondary" }
-            ]
-        },
-        {
-            id: "es",
-            name: { pt: "Espanha", en: "Spain", es: "España" },
-            items: [
-                { text: { pt: "Operação remota", en: "Remote operation", es: "Operación remota" }, type: "secondary" }
-            ]
-        }
-    ];
+    const countries = dict.countries;
 
     const getDynamicCtaText = () => {
-        if (!activeCountry) return { pt: "FALAR COM UM ESPECIALISTA", en: "TALK TO AN EXPERT", es: "HABLAR CON UN ESPECIALISTA" }[lang];
-
-        switch (activeCountry) {
-            case "br":
-                return { pt: "Falar com especialista no Brasil", en: "Talk to expert in Brazil", es: "Hablar con experto en Brasil" }[lang];
-            case "pe":
-                return { pt: "Falar com especialista no Peru", en: "Talk to expert in Peru", es: "Hablar con experto en Perú" }[lang];
-            case "es":
-                return { pt: "Falar com especialista na Espanha", en: "Talk to expert in Spain", es: "Hablar con experto en España" }[lang];
-            default:
-                return { pt: "FALAR COM UM ESPECIALISTA", en: "TALK TO AN EXPERT", es: "HABLAR CON UN ESPECIALISTA" }[lang];
-        }
+        if (!activeCountry) return dict.dynamicCta.default;
+        return dict.dynamicCta[activeCountry] || dict.dynamicCta.default;
     };
 
     return (
@@ -87,17 +53,15 @@ export default function OperationalPresenceSection({ lang }: { lang: Locale }) {
                     >
                         <div className="mb-12">
                             <h2 className="text-4xl md:text-5xl font-outfit font-bold text-zinc-900 uppercase tracking-tight mb-4">
-                                {lang === "pt" ? "Presença Operacional" : lang === "es" ? "Presencia Operativa" : "Operational Presence"}
+                                {dict.title}
                             </h2>
                             <p className="text-xl font-inter font-light text-zinc-600">
-                                {lang === "pt" ? "Atuação presencial e remota sob modelo de governança estruturada." :
-                                    lang === "es" ? "Atención presencial y remota bajo modelo de gobernanza estructurada." :
-                                        "On-site and remote operations under a structured governance model."}
+                                {dict.subtitle}
                             </p>
                         </div>
 
                         <div className="flex flex-col gap-6">
-                            {countries.map((country) => (
+                            {countries.map((country: any) => (
                                 <div
                                     key={country.id}
                                     onMouseEnter={() => { setActiveCountry(country.id); setIsHoveringMap(true); }}
@@ -113,15 +77,15 @@ export default function OperationalPresenceSection({ lang }: { lang: Locale }) {
                                         }`}
                                 >
                                     <h3 className={`text-2xl font-outfit font-bold uppercase tracking-tight mb-6 transition-colors duration-300 ${activeCountry === country.id ? "text-[#FFD23F]" : "text-zinc-900"}`}>
-                                        {country.name[lang]}
+                                        {country.name}
                                     </h3>
 
                                     <div className="space-y-3">
-                                        {country.items.map((item, idx) => (
+                                        {country.items.map((item: any, idx: number) => (
                                             <div key={idx} className="flex items-center gap-3">
                                                 <div className={`w-1.5 h-1.5 rounded-full shrink-0 transition-colors duration-300 ${item.type === "primary" || activeCountry === country.id ? "bg-[#FFD23F]" : "bg-zinc-300"}`}></div>
                                                 <span className={`text-base font-inter transition-colors duration-300 ${activeCountry === country.id ? "text-zinc-900 font-medium" : "text-zinc-600"}`}>
-                                                    {item.text[lang]}
+                                                    {item.text}
                                                 </span>
                                             </div>
                                         ))}
@@ -133,22 +97,20 @@ export default function OperationalPresenceSection({ lang }: { lang: Locale }) {
 
                     {/* Right Column: Map & CTA */}
                     <div
-                        className={`w-full lg:w-7/12 flex flex-col items-center transition-all duration-1000 delay-150 ease-out ${isVisible ? "opacity-100 scale-100" : "opacity-0 scale-95"}`}
+                        className={`w-full lg:w-7/12 min-h-[520px] xl:min-h-[600px] flex flex-col items-center justify-center transition-all duration-1000 delay-150 ease-out ${isVisible ? "opacity-100 scale-100" : "opacity-0 scale-95"}`}
                     >
                         <div
-                            className="w-full relative mb-12"
+                            className="w-full max-w-[360px] md:max-w-[520px] lg:max-w-[640px] aspect-square relative mb-8 flex items-center justify-center mx-auto origin-center z-10"
                             onMouseEnter={() => setIsHoveringMap(true)}
                             onMouseLeave={() => setIsHoveringMap(false)}
                         >
-                            <SvgWorldMap activeCountry={activeCountry} isHoveringMap={isHoveringMap} />
+                            <GlobeMap activeCountry={activeCountry} isHoveringMap={isHoveringMap} />
                         </div>
 
                         {/* CTA Dinâmico */}
                         <div className="text-center">
                             <p className="text-sm font-semibold tracking-widest text-[#FFD23F] uppercase mb-6">
-                                {lang === "pt" ? "Operamos localmente. Governamos globalmente." :
-                                    lang === "es" ? "Operamos localmente. Gobernamos globalmente." :
-                                        "We operate locally. We govern globally."}
+                                {dict.disclaimer}
                             </p>
 
                             <Link

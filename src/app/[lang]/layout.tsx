@@ -5,6 +5,8 @@ import { Locale, locales } from "@/config/siteConfig";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import CookieConsent from "@/components/legal/CookieConsent";
+import BackToTopButton from "@/components/BackToTopButton";
+import { getDictionary } from "@/dictionaries";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -16,21 +18,27 @@ const outfit = Outfit({
   subsets: ["latin"],
 });
 
-export const metadata: Metadata = {
-  title: {
-    default: "Apix Technologies | Consultoria Estratégica em TI",
-    template: "%s | Apix Technologies",
-  },
-  description: "Especialistas em infraestrutura, segurança e continuidade operacional para empresas que buscam previsibilidade e controle.",
-  icons: {
-    icon: [
-      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
-      { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" }
-    ],
-    shortcut: "/favicon.ico",
-    apple: "/apple-touch-icon.png"
-  }
-};
+export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
+  const { lang: langParam } = await params;
+  const lang = (langParam as Locale) || "pt";
+  const dict = await getDictionary(lang);
+
+  return {
+    title: {
+      default: dict.siteMetadata.title,
+      template: "%s | Apix Technologies",
+    },
+    description: dict.siteMetadata.description,
+    icons: {
+      icon: [
+        { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+        { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" }
+      ],
+      shortcut: "/favicon.ico",
+      apple: "/apple-touch-icon.png"
+    }
+  };
+}
 
 export async function generateStaticParams() {
   return locales.map((locale) => ({ lang: locale }));
@@ -45,14 +53,16 @@ export default async function RootLayout({
 }) {
   const { lang: langParam } = await params;
   const lang = langParam as Locale;
+  const dict = await getDictionary(lang);
 
   return (
     <html lang={lang}>
       <body className={`${inter.variable} ${outfit.variable} antialiased font-executive bg-dark text-white`}>
-        <Navbar lang={lang} />
+        <Navbar lang={lang} dict={dict} />
         {children}
-        <Footer lang={lang} />
-        <CookieConsent lang={lang} />
+        <Footer lang={lang} dict={dict} />
+        <CookieConsent lang={lang} dict={dict} />
+        <BackToTopButton label={dict.common.backToTop} />
       </body>
     </html>
   );

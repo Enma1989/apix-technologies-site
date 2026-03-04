@@ -1,81 +1,194 @@
 import { Locale } from "@/config/siteConfig";
+import { getDictionary } from "@/dictionaries";
 import { Section } from "../Section";
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
+import Image from "next/image";
 
-const cases = [
-    {
-        title: { pt: "Reestruturação de Infraestrutura Multi-Base", en: "Multi-Base Infrastructure Restructuring", es: "Reestructuración de Infraestructura Multi-Base" },
-        context: { pt: "Expansão rápida com infraestrutura legada e descentralizada.", en: "Rapid expansion with legacy and decentralized infrastructure.", es: "Rápida expansión con infraestructura heredada y descentralizada." },
-        risk: { pt: "Paradas operacionais frequentes e falta de visibilidade de custos.", en: "Frequent operational downtime and lack of cost visibility.", es: "Frecuentes tiempos de inactividad operativos y falta de visibilidad de costos." },
-        approach: { pt: "Arquitetura de rede unificada e governança Centralizada.", en: "Unified network architecture and centralized governance.", es: "Arquitectura de red unificada y gobernanza centralizada." },
-        outcome: { pt: "Estabilidade de 99.9% e controle total do capex tecnológico.", en: "99.9% stability and total control of technology capex.", es: "Estabilidad del 99.9% y control total del capex tecnológico." }
-    },
-    {
-        title: { pt: "Blindagem de Segurança e Continuidade", en: "Security Shielding and Continuity", es: "Blindaje de Seguridad y Continuidad" },
-        context: { pt: "Empresa do setor logístico com vulnerabilidades críticas expostas.", en: "Logistics company with critical vulnerabilities exposed.", es: "Empresa de logística con vulnerabilidades críticas expuestas." },
-        risk: { pt: "Risco iminente de ransomware e perda de dados operacionais.", en: "Imminent risk of ransomware and loss of operational data.", es: "Riesgo inminente de ransomware y pérdida de datos operativos." },
-        approach: { pt: "Implementação de Zero Trust e Gestão de Backup Offline.", en: "Zero Trust implementation and Offline Backup Management.", es: "Implementación de Zero Trust y gestión de respaldo fuera de línea." },
-        outcome: { pt: "Vulnerabilidades sanadas e recuperação garantida em < 2h.", en: "Vulnerabilities mitigated and guaranteed recovery in < 2h.", es: "Vulnerabilidades mitigadas y recuperación garantizada en < 2h." }
-    },
-    {
-        title: { pt: "Governança 365 e Eficiência de Custo", en: "365 Governance and Cost Efficiency", es: "Gobernanza 365 y Eficiencia de Costos" },
-        context: { pt: "Uso ineficiente de licenciamento e falta de controle de acesso.", en: "Inefficient licensing use and lack of access control.", es: "Uso ineficiente de licencias y falta de control de acceso." },
-        risk: { pt: "Gastos desnecessários e vazamento de informações sensíveis.", en: "Unnecessary spending and sensitive information leakage.", es: "Gastos innecesarios y fuga de información sensible." },
-        approach: { pt: "Auditoria de licenciamento e implementação de políticas DLP.", en: "Licensing audit and DLP policy implementation.", es: "Auditoría de licencias e implementación de políticas DLP." },
-        outcome: { pt: "Redução de 30% nos custos e conformidade total de dados.", en: "30% cost reduction and total data compliance.", es: "Reducción de costos del 30% y total cumplimiento de datos." }
-    }
-];
-
-export default function CaseStudies({ lang }: { lang: Locale }) {
+export default async function CaseStudies({ lang }: { lang: Locale }) {
+    const dict = await getDictionary(lang);
+    const { caseStudies } = dict.home;
     return (
-        <Section className="bg-premium-white text-dark border-y border-zinc-100">
-            <div className="mb-16 text-center lg:text-left">
-                <h2 className="text-3xl md:text-5xl font-outfit font-bold mb-6 tracking-tight text-slate-900 uppercase">
-                    {lang === "pt" ? "Método MaaS™ em Ação" : lang === "en" ? "MaaS™ Method in Action" : "Método MaaS™ en Acción"}
-                </h2>
-                <div className="mt-8 w-20 h-1 bg-secondary mx-auto lg:mx-0 mb-8"></div>
-                <p className="text-slate-800 text-xl font-inter max-w-2xl leading-relaxed">
-                    {lang === "pt"
-                        ? "Estudos de caso que demonstram a eficiência do nosso método de governança em ambientes complexos."
-                        : "Case studies demonstrating the efficiency of our governance method in complex environments."
-                    }
-                </p>
-            </div>
+        <>
+            {/* 1. HERO — Full Screen Estratégico */}
+            <section className="relative min-h-screen w-full overflow-hidden">
+                <Image
+                    src="/images/estrategia.jpg"
+                    alt="Governança Estratégica"
+                    fill
+                    priority
+                    className="object-cover object-center"
+                />
 
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                {cases.map((item, index) => (
-                    <div key={index} className="bg-white p-10 border border-zinc-100 rounded-2xl shadow-sm hover:shadow-2xl hover:shadow-black/5 hover:border-secondary/30 transition-all duration-500 flex flex-col h-full">
-                        <h3 className="text-xl font-outfit font-bold mb-8 text-slate-900 leading-snug h-14 overflow-hidden">
-                            {item.title[lang]}
+                {/* Blur aplicado na metade de cima com máscara */}
+                <div
+                    className="absolute inset-0 z-[1] backdrop-blur-md pointer-events-none"
+                    style={{
+                        maskImage: 'linear-gradient(to bottom, black 0%, black 40%, transparent 80%)',
+                        WebkitMaskImage: 'linear-gradient(to bottom, black 0%, black 40%, transparent 80%)'
+                    }}
+                />
+
+                {/* Camada B: overlay vertical linear (escuro no topo, claro embaixo) */}
+                <div
+                    className="absolute inset-0 z-[2] pointer-events-none"
+                    style={{
+                        background: 'linear-gradient(to bottom, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.55) 40%, rgba(0,0,0,0.25) 70%, rgba(0,0,0,0.10) 100%)'
+                    }}
+                />
+
+                {/* Camada A: overlay escuro concentrado no centro (radial) */}
+                <div
+                    className="absolute inset-0 z-[3] pointer-events-none"
+                    style={{
+                        background: 'radial-gradient(circle at center, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.35) 45%, rgba(0,0,0,0.10) 75%, rgba(0,0,0,0) 100%)'
+                    }}
+                />
+
+                <div className="relative z-10 flex min-h-screen items-center">
+                    <div className="mx-auto w-full max-w-5xl px-6 text-white text-left">
+                        <h1 className="text-4xl md:text-5xl lg:text-7xl font-semibold leading-tight tracking-tight whitespace-pre-line text-shadow-premium">
+                            {caseStudies.heroTitle}
+                        </h1>
+                        <p className="mt-8 max-w-2xl text-lg md:text-xl text-white/85 leading-relaxed font-light text-shadow-premium">
+                            {caseStudies.heroSubtitle}
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <div className="bg-white text-slate-900 overflow-hidden font-inter border-t border-zinc-200">
+                {/* 2. BLOCO DE MÉTRICAS — Forte e Silencioso */}
+                <div className="max-w-6xl mx-auto px-6 lg:px-0 pt-32 pb-32">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-20 md:gap-32">
+                        {caseStudies.metrics.map((metric, idx) => (
+                            <div key={idx} className="flex flex-col items-start border-l-2 border-slate-900 pl-8">
+                                <span className="text-6xl md:text-8xl font-outfit font-bold text-slate-900 mb-6 tracking-tighter">
+                                    {metric.value}
+                                </span>
+                                <span className="text-sm md:text-base text-slate-500 uppercase tracking-[0.2em] font-medium leading-relaxed max-w-xs">
+                                    {metric.label}
+                                </span>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+
+                {/* 3. SEPARADOR ESTRUTURAL */}
+                <div className="w-full border-t border-zinc-200 my-10 max-w-screen-xl mx-auto"></div>
+
+                {/* 4. CASO ANALÍTICO — Estrutura Consultiva */}
+                <div className="max-w-6xl mx-auto px-6 lg:px-0 py-24">
+
+                    <div className="mb-20">
+                        <p className="text-[11px] font-bold uppercase tracking-[0.3em] text-slate-400 mb-2">
+                            {caseStudies.case1.badge}
+                        </p>
+                        <h3 className="text-2xl md:text-3xl font-outfit font-bold text-slate-900 tracking-tight">
+                            {caseStudies.case1.title}
+                        </h3>
+                    </div>
+
+                    <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24">
+                        <div className="lg:col-span-7 space-y-16">
+                            <div>
+                                <h4 className="text-[11px] uppercase tracking-[0.2em] text-slate-900 mb-6 font-bold border-b border-zinc-200 pb-4">
+                                    {caseStudies.case1.contextLabel}
+                                </h4>
+                                <p className="text-lg text-slate-600 font-light leading-relaxed">
+                                    {caseStudies.case1.contextDesc}
+                                </p>
+                            </div>
+
+                            <div>
+                                <h4 className="text-[11px] uppercase tracking-[0.2em] text-slate-900 mb-6 font-bold border-b border-zinc-200 pb-4">
+                                    {caseStudies.case1.riskLabel}
+                                </h4>
+                                <p className="text-lg text-slate-600 font-light leading-relaxed">
+                                    {caseStudies.case1.riskDesc}
+                                </p>
+                            </div>
+
+                            <div>
+                                <h4 className="text-[11px] uppercase tracking-[0.2em] text-slate-900 mb-6 font-bold border-b border-zinc-200 pb-4">
+                                    {caseStudies.case1.interventionLabel}
+                                </h4>
+                                <p className="text-lg text-slate-900 font-medium leading-relaxed">
+                                    {caseStudies.case1.interventionDesc}
+                                </p>
+                            </div>
+                        </div>
+
+                        <div className="lg:col-span-5 bg-zinc-50 p-10 lg:p-14 rounded-sm border border-zinc-100">
+                            <h4 className="text-[11px] uppercase tracking-[0.2em] text-slate-900 mb-10 font-bold">
+                                {caseStudies.case1.resultsLabel}
+                            </h4>
+
+                            <ul className="space-y-6">
+                                {caseStudies.case1.results.map((res, i) => (
+                                    <li key={i} className={`text-base md:text-lg font-light border-b border-zinc-200 pb-6 ${i === caseStudies.case1.results.length - 1 ? 'font-medium text-slate-900 pt-2 border-b-0 pb-0' : 'text-slate-700'}`}>
+                                        <span className={`block mb-1 ${i === caseStudies.case1.results.length - 1 ? 'text-slate-500 font-light' : 'font-medium text-slate-900'}`}>{res.label}</span>
+                                        {res.value}
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+
+                {/* SEPARADOR ESTRUTURAL */}
+                <div className="w-full border-t border-zinc-200 mt-10 mb-20 max-w-screen-xl mx-auto"></div>
+
+                {/* 5. CAMADAS DE GOVERNANÇA APLICADAS */}
+                <div className="max-w-6xl mx-auto px-6 lg:px-0 pb-32">
+                    <h3 className="text-3xl md:text-4xl font-outfit font-bold text-slate-900 tracking-tight text-center mb-20">
+                        {caseStudies.layersTitle}
+                    </h3>
+
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-16 md:gap-12 lg:gap-24">
+                        {caseStudies.layers.map((layer, idx) => (
+                            <div key={idx}>
+                                <h4 className="text-sm font-bold uppercase tracking-[0.15em] text-slate-900 mb-8 border-b border-slate-900 pb-4">
+                                    {layer.title}
+                                </h4>
+                                <ul className="space-y-5 text-base text-slate-600 font-light">
+                                    {layer.items.map((item, i) => (
+                                        <li key={i}>{item}</li>
+                                    ))}
+                                </ul>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+
+                {/* 6. BLOCO DE POSICIONAMENTO ESTRATÉGICO */}
+                <div className="w-screen relative left-1/2 -translate-x-1/2 bg-[#050505] text-white py-40 px-6 lg:px-0 mt-10">
+                    <div className="max-w-4xl mx-auto flex flex-col items-center text-center">
+
+                        <h3 className="text-4xl md:text-5xl lg:text-6xl font-outfit font-bold tracking-tight mb-8 leading-tight">
+                            {caseStudies.disclaimer.headline}
+                            <br className="max-md:hidden" />
+                            <span className="text-zinc-500 font-medium">
+                                {caseStudies.disclaimer.highlight}
+                            </span>
                         </h3>
 
-                        <div className="space-y-6 flex-grow">
-                            <div className="border-l-2 border-zinc-100 pl-6 group">
-                                <p className="text-[10px] uppercase tracking-widest text-slate-400 mb-1 group-hover:text-secondary transition-colors">Context</p>
-                                <p className="text-sm font-inter text-slate-800 leading-relaxed">{item.context[lang]}</p>
-                            </div>
-                            <div className="border-l-2 border-zinc-100 pl-6 group">
-                                <p className="text-[10px] uppercase tracking-widest text-slate-400 mb-1 group-hover:text-secondary transition-colors">Risk</p>
-                                <p className="text-sm font-inter text-slate-600 leading-relaxed">{item.risk[lang]}</p>
-                            </div>
-                            <div className="border-l-2 border-zinc-100 pl-6 group">
-                                <p className="text-[10px] uppercase tracking-widest text-slate-400 mb-1 group-hover:text-secondary transition-colors">Approach</p>
-                                <p className="text-sm font-inter text-slate-600 leading-relaxed">{item.approach[lang]}</p>
-                            </div>
-                        </div>
+                        <p className="text-lg md:text-xl font-light text-zinc-400 max-w-2xl leading-relaxed mb-16">
+                            {caseStudies.disclaimer.desc}
+                        </p>
 
-                        <div className="mt-12 pt-8 border-t border-zinc-50">
-                            <div className="bg-zinc-50 p-4 rounded-xl border border-zinc-100">
-                                <p className="text-xs font-bold uppercase tracking-[0.2em] text-secondary mb-1">
-                                    Outcome
-                                </p>
-                                <p className="text-slate-900 font-bold text-sm">
-                                    {item.outcome[lang]}
-                                </p>
-                            </div>
-                        </div>
+                        <Link
+                            href={`/${lang}/contato`}
+                            className="inline-flex items-center justify-center h-16 border border-zinc-700 hover:border-white px-12 md:px-16 text-white font-medium text-sm tracking-[0.2em] uppercase transition-all duration-300 group"
+                        >
+                            {caseStudies.disclaimer.cta}
+                            <ArrowRight size={18} className="ml-4 opacity-50 group-hover:opacity-100 group-hover:translate-x-2 transition-all" />
+                        </Link>
+
                     </div>
-                ))}
+                </div>
             </div>
-        </Section>
+        </>
     );
 }

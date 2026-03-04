@@ -37,83 +37,19 @@ const IconScalability = () => (
     </svg>
 );
 
-const pillarsData = [
-    {
-        id: "governance",
-        title: "Governança & Controle",
-        desc: "Visibilidade executiva, gestão de inventário e processos mapeados. Fim do improviso lógico e físico.",
-        icon: <IconGovernance />,
-        modal: {
-            resolves: "Elimina a dependência de conhecimento tácito, infraestrutura indocumentada e a falta de visibilidade sobre ativos críticos de TI.",
-            deliverables: [
-                "CMDB (Inventário de Ativos Estruturado)",
-                "Mapeamento de Processos Críticos",
-                "Matriz de Responsabilidades (RACI)"
-            ],
-            indicators: [
-                "Redução drástica de indisponibilidade não planejada",
-                "100% de precisão no ciclo de vida dos ativos"
-            ]
-        }
-    },
-    {
-        id: "security",
-        title: "Risco & Segurança",
-        desc: "Postura defensiva permanente e blindagem estratégica. Compliance contínuo como norma, não exceção.",
-        icon: <IconSecurity />,
-        modal: {
-            resolves: "Fechamento de brechas de segurança operacionais, redução da superfície de ataque e implementação de conformidade real.",
-            deliverables: [
-                "Vulnerability Assessment & Hardening",
-                "Políticas de Acesso (Zero Trust Architecture)",
-                "Documentação Normativa de Segurança"
-            ],
-            indicators: [
-                "Zero incidentes críticos de vazamento ou intrusão",
-                "Conformidade auditável com frameworks de proteção"
-            ]
-        }
-    },
-    {
-        id: "continuity",
-        title: "Continuidade & Resiliência",
-        desc: "Previsibilidade de operação com tempo de resposta garantido, backups auditáveis e DRP formal.",
-        icon: <IconContinuity />,
-        modal: {
-            resolves: "Mitiga paralisações prolongadas causadas por falta de backups testados e resposta improvisada a desastres técnicos.",
-            deliverables: [
-                "Disaster Recovery Plan (DRP) Formal",
-                "Matriz de Backup Isolada e Imutável",
-                "Testes de Restore Trimestrais Documentados"
-            ],
-            indicators: [
-                "RTO (Recovery Time Objective) garantido em contrato",
-                "100% de sucesso em validações de restore"
-            ]
-        }
-    },
-    {
-        id: "scalability",
-        title: "Escalabilidade & Performance",
-        desc: "Base forte preparada para suportar o crescimento acelerado da operação sem acoplar gargalos de design.",
-        icon: <IconScalability />,
-        modal: {
-            resolves: "Remove as limitações técnicas que impedem o crescimento da empresa e elimina a lentidão sistêmica estrutural.",
-            deliverables: [
-                "Capacity Planning Executivo",
-                "Adequação de Camada 1 (Infra Física e Lógica)",
-                "Migração e Otimização Cloud"
-            ],
-            indicators: [
-                "Sustentação de crescimento em dobro sem dor",
-                "Eficiência de TCO (Total Cost of Ownership)"
-            ]
-        }
+const getIcon = (id: string) => {
+    switch (id) {
+        case "governance": return <IconGovernance />;
+        case "security": return <IconSecurity />;
+        case "continuity": return <IconContinuity />;
+        case "scalability": return <IconScalability />;
+        default: return null;
     }
-];
+};
 
-export default function MaaSPillarsSection() {
-    const [selectedPillar, setSelectedPillar] = useState<typeof pillarsData[0] | null>(null);
+export default function MaaSPillarsSection({ dict }: { dict: any }) {
+    const [selectedPillar, setSelectedPillar] = useState<any | null>(null);
+    const pillarsData = dict.pillars;
 
     // Prevent scrolling when modal is open
     useEffect(() => {
@@ -136,26 +72,26 @@ export default function MaaSPillarsSection() {
                 <div className="mb-16 md:mb-24 flex flex-col items-center md:items-start text-center md:text-left">
                     {/* Header hierarchy */}
                     <span className="text-zinc-500 font-semibold tracking-widest uppercase text-xs md:text-sm mb-4">
-                        NOSSO BUQUE INSÍGNIA
+                        {dict.badge}
                     </span>
                     <h2 className="text-4xl md:text-5xl lg:text-6xl font-outfit font-bold text-zinc-900 tracking-tight">
-                        ARQUITETURA MAAS™
+                        {dict.title}
                     </h2>
                     {/* Elegant thin line */}
                     <div className="w-24 h-[2px] bg-[#FFD23F] mt-8 mb-8 opacity-80"></div>
 
                     <div className="max-w-3xl space-y-6">
                         <p className="text-lg md:text-xl font-inter font-light text-zinc-600 leading-relaxed">
-                            Com mais de 18 anos de experiência corporativa, identificamos um padrão letal: a falta de confiança e a insatisfação permanente com técnicos tradicionais, atrelados a uma desorganização operacional crônica.
+                            {dict.p1}
                         </p>
                         <p className="text-xl font-inter font-medium text-zinc-800 leading-relaxed">
-                            Foi dessa dor estrutural do mercado que nasceu o modelo estruturado de governança tecnológica.
+                            {dict.p2}
                         </p>
                     </div>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
-                    {pillarsData.map((pillar) => (
+                    {pillarsData.map((pillar: any) => (
                         <div
                             key={pillar.id}
                             onClick={() => setSelectedPillar(pillar)}
@@ -169,7 +105,7 @@ export default function MaaSPillarsSection() {
 
                             <div className="relative z-10">
                                 <div className="text-zinc-400 group-hover:text-[#FFD23F] transition-colors duration-300 mb-6">
-                                    {pillar.icon}
+                                    {getIcon(pillar.id)}
                                 </div>
                                 <h3 className="text-xl md:text-2xl font-outfit font-bold text-zinc-900 mb-4 uppercase tracking-tight group-hover:text-[#FFD23F] transition-colors duration-300">
                                     {pillar.title}
@@ -182,7 +118,7 @@ export default function MaaSPillarsSection() {
                             {/* Micro-link hover */}
                             <div className="absolute bottom-6 md:bottom-8 right-8 opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-350 ease-out">
                                 <span className="text-[#FFD23F] font-semibold text-sm tracking-wide flex items-center gap-1">
-                                    Ver detalhes <span className="text-lg leading-none">&rarr;</span>
+                                    {dict.viewDetails} <span className="text-lg leading-none">&rarr;</span>
                                 </span>
                             </div>
                         </div>
@@ -202,7 +138,7 @@ export default function MaaSPillarsSection() {
                         {/* Modal Header */}
                         <div className="flex items-start justify-between p-6 md:p-8 border-b border-zinc-100 bg-zinc-50">
                             <div>
-                                <div className="text-zinc-400 mb-3">{selectedPillar.icon}</div>
+                                <div className="text-zinc-400 mb-3">{getIcon(selectedPillar.id)}</div>
                                 <h3 className="text-2xl md:text-3xl font-outfit font-bold text-zinc-900 uppercase">
                                     {selectedPillar.title}
                                 </h3>
@@ -219,7 +155,7 @@ export default function MaaSPillarsSection() {
                         <div className="p-6 md:p-8 overflow-y-auto w-full space-y-8">
                             <div className="space-y-3">
                                 <h4 className="text-sm font-semibold tracking-widest text-zinc-400 uppercase">
-                                    O que isso resolve
+                                    {dict.whatItResolves}
                                 </h4>
                                 <p className="text-lg text-zinc-800 font-inter leading-relaxed">
                                     {selectedPillar.modal.resolves}
@@ -231,10 +167,10 @@ export default function MaaSPillarsSection() {
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                                 <div className="space-y-4">
                                     <h4 className="text-sm font-semibold tracking-widest text-[#FFD23F] uppercase">
-                                        Entregáveis Típicos
+                                        {dict.typicalDeliverables}
                                     </h4>
                                     <ul className="space-y-3">
-                                        {selectedPillar.modal.deliverables.map((item, i) => (
+                                        {selectedPillar.modal.deliverables.map((item: string, i: number) => (
                                             <li key={i} className="flex items-start gap-2 text-zinc-600 font-inter text-sm md:text-base">
                                                 <div className="mt-1.5 w-1.5 h-1.5 rounded-full bg-zinc-300 shrink-0"></div>
                                                 <span>{item}</span>
@@ -244,10 +180,10 @@ export default function MaaSPillarsSection() {
                                 </div>
                                 <div className="space-y-4">
                                     <h4 className="text-sm font-semibold tracking-widest text-zinc-900 uppercase">
-                                        Indicadores de Maturidade
+                                        {dict.maturityIndicators}
                                     </h4>
                                     <ul className="space-y-3">
-                                        {selectedPillar.modal.indicators.map((item, i) => (
+                                        {selectedPillar.modal.indicators.map((item: string, i: number) => (
                                             <li key={i} className="flex items-start gap-2 text-zinc-600 font-inter text-sm md:text-base">
                                                 <svg className="w-4 h-4 text-emerald-500 mt-1 shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
                                                 <span>{item}</span>
@@ -261,7 +197,7 @@ export default function MaaSPillarsSection() {
                         {/* Modal Footer */}
                         <div className="p-4 md:p-6 bg-zinc-50 border-t border-zinc-100 text-center">
                             <span className="text-xs tracking-widest text-zinc-400 uppercase font-semibold">
-                                Estrutura. Método. Governança.
+                                {dict.footer}
                             </span>
                         </div>
                     </div>

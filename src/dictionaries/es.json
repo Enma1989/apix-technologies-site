@@ -1,0 +1,41 @@
+{
+    "nav": {
+        "maas": "Arquitectura MaaS™",
+        "services": "Servicios",
+        "about": "Sobre nosotros",
+        "cases": "Casos",
+        "blog": "Blog",
+        "contact": "Contacto"
+    },
+    "footer": {
+        "presence": "Cobertura de servicio: Brasil (base) · Perú (soporte técnico local) · España (atención remota).",
+        "governance": "Gobernanza",
+        "solutions": "Soluciones",
+        "corporate": "Institucional",
+        "privacy": "Privacidad",
+        "terms": "Términos de Uso"
+    },
+    "common": {
+        "talkToConsultant": "Hablar con Consultor",
+        "learnMore": "Saber más",
+        "startDiagnostic": "Iniciar Diagnóstico Estratégico",
+        "allServices": "Todos los servicios"
+    },
+    "legal": {
+        "cookieText": "Valoramos su privacidad. Utilizamos cookies para mejorar su experiencia y analizar nuestro tráfico según nuestra",
+        "cookieLink": "Política de Cookies",
+        "cookieAccept": "Aceptar"
+    },
+    "brand": {
+        "slogan": "EFICIENCIA TÉCNICA. GOBERNANZA ESTRUCTURADA."
+    },
+    "home": {
+        "hero": {
+            "headlineLine1": "Arquitectura MaaS™",
+            "headlineLine2": "Gobernanza Tecnológica",
+            "subheadline": "Apix Technologies estructura, implementa y opera entornos de TI bajo rigor ejecutivo, transformando la infraestructura en un activo estratégico, seguro y escalable.",
+            "primaryCTA": "INICIAR DIAGNÓSTICO",
+            "secondaryCTA": "CONTACTO"
+        }
+    }
+}

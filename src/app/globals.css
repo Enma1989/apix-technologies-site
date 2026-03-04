@@ -115,6 +115,10 @@ p {
   color-scheme: dark !important;
 }
 
+.bg-mobile-drawer {
+  background-color: rgba(10, 10, 10, 0.98) !important;
+}
+
 /* Custom Utilities */
 .text-clamp-heading {
   font-size: clamp(2.5rem, 8vw, 4.5rem);
@@ -150,4 +154,22 @@ p {
 
 .animation-delay-300 {
   animation-delay: 300ms;
+}
+
+/* Premium Hero Overlay & Filters */
+.hero-overlay-premium {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.72) 0%, rgba(0, 0, 0, 0.55) 35%, rgba(0, 0, 0, 0.38) 60%, rgba(0, 0, 0, 0.70) 100%);
+  backdrop-filter: blur(12px);
+}
+
+.hero-bg-filter {
+  filter: blur(2px) brightness(0.78) contrast(0.95);
+}
+
+.text-shadow-premium {
+  text-shadow: 0 10px 30px rgba(0, 0, 0, 0.55);
 }

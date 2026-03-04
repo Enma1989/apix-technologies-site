@@ -5,14 +5,19 @@ import Link from "next/link";
 import Image from "next/image";
 import { Metadata } from "next";
 
+import { getDictionary } from "@/dictionaries";
+
 export async function generateStaticParams() {
     return locales.map((lang) => ({ lang }));
 }
 
-export function generateMetadata({ params }: { params: { lang: Locale } }): Metadata {
+export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
+    const { lang: langParam } = await params;
+    const lang = langParam as Locale;
+    const dict = await getDictionary(lang);
     return {
-        title: "Arquitetura MaaS™ | Apix Technologies",
-        description: "Governança Tecnológica por Camadas Estruturadas.",
+        title: dict.architecturePage.meta.title,
+        description: dict.architecturePage.meta.description,
     };
 }
 
@@ -28,68 +33,72 @@ export default async function ArquiteturaMaaSPage({
         notFound();
     }
 
-    const servicesGrid = [
-        { title: "Redes Wireless", slug: "redes-wireless" },
-        { title: "Cabeamento Estruturado", slug: "cabeamento-estruturado" },
-        { title: "Servidores & Virtualização", slug: "servidores" },
-        { title: "Cibersegurança", slug: "ciberseguranca" },
-        { title: "Gestão de Backup", slug: "gestao-de-backup" },
-        { title: "Business Continuity & Resilience", slug: "continuidade-resiliencia" },
-        { title: "Microsoft 365", slug: "microsoft-365" },
-        { title: "Google Workspace", slug: "google-workspace" },
-        { title: "Operação & Suporte", slug: "suporte-tecnico" }
-    ];
+    const dict = await getDictionary(lang);
+    const { architecturePage: t } = dict;
+
+    const servicesGrid = dict.services;
 
     return (
         <main className="min-h-screen bg-premium-white">
             {/* 1. HERO SECTION (Dark Premium) */}
-            <section className="relative min-h-[75vh] flex items-center overflow-hidden border-b border-white/5 bg-zinc-950">
-                {/* Background Overlay */}
-                <div className="absolute inset-0 z-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-zinc-900 via-zinc-950 to-black"></div>
+            <section className="relative min-h-screen w-full overflow-hidden bg-zinc-950">
+                {/* Background Image full cover */}
+                <Image
+                    src="/images/arquitectura.jpg"
+                    alt="Arquitetura MaaS"
+                    fill
+                    priority
+                    className="object-cover object-center z-0"
+                />
 
-                {/* Overlay glass discreto */}
-                <div className="absolute inset-0 z-10 bg-black/20 backdrop-blur-[2px]" />
+                {/* Custom Overlay Premium Apix - Lighter Horizontal Gradient */}
+                <div
+                    className="absolute inset-0 z-[1] pointer-events-none"
+                    style={{
+                        background: 'radial-gradient(circle at center, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.50) 25%, rgba(0,0,0,0.35) 45%, rgba(0,0,0,0.20) 60%, rgba(0,0,0,0.08) 75%, rgba(0,0,0,0.00) 90%)'
+                    }}
+                />
 
-                {/* Content */}
-                <div className="container-premium relative z-30 pt-32 pb-20 md:pt-40 md:pb-32">
-                    <div className="max-w-4xl mx-auto text-center">
+                {/* Content centralizado verticalmente */}
+                <div className="relative z-10 flex min-h-screen items-center">
+                    <div className="mx-auto w-full max-w-6xl px-6 pt-20 sm:pt-24 text-center">
                         <Link
                             href={`/${lang}`}
                             className="text-white/60 text-sm font-medium uppercase tracking-widest mb-8 inline-block hover:text-apix-yellow transition-all"
                         >
-                            ← {lang === "pt" ? "HOME" : "HOME"}
+                            {t.hero.back}
                         </Link>
 
                         <div className="flex justify-center mb-8">
-                            <div className="inline-flex items-center px-4 md:px-5 py-1.5 rounded-full bg-black/40 border border-[#FFD23F]/60 text-[#FFD23F] text-xs md:text-sm font-semibold uppercase tracking-wider hover:shadow-[0_0_15px_rgba(255,210,63,0.2)] transition-shadow duration-300">
-                                GOVERNANÇA ARQUITETÔNICA
+                            <div className="inline-flex items-center px-4 md:px-5 py-1.5 rounded-full border border-yellow-400/40 bg-black/30 backdrop-blur text-[#FFD23F] text-xs md:text-sm font-semibold uppercase tracking-wider">
+                                {t.hero.badge}
                             </div>
                         </div>
 
-                        <h1 className="text-4xl md:text-5xl lg:text-7xl font-outfit font-bold mb-6 tracking-tight leading-tight text-white uppercase">
-                            ARQUITETURA <span className="text-[#FFD23F] drop-shadow-[0_0_20px_rgba(255,210,63,0.2)]">MaaS™</span>
+                        <h1 className="text-4xl md:text-5xl lg:text-7xl font-outfit font-bold mb-6 tracking-tight leading-tight text-white text-shadow-premium uppercase">
+                            {t.hero.title1} <span className="text-[#FFD23F] drop-shadow-[0_0_20px_rgba(255,210,63,0.4)]">{t.hero.title2}</span>
                         </h1>
 
-                        <h2 className="text-xl md:text-2xl lg:text-3xl font-outfit font-semibold text-slate-300 mb-8 max-w-3xl mx-auto leading-snug">
-                            Governança Tecnológica por Camadas Estruturadas
+                        <h2 className="text-xl md:text-2xl lg:text-3xl font-outfit font-semibold text-white text-shadow-premium mb-8 max-w-3xl mx-auto leading-snug">
+                            {t.hero.subtitle}
                         </h2>
 
-                        <p className="text-lg md:text-xl text-slate-400 font-inter leading-relaxed max-w-2xl mx-auto mb-12">
-                            A Arquitetura MaaS™ organiza tecnologia em camadas estratégicas, conectando infraestrutura, segurança, continuidade e operação sob governança contínua.
+                        <p className="text-lg md:text-xl text-white/85 text-shadow-premium font-inter leading-relaxed max-w-2xl mx-auto mb-12">
+                            {t.hero.desc}
                         </p>
 
                         <div className="flex flex-wrap justify-center gap-4">
                             <Link
                                 href={`/${lang}/contato`}
-                                className="inline-flex items-center justify-center h-12 md:h-14 bg-[#FFD23F] border-2 border-[#E6B800] text-[#111111] font-bold px-8 md:px-10 rounded-full hover:brightness-95 hover:scale-[1.02] hover:shadow-[0_0_20px_rgba(255,210,63,0.4)] hover:-translate-y-[1px] transition-all duration-300 uppercase tracking-widest text-xs md:text-sm"
+                                className="inline-flex items-center justify-center h-12 md:h-14 bg-[#FFD23F] border border-[#FFD23F] text-[#111111] font-bold px-8 md:px-10 rounded-full hover:brightness-110 transition-all duration-300 uppercase tracking-widest text-xs md:text-sm"
                             >
-                                {lang === "pt" ? "INICIAR DIAGNÓSTICO ESTRUTURAL" : lang === "es" ? "INICIAR DIAGNÓSTICO ESTRUCTURAL" : "START STRUCTURAL DIAGNOSTIC"}
+                                {t.hero.action1}
                             </Link>
                             <Link
                                 href={`/${lang}/contato`}
-                                className="inline-flex items-center justify-center h-12 md:h-14 bg-transparent border-2 border-white/20 text-white font-bold px-8 md:px-10 rounded-full hover:bg-white/5 hover:border-white/40 hover:-translate-y-[1px] transition-all duration-300 uppercase tracking-widest text-xs md:text-sm"
+                                className="inline-flex items-center justify-center h-12 md:h-14 bg-transparent border border-white/20 text-white font-bold px-8 md:px-10 rounded-full hover:bg-white/5 hover:border-white/40 transition-all duration-300 uppercase tracking-widest text-xs md:text-sm"
                             >
-                                {lang === "pt" ? "FALAR COM ESPECIALISTA" : lang === "es" ? "HABLAR CON UN EXPERTO" : "TALK TO AN EXPERT"}
+                                {t.hero.action2}
                             </Link>
                         </div>
                     </div>
@@ -100,17 +109,12 @@ export default async function ArquiteturaMaaSPage({
             <Section className="bg-premium-white text-dark py-24 border-b border-zinc-200">
                 <div className="container-premium max-w-5xl mx-auto text-center">
                     <h2 className="text-3xl md:text-4xl lg:text-5xl font-outfit font-bold text-slate-900 uppercase tracking-tight leading-none mb-16">
-                        O que acontece quando tecnologia <br className="hidden md:block" />
-                        <span className="text-secondary">cresce sem estrutura?</span>
+                        {t.problem.title1} <br className="hidden md:block" />
+                        <span className="text-secondary">{t.problem.title2}</span>
                     </h2>
 
                     <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
-                        {[
-                            "Infraestrutura fragmentada",
-                            "Segurança reativa",
-                            "Backup sem estratégia",
-                            "Operação sem indicadores"
-                        ].map((problem, idx) => (
+                        {t.problem.items.map((problem: string, idx: number) => (
                             <div key={idx} className="bg-white p-8 rounded-[24px] border border-zinc-200 shadow-xl shadow-black/5 flex flex-col items-center justify-center text-center group hover:-translate-y-1 hover:shadow-2xl hover:border-secondary/30 transition-all duration-500">
                                 <div className="w-12 h-12 rounded-full bg-red-50 text-red-500 flex items-center justify-center mb-6 group-hover:bg-red-100 group-hover:scale-110 transition-all duration-300">
                                     <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path></svg>
@@ -122,7 +126,7 @@ export default async function ArquiteturaMaaSPage({
 
                     <div className="inline-block border-b-2 border-secondary pb-2">
                         <p className="text-xl md:text-2xl font-inter font-medium text-slate-700">
-                            Crescimento sem arquitetura gera <span className="text-red-600 font-bold">risco invisível.</span>
+                            {t.problem.conclusion1} <span className="text-red-600 font-bold">{t.problem.conclusion2}</span>
                         </p>
                     </div>
                 </div>
@@ -137,11 +141,11 @@ export default async function ArquiteturaMaaSPage({
                 <div className="container-premium max-w-5xl mx-auto relative z-10">
                     <div className="text-center mb-20 md:mb-28">
                         <h2 className="text-3xl md:text-4xl lg:text-5xl font-outfit font-bold text-white uppercase tracking-tight leading-none mb-6">
-                            O Modelo MaaS™ organiza <br className="hidden md:block" />
-                            <span className="text-[#FFD23F] drop-shadow-[0_0_15px_rgba(255,210,63,0.15)]">tecnologia por camadas</span>
+                            {t.model.title1} <br className="hidden md:block" />
+                            <span className="text-[#FFD23F] drop-shadow-[0_0_15px_rgba(255,210,63,0.15)]">{t.model.title2}</span>
                         </h2>
                         <p className="text-lg md:text-xl text-slate-400 font-inter max-w-3xl mx-auto leading-relaxed">
-                            A Arquitetura MaaS™ estrutura a infraestrutura corporativa em camadas interdependentes, conectando base técnica, proteção e governança sob um método formal e contínuo.
+                            {t.model.desc}
                         </p>
                     </div>
 
@@ -156,28 +160,7 @@ export default async function ArquiteturaMaaSPage({
 
                             {/* Camadas Empilhadas */}
                             <div className="w-full flex-1 flex flex-col gap-6 md:gap-8 relative">
-                                {[
-                                    {
-                                        id: "04",
-                                        title: "Orquestração & Governança",
-                                        desc: "Gestão executiva, compliance e indicadores estratégicos."
-                                    },
-                                    {
-                                        id: "03",
-                                        title: "Continuidade Empresarial",
-                                        desc: "Resiliência operacional, backup e alta disponibilidade."
-                                    },
-                                    {
-                                        id: "02",
-                                        title: "Blindagem & Identidade",
-                                        desc: "Segurança de borda, zero trust e proteção de dados."
-                                    },
-                                    {
-                                        id: "01",
-                                        title: "Base Estrutural",
-                                        desc: "Fundação de conectividade, servidores e infraestrutura física."
-                                    }
-                                ].map((layer, idx) => (
+                                {t.model.layers.map((layer: any, idx: number) => (
                                     <div
                                         key={idx}
                                         className="group relative flex items-center w-full"
@@ -215,10 +198,10 @@ export default async function ArquiteturaMaaSPage({
 
                     <div className="text-center mt-20">
                         <p className="text-xl md:text-2xl font-outfit text-slate-300 leading-normal tracking-wide uppercase font-light">
-                            Estrutura <span className="text-[#FFD23F] font-bold mx-2">&gt;</span> Ferramenta
+                            {t.model.footer1} <span className="text-[#FFD23F] font-bold mx-2">&gt;</span> {t.model.footerTool}
                             <span className="hidden md:inline mx-6 text-white/20">|</span>
                             <br className="md:hidden mt-2" />
-                            Método <span className="text-[#FFD23F] font-bold mx-2">&gt;</span> Serviço
+                            {t.model.footer2} <span className="text-[#FFD23F] font-bold mx-2">&gt;</span> {t.model.footerService}
                         </p>
                     </div>
                 </div>
@@ -229,19 +212,12 @@ export default async function ArquiteturaMaaSPage({
                 <div className="container-premium max-w-6xl mx-auto">
                     <div className="text-center mb-16">
                         <h2 className="text-3xl md:text-4xl lg:text-5xl font-outfit font-bold text-slate-900 uppercase tracking-tight leading-none">
-                            Como aplicamos a <span className="text-secondary">Arquitetura MaaS™</span>
+                            {t.application.title1} <span className="text-secondary">{t.application.title2}</span>
                         </h2>
                     </div>
 
                     <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-                        {[
-                            { step: "01", title: "Diagnóstico Estrutural", desc: "Mapeamento profundo do baseline tecnológico atual e de suas vulnerabilidades." },
-                            { step: "02", title: "Definição de Prioridades", desc: "Alinhamento das necessidades técnicas reais com os objetivos de negócio." },
-                            { step: "03", title: "Estruturação por Camadas", desc: "Desenho arquitetônico formal de como cada camada deve interagir e operar." },
-                            { step: "04", title: "Implementação Técnica", desc: "Execução disciplinada das melhorias, integrações e implantações projetadas." },
-                            { step: "05", title: "Operação Contínua", desc: "Monitoramento 24/7, gestão de incidentes e suporte sob SLA rigoroso." },
-                            { step: "06", title: "Evolução Controlada", desc: "Auditoria contínua, comitês executivos mensais e adequação frente a novas tecnologias." }
-                        ].map((item, idx) => (
+                        {t.application.steps.map((item: any, idx: number) => (
                             <div key={idx} className="bg-white p-8 rounded-[24px] border border-zinc-200 shadow-xl shadow-black/5 hover:shadow-2xl hover:-translate-y-1 hover:border-secondary/30 transition-all duration-300 flex flex-col h-full group">
                                 <div className="text-secondary font-outfit font-bold text-4xl mb-6 opacity-70 group-hover:opacity-100 transition-opacity">
                                     {item.step}
@@ -259,19 +235,13 @@ export default async function ArquiteturaMaaSPage({
                 <div className="container-premium max-w-6xl mx-auto">
                     <div className="text-center mb-20">
                         <h2 className="text-3xl md:text-4xl lg:text-5xl font-outfit font-bold text-slate-900 uppercase tracking-tight leading-none">
-                            O que diferencia a <span className="text-secondary">Arquitetura MaaS™</span>
+                            {t.differentiator.title1} <span className="text-secondary">{t.differentiator.title2}</span>
                         </h2>
                     </div>
 
                     <div className="grid md:grid-cols-2 gap-12 lg:gap-16 items-center">
                         <div className="space-y-6 lg:space-y-8">
-                            {[
-                                "Método formal, não improviso",
-                                "Governança contínua",
-                                "Indicadores executivos",
-                                "Responsabilidade operacional clara",
-                                "Evolução estruturada"
-                            ].map((item, idx) => (
+                            {t.differentiator.items.map((item: string, idx: number) => (
                                 <div key={idx} className="flex items-center gap-4 bg-premium-white border border-zinc-100 p-5 rounded-2xl hover:border-secondary/30 transition-colors duration-300">
                                     <div className="w-10 h-10 rounded-full bg-secondary/10 border border-secondary/20 flex items-center justify-center shrink-0">
                                         <div className="w-2.5 h-2.5 bg-secondary rounded-full"></div>
@@ -288,8 +258,8 @@ export default async function ArquiteturaMaaSPage({
                             <div className="relative z-10 text-center flex flex-col items-center">
                                 <svg className="w-16 h-16 text-[#FFD23F] mb-8 drop-shadow-[0_0_15px_rgba(255,210,63,0.3)]" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2L2 22h20L12 2zm0 4.5l6.5 13.5h-13L12 6.5zM11 10v5h2v-5h-2zm0 7v2h2v-2h-2z" /></svg>
                                 <h3 className="text-3xl lg:text-4xl font-outfit font-bold text-white uppercase leading-tight tracking-tight">
-                                    Não vendemos ferramentas.<br />
-                                    <span className="text-[#FFD23F] mt-2 block">Projetamos estrutura.</span>
+                                    {t.differentiator.cardText1}<br />
+                                    <span className="text-[#FFD23F] mt-2 block">{t.differentiator.cardText2}</span>
                                 </h3>
                             </div>
                         </div>
@@ -302,13 +272,13 @@ export default async function ArquiteturaMaaSPage({
                 <div className="container-premium max-w-6xl mx-auto">
                     <div className="text-center mb-16">
                         <h2 className="text-3xl md:text-4xl lg:text-5xl font-outfit font-bold text-slate-900 uppercase tracking-tight leading-none mb-6">
-                            Cada serviço é uma <span className="text-secondary">aplicação do MaaS™</span>
+                            {t.services.title1} <span className="text-secondary">{t.services.title2}</span>
                         </h2>
-                        <p className="text-lg md:text-xl text-slate-600 font-inter max-w-2xl mx-auto">Conheça as competências técnicas suportadas pela nossa arquitetura de governança.</p>
+                        <p className="text-lg md:text-xl text-slate-600 font-inter max-w-2xl mx-auto">{t.services.desc}</p>
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        {servicesGrid.map((svc, idx) => (
+                        {servicesGrid.map((svc: any, idx: number) => (
                             <Link
                                 href={`/${lang}/servicos/${svc.slug}`}
                                 key={idx}
@@ -332,18 +302,18 @@ export default async function ArquiteturaMaaSPage({
 
                 <div className="container-premium max-w-4xl mx-auto text-center relative z-10">
                     <h2 className="text-3xl md:text-5xl lg:text-6xl font-outfit font-bold text-white uppercase tracking-tight leading-none mb-8">
-                        Sua tecnologia está <span className="text-[#FFD23F] drop-shadow-[0_0_15px_rgba(255,210,63,0.3)]">estruturada</span><br className="hidden md:block" /> ou apenas funcionando?
+                        {t.finalCta.title1} <span className="text-[#FFD23F] drop-shadow-[0_0_15px_rgba(255,210,63,0.3)]">{t.finalCta.title2}</span><br className="hidden md:block" /> {t.finalCta.title3}
                     </h2>
 
                     <p className="text-xl md:text-2xl text-slate-300 font-inter leading-relaxed mb-12 max-w-3xl mx-auto">
-                        Empresas que crescem precisam de método. A Arquitetura MaaS™ transforma infraestrutura em ativo estratégico.
+                        {t.finalCta.desc}
                     </p>
 
                     <Link
                         href={`/${lang}/contato`}
                         className="inline-flex items-center justify-center h-14 bg-[#FFD23F] border-2 border-[#E6B800] text-[#111111] font-bold px-10 md:px-12 rounded-full hover:brightness-95 hover:scale-[1.02] hover:shadow-[0_0_20px_rgba(255,210,63,0.4)] hover:-translate-y-[1px] transition-all duration-300 uppercase tracking-widest text-sm"
                     >
-                        {lang === "pt" ? "INICIAR DIAGNÓSTICO ESTRUTURAL" : lang === "es" ? "INICIAR DIAGNÓSTICO ESTRUCTURAL" : "START STRUCTURAL DIAGNOSTIC"}
+                        {t.finalCta.action}
                     </Link>
                 </div>
             </section>

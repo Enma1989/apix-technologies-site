@@ -1,0 +1,41 @@
+{
+    "nav": {
+        "maas": "MaaS™ Architecture",
+        "services": "Services",
+        "about": "About",
+        "cases": "Case Studies",
+        "blog": "Blog",
+        "contact": "Contact"
+    },
+    "footer": {
+        "presence": "Service coverage: Brazil (base) · Peru (local technical support) · Spain (remote service).",
+        "governance": "Governance",
+        "solutions": "Solutions",
+        "corporate": "Corporate",
+        "privacy": "Privacy",
+        "terms": "Terms of Use"
+    },
+    "common": {
+        "talkToConsultant": "Talk to Consultant",
+        "learnMore": "Learn more",
+        "startDiagnostic": "Start Strategic Diagnostic",
+        "allServices": "All services"
+    },
+    "legal": {
+        "cookieText": "We value your privacy. We use cookies to improve your experience and analyze our traffic according to our",
+        "cookieLink": "Cookies Policy",
+        "cookieAccept": "Accept"
+    },
+    "brand": {
+        "slogan": "TECHNICAL EFFICIENCY. STRUCTURED GOVERNANCE."
+    },
+    "home": {
+        "hero": {
+            "headlineLine1": "MaaS™ Architecture",
+            "headlineLine2": "Technological Governance",
+            "subheadline": "Apix Technologies structures, implements and operates IT environments under executive rigor, transforming infrastructure into a strategic, secure and scalable asset.",
+            "primaryCTA": "START DIAGNOSIS",
+            "secondaryCTA": "CONTACT"
+        }
+    }
+}

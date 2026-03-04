@@ -36,7 +36,12 @@ export default async function ServicePage({
         <main className="min-h-screen bg-premium-dark">
             {/* Service Hero */}
             <section className="pt-32 pb-20 md:pt-48 md:pb-32 bg-premium-dark text-white border-b border-white/5 relative overflow-hidden">
-                <div className="absolute top-0 right-0 w-1/2 h-full bg-primary/10 -skew-x-12 translate-x-1/4 -z-0" />
+                <div className="absolute inset-0 w-[150%] h-[150%] -top-1/4 -left-1/4 z-0 hero-bg-filter">
+                    {/* Se tivesse uma imagem de fundo aqui no futuro, já tem o filter. Se for só cor chapada, podemos colocar o overlay. */}
+                    <div className="absolute top-0 right-0 w-1/2 h-full bg-primary/10 -skew-x-12 translate-x-1/4 -z-0" />
+                </div>
+                {/* Global Hero Overlay */}
+                <div className="hero-overlay-premium" />
 
                 <div className="container-premium relative z-10">
                     <Link
@@ -46,11 +51,11 @@ export default async function ServicePage({
                         ← {lang === "pt" ? "Todos os serviços" : "All services"}
                     </Link>
 
-                    <h1 className="text-4xl md:text-6xl lg:text-7xl font-outfit font-bold mb-8 max-w-4xl tracking-tight leading-tight text-white">
+                    <h1 className="text-4xl md:text-6xl lg:text-7xl font-outfit font-bold mb-8 max-w-4xl tracking-tight leading-tight text-white text-shadow-premium">
                         {service.title[lang]}
                     </h1>
-                    <div className="w-20 h-1 bg-secondary mb-10"></div>
-                    <p className="text-xl md:text-2xl text-slate-400 font-inter max-w-2xl leading-relaxed">
+                    <div className="w-20 h-1 bg-secondary mb-10 drop-shadow-[0_0_10px_rgba(255,210,63,0.5)]"></div>
+                    <p className="text-xl md:text-2xl text-white/85 text-shadow-premium font-inter max-w-2xl leading-relaxed">
                         {lang === "pt"
                             ? "Elevando o padrão de infraestrutura corporativa através de soluções consultivas focadas em previsibilidade e controle absoluto."
                             : "Elevating the standard of corporate infrastructure through consulting solutions focused on predictability and absolute control."

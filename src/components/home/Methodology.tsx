@@ -1,17 +1,19 @@
-import { Locale, siteConfig } from "@/config/siteConfig";
+import { Locale } from "@/config/siteConfig";
+import { getDictionary } from "@/dictionaries";
 import { Section } from "../Section";
 
-export default function Methodology({ lang }: { lang: Locale }) {
-    const { methodology } = siteConfig.home;
+export default async function Methodology({ lang }: { lang: Locale }) {
+    const dict = await getDictionary(lang);
+    const methodology = dict.home.methodology;
 
     return (
         <Section className="bg-premium-white text-dark border-t border-zinc-100 relative">
             <div className="mb-16 text-center">
                 <h2 className="text-3xl md:text-5xl font-outfit font-bold mb-6 tracking-tight text-dark uppercase">
-                    {methodology.title[lang]}
+                    {methodology.title}
                 </h2>
                 <p className="text-dark/90 text-xl font-inter max-w-3xl mx-auto leading-relaxed">
-                    {methodology.subtitle[lang]}
+                    {methodology.subtitle}
                 </p>
                 <div className="mt-8 w-20 h-1 bg-secondary mx-auto"></div>
             </div>
@@ -31,10 +33,10 @@ export default function Methodology({ lang }: { lang: Locale }) {
                                 <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-3 h-3 bg-zinc-300 rounded-full group-hover:bg-secondary transition-colors" />
                             </div>
                             <h3 className="text-xl font-outfit font-bold mb-4 text-dark tracking-tight group-hover:text-secondary transition-colors">
-                                {step.title[lang]}
+                                {step.title}
                             </h3>
                             <p className="text-dark/90 font-inter leading-relaxed">
-                                {step.desc[lang]}
+                                {step.desc}
                             </p>
                         </div>
                     ))}

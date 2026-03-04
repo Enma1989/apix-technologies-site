@@ -1,18 +1,20 @@
-import { Locale, siteConfig } from "@/config/siteConfig";
+import { Locale } from "@/config/siteConfig";
+import { getDictionary } from "@/dictionaries";
 import { Section } from "../Section";
 
-export default function AuditCTASection({ lang }: { lang: Locale }) {
-    const { audit } = siteConfig.home;
+export default async function AuditCTASection({ lang }: { lang: Locale }) {
+    const dict = await getDictionary(lang);
+    const audit = dict.home.audit;
 
     return (
         <Section className="bg-premium-white text-dark" id="audit">
             <div className="flex flex-col items-center text-center">
                 <h2 className="text-4xl md:text-5xl lg:text-6xl font-outfit font-bold mb-6 leading-tight tracking-tight max-w-4xl text-slate-900">
-                    {audit.headline[lang]}
+                    {audit.headline}
                 </h2>
                 <div className="w-20 h-1 bg-secondary mb-8"></div>
                 <p className="text-xl md:text-2xl text-slate-900 font-inter leading-relaxed max-w-3xl mb-12">
-                    {audit.subheadline[lang]}
+                    {audit.subheadline}
                 </p>
             </div>
 
@@ -20,10 +22,10 @@ export default function AuditCTASection({ lang }: { lang: Locale }) {
                 {/* O que está incluso */}
                 <div className="bg-white p-8 rounded-3xl shadow-sm border border-black/[0.03]">
                     <h3 className="text-2xl font-outfit font-bold mb-8 text-slate-900">
-                        {audit.included.title[lang]}
+                        {audit.included.title}
                     </h3>
                     <ul className="space-y-6">
-                        {audit.included.items[lang].map((item, index) => (
+                        {audit.included.items.map((item, index) => (
                             <li key={index} className="flex items-start gap-4 text-lg text-slate-900 group">
                                 <span className="text-[#FFD23F] mt-1 shrink-0">
                                     <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
@@ -39,7 +41,7 @@ export default function AuditCTASection({ lang }: { lang: Locale }) {
                 {/* Como funciona */}
                 <div className="p-8">
                     <h3 className="text-2xl font-outfit font-bold mb-12 text-slate-900">
-                        {audit.howItWorks.title[lang]}
+                        {audit.howItWorks.title}
                     </h3>
                     <div className="relative space-y-12">
                         {/* Vertical line (Mobile & Desktop) */}
@@ -54,7 +56,7 @@ export default function AuditCTASection({ lang }: { lang: Locale }) {
                                 </div>
                                 <div className="pt-2">
                                     <p className="text-lg md:text-xl text-slate-900 font-inter font-medium leading-snug group-hover:text-black transition-colors">
-                                        {step.text[lang]}
+                                        {step.text}
                                     </p>
                                 </div>
                             </div>
@@ -63,18 +65,17 @@ export default function AuditCTASection({ lang }: { lang: Locale }) {
                 </div>
             </div>
 
-            {/* CTA Block */}
             <div className="flex flex-col items-center mt-12 md:mt-16">
                 <div className="flex flex-wrap gap-6 justify-center items-center mb-8 w-full max-w-4xl px-4">
                     <button className="h-12 md:h-14 inline-flex items-center justify-center bg-[#FFD23F] border-2 border-[#E6B800] text-[#111111] font-bold px-10 rounded-full hover:brightness-95 hover:scale-[1.02] hover:shadow-2xl hover:shadow-black/20 active:scale-[0.98] shadow-xl shadow-black/10 transition-all duration-300 ease-out min-w-[280px] uppercase tracking-widest text-xs lg:text-sm">
-                        {audit.cta.primary[lang]}
+                        {audit.cta.primary}
                     </button>
                     <button className="h-12 md:h-14 inline-flex items-center justify-center bg-transparent border-2 border-slate-400 text-slate-900 font-bold px-10 rounded-full hover:bg-slate-50 hover:border-slate-600 hover:-translate-y-1 active:translate-y-0 transition-all duration-300 min-w-[280px] uppercase tracking-widest text-xs lg:text-sm">
-                        {audit.cta.secondary[lang]}
+                        {audit.cta.secondary}
                     </button>
                 </div>
                 <p className="text-sm text-slate-600 font-inter tracking-wide">
-                    {audit.trustLine[lang]}
+                    {audit.trustLine}
                 </p>
             </div>
         </Section>

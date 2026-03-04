@@ -1,6 +1,18 @@
 import { Locale, siteConfig } from "@/config/siteConfig";
+import { getDictionary } from "@/dictionaries";
 import { Section } from "@/components/Section";
 import CaseStudies from "@/components/home/CaseStudies";
+import { Metadata } from "next";
+
+export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
+    const { lang: langParam } = await params;
+    const lang = (langParam as Locale) || "pt";
+    const dict = await getDictionary(lang);
+    return {
+        title: `Cases | Apix Technologies`,
+        description: dict.casesPage.methodology.desc
+    };
+}
 
 export default async function CasesPage({
     params,
@@ -9,28 +21,11 @@ export default async function CasesPage({
 }) {
     const { lang: langParam } = await params;
     const lang = langParam as Locale;
+    const dict = await getDictionary(lang);
+    const { casesPage: t } = dict;
 
     return (
         <main className="min-h-screen bg-premium-dark">
-            {/* Hero Section */}
-            <section className="pt-40 pb-32 bg-premium-dark text-white relative flex items-center border-b border-white/5">
-                <div className="container-premium relative z-10">
-                    <h1 className="text-4xl md:text-6xl font-outfit font-bold mb-8 max-w-4xl tracking-tight leading-tight">
-                        {lang === "pt"
-                            ? "Impacto Estratégico em Números e Resultados."
-                            : lang === "en"
-                                ? "Strategic Impact in Numbers and Results."
-                                : "Impacto Estratégico en Números y Resultados."
-                        }
-                    </h1>
-                    <p className="text-xl md:text-2xl text-white/50 font-inter max-w-2xl leading-relaxed">
-                        {lang === "pt"
-                            ? "Estudos de caso que demonstram como o rigor técnico e a governança transformam a continuidade de médias empresas."
-                            : "Case studies demonstrating how technical rigor and governance transform the continuity of medium-sized companies."
-                        }
-                    </p>
-                </div>
-            </section>
 
             {/* Case studies list (using the component we built) */}
             <CaseStudies lang={lang} />
@@ -39,26 +34,23 @@ export default async function CasesPage({
             <Section className="bg-premium-white text-dark">
                 <div className="max-w-4xl">
                     <h2 className="text-2xl md:text-3xl font-outfit font-bold mb-8 uppercase tracking-tight">
-                        {lang === "pt" ? "Nossa Abordagem Metodológica" : "Our Methodological Approach"}
+                        {t.methodology.title}
                     </h2>
                     <p className="text-lg text-dark/60 font-inter leading-relaxed mb-10">
-                        {lang === "pt"
-                            ? "Cada um dos resultados acima foi alcançado através de um diagnóstico profundo e da aplicação de padrões de governança rigorosos. Não entregamos apenas tecnologia; entregamos previsibilidade."
-                            : "Each of the results above was achieved through deep diagnosis and the application of rigorous governance standards. We don't just deliver technology; we deliver predictability."
-                        }
+                        {t.methodology.desc}
                     </p>
                     <div className="flex flex-wrap gap-12">
                         <div>
                             <p className="text-3xl font-outfit font-bold text-dark">99.9%</p>
-                            <p className="text-xs uppercase tracking-widest text-dark/40 font-bold mt-2">Uptime standard</p>
+                            <p className="text-xs uppercase tracking-widest text-dark/40 font-bold mt-2">{t.methodology.metrics.m1Label}</p>
                         </div>
                         <div>
                             <p className="text-3xl font-outfit font-bold text-dark">100%</p>
-                            <p className="text-xs uppercase tracking-widest text-dark/40 font-bold mt-2">Documented IT</p>
+                            <p className="text-xs uppercase tracking-widest text-dark/40 font-bold mt-2">{t.methodology.metrics.m2Label}</p>
                         </div>
                         <div>
                             <p className="text-3xl font-outfit font-bold text-dark">&lt; 2h</p>
-                            <p className="text-xs uppercase tracking-widest text-dark/40 font-bold mt-2">Disaster Recovery</p>
+                            <p className="text-xs uppercase tracking-widest text-dark/40 font-bold mt-2">{t.methodology.metrics.m3Label}</p>
                         </div>
                     </div>
                 </div>
@@ -67,13 +59,10 @@ export default async function CasesPage({
             {/* CTA */}
             <Section className="bg-premium-dark text-white border-t border-white/5 py-40 text-center">
                 <h2 className="text-3xl md:text-4xl font-outfit font-bold mb-10 max-w-3xl mx-auto uppercase tracking-tight leading-tight">
-                    {lang === "pt"
-                        ? "Quer resultados similares na infraestrutura da sua empresa?"
-                        : "Want similar results in your company's infrastructure?"
-                    }
+                    {t.cta.title}
                 </h2>
                 <button className="bg-secondary text-dark font-bold py-5 px-12 rounded-sm hover:-translate-y-1 transition-all uppercase tracking-widest text-sm">
-                    {siteConfig.home.hero.primaryCTA[lang]}
+                    {dict.home.hero.primaryCTA}
                 </button>
             </Section>
         </main>

@@ -1,4 +1,5 @@
 import { Locale, siteConfig } from "@/config/siteConfig";
+import { getDictionary } from "@/dictionaries";
 import { Section } from "@/components/Section";
 import Link from "next/link";
 import Image from "next/image";
@@ -10,58 +11,76 @@ export default async function ServicesPage({
 }) {
     const { lang: langParam } = await params;
     const lang = langParam as Locale;
-    const { methodologyPage } = siteConfig;
+    const dict = await getDictionary(lang);
+    const { methodologyPage, services, home } = dict;
 
     return (
         <main className="min-h-screen bg-premium-dark overflow-x-hidden">
             {/* Services Hero / Intro */}
-            <section className="pt-48 pb-24 bg-premium-dark text-white relative overflow-hidden border-b border-white/5">
-                {/* Background watermark - Centered and non-clipped */}
-                <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none -z-0">
-                    <div className="relative w-full h-full max-w-4xl max-h-[80vh] opacity-[0.06] blur-[1px]">
+            <section className="relative min-h-[100svh] w-full overflow-hidden bg-premium-dark">
+
+                <div className="absolute inset-0 z-0 flex items-center justify-center opacity-80 pointer-events-none">
+                    <div className="relative w-full h-full max-w-5xl">
                         <Image
                             src="/images/APIX-09.png"
-                            alt="Apix logo watermark"
+                            alt="Apix background"
                             fill
-                            className="object-contain"
+                            className="object-contain scale-75 md:scale-[0.80] opacity-80"
                             priority
                         />
-                        {/* Smooth gradient mask to fade edges */}
-                        <div className="absolute inset-0 bg-gradient-to-b from-premium-dark/80 via-transparent to-premium-dark/80"></div>
-                        <div className="absolute inset-0 bg-gradient-to-r from-premium-dark/80 via-transparent to-premium-dark/80"></div>
                     </div>
                 </div>
 
-                <div className="container-premium relative z-10 text-center">
-                    {/* Glass Premium Badge */}
-                    <div className="inline-block px-6 py-2 border border-yellow-500/30 bg-black/40 backdrop-blur-md rounded-full mb-10 shadow-2xl">
-                        <span className="text-[10px] md:text-xs font-bold tracking-[0.2em] text-[#FFD23F] uppercase">
-                            {methodologyPage.intro.badge[lang]}
-                        </span>
+                {/* Custom Overlay Premium Apix - Central Radial Gradient */}
+                <div
+                    className="absolute inset-0 z-[1] pointer-events-none"
+                    style={{
+                        background: 'radial-gradient(circle at center, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.40) 28%, rgba(0,0,0,0.22) 50%, rgba(0,0,0,0.10) 70%, rgba(0,0,0,0.00) 88%)'
+                    }}
+                />
+
+                {/* Subtle Glass Layer */}
+                <div
+                    className="absolute inset-0 z-[2] pointer-events-none"
+                    style={{
+                        background: 'rgba(0,0,0,0.08)',
+                        backdropFilter: 'blur(1px)',
+                        border: '1px solid rgba(255,255,255,0.08)'
+                    }}
+                />
+
+                <div className="relative z-10 flex h-full flex-col items-center justify-center pt-24 pb-12">
+                    <div className="mx-auto w-full max-w-6xl px-6 text-center text-white">
+                        {/* Glass Premium Badge */}
+                        <div className="inline-block px-6 py-2 border border-yellow-500/30 bg-black/40 backdrop-blur-md rounded-full mb-10 shadow-2xl">
+                            <span className="text-[10px] md:text-xs font-bold tracking-[0.2em] text-[#FFD23F] uppercase">
+                                {methodologyPage.intro.badge}
+                            </span>
+                        </div>
+
+                        <h1 className="text-4xl md:text-6xl lg:text-7xl font-outfit font-bold mb-8 tracking-tighter leading-[1.1] uppercase max-w-5xl mx-auto text-shadow-premium">
+                            {(() => {
+                                const headline = methodologyPage.intro.headline;
+                                const maasText = "MaaS™";
+                                if (headline.includes(maasText)) {
+                                    const parts = headline.split(maasText);
+                                    return (
+                                        <>
+                                            {parts[0]}
+                                            <br className="hidden lg:block" />
+                                            <span className="text-[#FFD23F] drop-shadow-[0_0_20px_rgba(255,210,63,0.4)]">{maasText}</span>
+                                            {parts[1]}
+                                        </>
+                                    );
+                                }
+                                return headline;
+                            })()}
+                        </h1>
+
+                        <p className="text-lg md:text-xl text-white/85 text-shadow-premium font-inter max-w-2xl mx-auto leading-relaxed mt-6">
+                            {methodologyPage.intro.subheadline}
+                        </p>
                     </div>
-
-                    <h1 className="text-4xl md:text-6xl lg:text-7xl font-outfit font-bold mb-8 tracking-tighter leading-[1.1] text-white uppercase max-w-5xl mx-auto">
-                        {(() => {
-                            const headline = methodologyPage.intro.headline[lang];
-                            const maasText = "MaaS™";
-                            if (headline.includes(maasText)) {
-                                const parts = headline.split(maasText);
-                                return (
-                                    <>
-                                        {parts[0]}
-                                        <br className="hidden lg:block" />
-                                        <span className="text-[#FFD23F]">{maasText}</span>
-                                        {parts[1]}
-                                    </>
-                                );
-                            }
-                            return headline;
-                        })()}
-                    </h1>
-
-                    <p className="text-lg md:text-xl text-white/75 font-inter max-w-2xl mx-auto leading-relaxed mt-6">
-                        {methodologyPage.intro.subheadline[lang]}
-                    </p>
                 </div>
             </section>
 
@@ -73,10 +92,10 @@ export default async function ServicesPage({
                             <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
                                 <div className="max-w-xl">
                                     <h2 className="text-2xl md:text-3xl font-outfit font-bold mb-4 text-slate-900 tracking-tight uppercase">
-                                        {layer.title[lang]}
+                                        {layer.title}
                                     </h2>
                                     <p className="text-slate-500 font-inter text-lg">
-                                        {layer.text[lang]}
+                                        {layer.text}
                                     </p>
                                 </div>
                                 <div className="hidden md:block h-px flex-grow bg-slate-100 mx-8 mb-4"></div>
@@ -86,8 +105,8 @@ export default async function ServicesPage({
                             </div>
 
                             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                                {layer.services.map((slug) => {
-                                    const service = siteConfig.services.find(s => s.slug === slug);
+                                {layer.services.map((slug: string) => {
+                                    const service = services.find((s: any) => s.slug === slug);
                                     if (!service) return null;
                                     return (
                                         <Link
@@ -155,13 +174,13 @@ export default async function ServicesPage({
                                                 )}
                                             </div>
                                             <h3 className="text-xl font-outfit font-bold mb-4 tracking-tight text-slate-900 group-hover:text-secondary transition-colors">
-                                                {service.title[lang]}
+                                                {service.title}
                                             </h3>
                                             <p className="text-slate-600 font-inter text-sm leading-relaxed flex-grow">
-                                                {service.desc[lang]}
+                                                {service.desc}
                                             </p>
                                             <div className="mt-8 pt-6 border-t border-slate-50 flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.2em] text-slate-400 group-hover:text-secondary transition-colors">
-                                                {lang === "pt" ? "Saiba mais" : lang === "es" ? "Saber más" : "Learn more"}
+                                                {methodologyPage.plans.actions?.learnMore || "SAIBA MAIS"}
                                                 <span className="transform transition-transform group-hover:translate-x-2">→</span>
                                             </div>
                                         </Link>
@@ -177,7 +196,7 @@ export default async function ServicesPage({
             <Section className="bg-premium-zinc border-y border-zinc-100 py-24">
                 <div className="max-w-4xl mx-auto text-center mb-20">
                     <h2 className="text-3xl md:text-5xl font-outfit font-bold mb-6 tracking-tight text-slate-900 uppercase">
-                        {methodologyPage.deliverables.title[lang]}
+                        {methodologyPage.deliverables.title}
                     </h2>
                     <div className="w-20 h-1 bg-secondary mx-auto"></div>
                 </div>
@@ -192,10 +211,10 @@ export default async function ServicesPage({
                             </div>
                             <div>
                                 <h4 className="text-xl font-outfit font-bold mb-2 text-slate-900 uppercase tracking-tight">
-                                    {item.title[lang]}
+                                    {item.title}
                                 </h4>
                                 <p className="text-slate-500 font-inter leading-relaxed">
-                                    {item.desc[lang]}
+                                    {item.desc}
                                 </p>
                             </div>
                         </div>
@@ -207,7 +226,7 @@ export default async function ServicesPage({
             <Section className="bg-premium-white py-24">
                 <div className="max-w-4xl mx-auto text-center mb-20">
                     <h2 className="text-3xl md:text-5xl font-outfit font-bold mb-6 tracking-tight text-slate-900 uppercase">
-                        {methodologyPage.plans.title[lang]}
+                        {methodologyPage.plans.title}
                     </h2>
                     <div className="w-20 h-1 bg-secondary mx-auto"></div>
                 </div>
@@ -224,7 +243,7 @@ export default async function ServicesPage({
                             {index === 1 && (
                                 <div className="mb-6">
                                     <span className="bg-yellow-500/15 text-yellow-500 border border-yellow-500/40 uppercase tracking-widest rounded-full px-3 py-1 text-[10px] font-bold">
-                                        {lang === "pt" ? "MAIS CONTRATADO" : lang === "es" ? "MÁS CONTRATADO" : "RECOMMENDED"}
+                                        {methodologyPage.plans.actions?.recommended || "MAIS CONTRATADO"}
                                     </span>
                                 </div>
                             )}
@@ -235,18 +254,18 @@ export default async function ServicesPage({
                                 </h3>
                                 <div className={`font-bold uppercase tracking-wider ${index === 1 ? "text-[10px] opacity-70 text-secondary" : "text-[10px] text-slate-500"
                                     }`}>
-                                    {plan.focus[lang]}
+                                    {plan.focus}
                                 </div>
-                                {(plan as any).desc && (
+                                {plan.desc && (
                                     <p className={`mt-4 text-sm leading-relaxed ${index === 1 ? "text-white/60" : "text-slate-500"
                                         }`}>
-                                        {(plan as any).desc[lang]}
+                                        {plan.desc}
                                     </p>
                                 )}
                             </div>
 
                             <ul className="space-y-4 flex-grow mb-10">
-                                {plan.features[lang].map((feature, fIndex) => (
+                                {plan.features.map((feature, fIndex) => (
                                     <li key={fIndex} className="flex items-center gap-3 text-sm">
                                         <svg className="w-5 h-5 shrink-0 text-secondary" fill="currentColor" viewBox="0 0 20 20">
                                             <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
@@ -263,7 +282,7 @@ export default async function ServicesPage({
                                     : "border border-slate-900/10 bg-slate-50 text-slate-900 hover:bg-secondary hover:text-dark hover:border-secondary hover:scale-105"
                                     }`}
                             >
-                                {lang === "pt" ? "Selecionar Plano" : lang === "es" ? "Seleccionar Plan" : "Select Plan"}
+                                {methodologyPage.plans.actions?.selectPlan || "SELECIONAR PLANO"}
                             </Link>
                         </div>
                     ))}
@@ -283,11 +302,7 @@ export default async function ServicesPage({
 
                 <div className="relative z-10 text-center max-w-4xl mx-auto">
                     <h2 className="text-4xl md:text-6xl font-outfit font-bold mb-10 tracking-tight uppercase leading-tight">
-                        {lang === "pt"
-                            ? "Sua infraestrutura merece rigor executivo. Vamos começar?"
-                            : lang === "es"
-                                ? "Su infraestructura merece rigor ejecutivo. ¿Comencemos?"
-                                : "Your infrastructure deserves executive rigor. shall we begin?"}
+                        {home.finalCta.title}
                     </h2>
                     <div className="w-24 h-1 bg-secondary mx-auto mb-12"></div>
 
@@ -296,7 +311,7 @@ export default async function ServicesPage({
                             href={`/${lang}/contato`}
                             className="h-14 inline-flex items-center justify-center bg-secondary border-2 border-[#E6B800] text-dark font-bold px-12 rounded-full hover:brightness-110 hover:scale-[1.02] transition-all uppercase tracking-widest text-sm min-w-[280px]"
                         >
-                            {lang === "pt" ? "INICIAR DIAGNÓSTICO" : lang === "es" ? "INICIAR DIAGNÓSTICO" : "START DIAGNOSIS"}
+                            {home.hero.primaryCTA}
                         </Link>
                         <a
                             href="https://wa.me/5541991934437"
@@ -304,7 +319,7 @@ export default async function ServicesPage({
                             rel="noopener noreferrer"
                             className="h-14 inline-flex items-center justify-center border-2 border-white/20 text-white font-bold px-12 rounded-full hover:bg-white/5 hover:border-white/40 transition-all uppercase tracking-widest text-sm min-w-[280px]"
                         >
-                            {lang === "pt" ? "FALAR COM CONSULTOR" : lang === "es" ? "HABLAR CON CONSULTOR" : "TALK TO CONSULTANT"}
+                            {home.finalCta.secondary}
                         </a>
                     </div>
                 </div>

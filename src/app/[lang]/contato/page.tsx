@@ -2,89 +2,7 @@ import { Locale } from "@/config/siteConfig";
 import { ContactForm } from "@/components/contact/ContactForm";
 import Image from "next/image";
 
-const content = {
-    pt: {
-        headline: "Vamos agendar seu diagnóstico estratégico.",
-        subheadline: "60 minutos para mapear riscos críticos e estruturar um plano claro e objetivo para sua TI evoluir com segurança.",
-        howItWorks: "Como funciona",
-        steps: [
-            {
-                num: "01",
-                title: "Reunião técnica inicial (60 min)",
-                desc: "Alinhamento de expectativas e entendimento do modelo de negócio."
-            },
-            {
-                num: "02",
-                title: "Coleta estruturada de informações",
-                desc: "Análise profunda de infraestrutura, segurança e processos."
-            },
-            {
-                num: "03",
-                title: "Análise interna e priorização",
-                desc: "Identificação de riscos críticos e definição de urgências."
-            },
-            {
-                num: "04",
-                title: "Entrega do relatório executivo",
-                desc: "Apresentação do roadmap estratégico e próximos passos."
-            }
-        ]
-    },
-    en: {
-        headline: "Let's schedule your strategic diagnosis.",
-        subheadline: "60 minutes to map critical risks and structure a clear and objective plan for your IT to evolve securely.",
-        howItWorks: "How it works",
-        steps: [
-            {
-                num: "01",
-                title: "Initial technical meeting (60 min)",
-                desc: "Alignment of expectations and understanding of the business model."
-            },
-            {
-                num: "02",
-                title: "Structured information collection",
-                desc: "Deep analysis of infrastructure, security, and processes."
-            },
-            {
-                num: "03",
-                title: "Internal analysis and prioritization",
-                desc: "Identification of critical risks and definition of urgencies."
-            },
-            {
-                num: "04",
-                title: "Executive report delivery",
-                desc: "Presentation of the strategic roadmap and next steps."
-            }
-        ]
-    },
-    es: {
-        headline: "Programemos su diagnóstico estratégico.",
-        subheadline: "60 minutos para mapear riesgos críticos y estructurar un plan claro y objetivo para que su TI evolucione con seguridad.",
-        howItWorks: "Cómo funciona",
-        steps: [
-            {
-                num: "01",
-                title: "Reunión técnica inicial (60 min)",
-                desc: "Alineación de expectativas y comprensión do modelo de negocio."
-            },
-            {
-                num: "02",
-                title: "Recopilación estructurada de información",
-                desc: "Análisis profundo de infraestructura, seguridad y procesos."
-            },
-            {
-                num: "03",
-                title: "Análisis interno y priorización",
-                desc: "Identificación de riesgos críticos y definición de urgencias."
-            },
-            {
-                num: "04",
-                title: "Entrega del informe ejecutivo",
-                desc: "Presentación del roadmap estratégico y próximos pasos."
-            }
-        ]
-    }
-};
+import { getDictionary } from "@/dictionaries";
 
 export default async function ContactPage({
     params,
@@ -93,7 +11,8 @@ export default async function ContactPage({
 }) {
     const { lang: langParam } = await params;
     const lang = langParam as Locale;
-    const t = content[lang];
+    const dict = await getDictionary(lang);
+    const t = dict.contactPage;
 
     return (
         <main className="min-h-screen bg-white">
