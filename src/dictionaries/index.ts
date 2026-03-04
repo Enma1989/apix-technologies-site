@@ -40,7 +40,7 @@ function extractTranslations<T>(obj: T, locale: Locale): DeepResolveLocale<T> {
 export type Dictionary = DeepResolveLocale<typeof siteConfig> & {
     legal: { cookieText: string; cookieLink: string; cookieAccept: string; };
     common: { talkToConsultant: string; learnMore: string; startDiagnostic: string; allServices: string; backToTop: string; };
-    footerData: { governance: string; solutions: string; corporate: string; privacy: string; };
+    footerData: { governance: string; solutions: string; corporate: string; privacy: string; terms: string; cookies: string; };
     homeData: { pillarsTitle: string; servicesOverviewTitle: string; servicesOverviewDesc: string; maasMethodLink: string; };
 };
 
@@ -53,19 +53,19 @@ export const getDictionary = async (locale: Locale | string): Promise<Dictionary
         pt: {
             legal: { cookieText: "Valorizamos sua privacidade. Utilizamos cookies para melhorar sua experiência e analisar nosso tráfego conforme nossa", cookieLink: "Política de Cookies", cookieAccept: "Aceitar" },
             common: { talkToConsultant: "Falar com Consultor", learnMore: "Saiba mais", startDiagnostic: "Iniciar Diagnóstico Estratégico", allServices: "Todos os serviços", backToTop: "Voltar ao topo" },
-            footerData: { governance: "Governança", solutions: "Soluções", corporate: "Institucional", privacy: "Privacidade" },
+            footerData: { governance: "Governança", solutions: "Soluções", corporate: "Institucional", privacy: "Privacidade", terms: "Termos de Uso", cookies: "Política de Cookies" },
             homeData: { pillarsTitle: "Pilares Estratégicos" }
         },
         en: {
             legal: { cookieText: "We value your privacy. We use cookies to improve your experience and analyze our traffic according to our", cookieLink: "Cookies Policy", cookieAccept: "Accept" },
             common: { talkToConsultant: "Talk to Consultant", learnMore: "Learn more", startDiagnostic: "Start Strategic Diagnostic", allServices: "All services", backToTop: "Back to top" },
-            footerData: { governance: "Governance", solutions: "Solutions", corporate: "Corporate", privacy: "Privacy" },
+            footerData: { governance: "Governance", solutions: "Solutions", corporate: "Corporate", privacy: "Privacy", terms: "Terms of Use", cookies: "Cookie Policy" },
             homeData: { pillarsTitle: "Strategic Pillars" }
         },
         es: {
             legal: { cookieText: "Valoramos su privacidad. Utilizamos cookies para mejorar su experiencia y analizar nuestro tráfico según nuestra", cookieLink: "Política de Cookies", cookieAccept: "Aceptar" },
             common: { talkToConsultant: "Hablar con Consultor", learnMore: "Saber más", startDiagnostic: "Iniciar Diagnóstico Estratégico", allServices: "Todos los servicios", backToTop: "Volver arriba" },
-            footerData: { governance: "Gobernanza", solutions: "Soluciones", corporate: "Institucional", privacy: "Privacidad" },
+            footerData: { governance: "Gobernanza", solutions: "Soluciones", corporate: "Institucional", privacy: "Privacidad", terms: "Términos de Uso", cookies: "Política de Cookies" },
             homeData: { pillarsTitle: "Pilares Estratégicos" }
         }
     };

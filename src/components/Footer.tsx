@@ -109,6 +109,22 @@ export default function Footer({ lang, dict }: { lang: Locale; dict: Dictionary 
                                             {dict.footerData.privacy}
                                         </Link>
                                     </li>
+                                    <li>
+                                        <Link
+                                            href={`/${lang}/termos`}
+                                            className="text-white/60 hover:text-secondary text-sm transition-colors"
+                                        >
+                                            {dict.footerData.terms}
+                                        </Link>
+                                    </li>
+                                    <li>
+                                        <Link
+                                            href={`/${lang}/cookies`}
+                                            className="text-white/60 hover:text-secondary text-sm transition-colors"
+                                        >
+                                            {dict.footerData.cookies}
+                                        </Link>
+                                    </li>
                                 </ul>
                             </div>
 
