@@ -7,6 +7,7 @@ import Footer from "@/components/Footer";
 import CookieConsent from "@/components/legal/CookieConsent";
 import BackToTopButton from "@/components/BackToTopButton";
 import { getDictionary } from "@/dictionaries";
+import JsonLd from "@/components/JsonLd";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -29,6 +30,21 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
       template: "%s | Apix Technologies",
     },
     description: dict.siteMetadata.description,
+    openGraph: {
+      title: dict.siteMetadata.title,
+      description: dict.siteMetadata.description,
+      url: "https://apixtech.com.br",
+      siteName: "Apix Technologies",
+      images: [
+        {
+          url: "/images/og-apix.jpg",
+          width: 1200,
+          height: 630,
+        },
+      ],
+      locale: lang === "pt" ? "pt_BR" : lang === "en" ? "en_US" : "es_ES",
+      type: "website",
+    },
     icons: {
       icon: [
         { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
@@ -57,6 +73,9 @@ export default async function RootLayout({
 
   return (
     <html lang={lang}>
+      <head>
+        <JsonLd />
+      </head>
       <body className={`${inter.variable} ${outfit.variable} antialiased font-executive bg-dark text-white`}>
         <Navbar lang={lang} dict={dict} />
         {children}

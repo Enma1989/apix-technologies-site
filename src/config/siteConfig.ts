@@ -1045,12 +1045,12 @@ export const siteConfig = {
   },
   siteMetadata: {
     title: {
-      pt: "Apix Technologies | Consultoria Estratégica em TI",
+      pt: "Apix Technologies | Infraestrutura e Segurança de TI",
       en: "Apix Technologies | Strategic IT Consulting",
       es: "Apix Technologies | Consultoría Estratégica en TI"
     },
     description: {
-      pt: "Especialistas em infraestrutura, segurança e continuidade operacional para empresas que buscam previsibilidade e controle.",
+      pt: "Consultoria especializada em infraestrutura, cloud e segurança. Arquitetura MaaS™ para empresas que precisam de TI estratégica.",
       en: "Specialists in infrastructure, security, and operational continuity for companies seeking predictability and control.",
       es: "Especialistas en infraestructura, seguridad y continuidad operativa para empresas que buscan previsibilidad y control."
     }

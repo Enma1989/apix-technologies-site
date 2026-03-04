@@ -6,7 +6,7 @@ export default function JsonLd() {
         "@type": "Organization",
         "name": siteConfig.brand.name,
         "url": "https://apixtech.com.br",
-        "logo": "https://apixtech.com.br/logo.png",
+        "logo": "https://apixtech.com.br/images/apix-07.png",
         "contactPoint": {
             "@type": "ContactPoint",
             "telephone": siteConfig.contact.brasil.phone,
@@ -16,7 +16,12 @@ export default function JsonLd() {
         },
         "sameAs": [
             "https://www.linkedin.com/company/apix-technologies"
-        ]
+        ],
+        "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Curitiba",
+            "addressCountry": "BR"
+        }
     };
 
     const localBusinessSchema = {
