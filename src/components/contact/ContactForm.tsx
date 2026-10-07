@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Locale } from "@/config/siteConfig";
 import Link from "next/link";
 
@@ -21,6 +21,8 @@ const translations = {
         whatsappBtn: "Agendar via WhatsApp",
         emailBtn: "Enviar por E-mail",
         placeholder: "Como podemos ajudar?",
+        subject: "Diagnóstico Estratégico",
+        messageIntro: "Olá! Quero agendar um Diagnóstico Estratégico.",
     },
     en: {
         nameLabel: "Full Name",
@@ -34,6 +36,8 @@ const translations = {
         whatsappBtn: "Schedule via WhatsApp",
         emailBtn: "Send via E-mail",
         placeholder: "How can we help?",
+        subject: "Strategic Diagnostic",
+        messageIntro: "Hello! I would like to schedule a Strategic Diagnostic.",
     },
     es: {
         nameLabel: "Nombre completo",
@@ -41,12 +45,14 @@ const translations = {
         emailLabel: "E-mail corporativo",
         phoneLabel: "Teléfono / WhatsApp",
         messageLabel: "Mensaje",
-        lgpdPart1: "He leído y acepto o tratamento de mis datos conforme a la ",
+        lgpdPart1: "He leído y acepto el tratamiento de mis datos conforme a la ",
         lgpdLink: "Política de Privacidad",
         invalidEmail: "Ingrese un correo válido.",
         whatsappBtn: "Agendar por WhatsApp",
         emailBtn: "Enviar por E-mail",
         placeholder: "¿Cómo podemos ayudar?",
+        subject: "Diagnóstico Estratégico",
+        messageIntro: "¡Hola! Quiero agendar un Diagnóstico Estratégico.",
     }
 };
 
@@ -61,29 +67,20 @@ export function ContactForm({ lang }: ContactFormProps) {
         acceptedLGPD: false
     });
 
-    const [errors, setErrors] = useState({
-        email: false
-    });
-
-    const [isValid, setIsValid] = useState(false);
-
     const validateEmail = (email: string) => {
         // Standard email validation (not blocking common providers)
         return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
     };
 
-    useEffect(() => {
-        const isEmailValid = validateEmail(formData.email);
-        const allFieldsFilled =
-            formData.name.trim() !== "" &&
-            formData.company.trim() !== "" &&
-            formData.email.trim() !== "" &&
-            formData.phone.trim() !== "" &&
-            formData.message.trim() !== "";
-
-        setErrors({ email: formData.email !== "" && !isEmailValid });
-        setIsValid(allFieldsFilled && isEmailValid && formData.acceptedLGPD);
-    }, [formData]);
+    const isEmailValid = validateEmail(formData.email);
+    const hasInvalidEmail = formData.email !== "" && !isEmailValid;
+    const allFieldsFilled =
+        formData.name.trim() !== "" &&
+        formData.company.trim() !== "" &&
+        formData.email.trim() !== "" &&
+        formData.phone.trim() !== "" &&
+        formData.message.trim() !== "";
+    const isValid = allFieldsFilled && isEmailValid && formData.acceptedLGPD;
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const { name, value } = e.target;
@@ -95,12 +92,12 @@ export function ContactForm({ lang }: ContactFormProps) {
     };
 
     const getFormMessage = () => {
-        return `Olá! Quero agendar um Diagnóstico Estratégico.\n\n` +
-            `Nome: ${formData.name}\n` +
-            `Empresa: ${formData.company}\n` +
-            `E-mail: ${formData.email}\n` +
-            `Telefone/WhatsApp: ${formData.phone}\n` +
-            `Mensagem: ${formData.message}`;
+        return `${t.messageIntro}\n\n` +
+            `${t.nameLabel}: ${formData.name}\n` +
+            `${t.companyLabel}: ${formData.company}\n` +
+            `${t.emailLabel}: ${formData.email}\n` +
+            `${t.phoneLabel}: ${formData.phone}\n` +
+            `${t.messageLabel}: ${formData.message}`;
     };
 
     const handleWhatsApp = () => {
@@ -111,7 +108,7 @@ export function ContactForm({ lang }: ContactFormProps) {
 
     const handleEmail = () => {
         if (!isValid) return;
-        const subject = encodeURIComponent(`Diagnóstico Estratégico - ${formData.company}`);
+        const subject = encodeURIComponent(`${t.subject} - ${formData.company}`);
         const body = encodeURIComponent(getFormMessage());
         window.location.href = `mailto:comercial@apixtech.com.br?subject=${subject}&body=${body}`;
     };
@@ -159,9 +156,9 @@ export function ContactForm({ lang }: ContactFormProps) {
                             value={formData.email}
                             onChange={handleChange}
                             required
-                            className={`w-full bg-white border ${errors.email ? 'border-red-500/50' : 'border-neutral-300'} px-4 py-3 text-neutral-900 focus:border-secondary transition-all duration-200 outline-none rounded-md font-inter`}
+                            className={`w-full bg-white border ${hasInvalidEmail ? 'border-red-500/50' : 'border-neutral-300'} px-4 py-3 text-neutral-900 focus:border-secondary transition-all duration-200 outline-none rounded-md font-inter`}
                         />
-                        {errors.email && <p className="text-[10px] text-red-500 mt-1 ml-1">{t.invalidEmail}</p>}
+                        {hasInvalidEmail && <p className="text-[10px] text-red-500 mt-1 ml-1">{t.invalidEmail}</p>}
                     </div>
                     <div className="flex flex-col">
                         <label className="text-xs uppercase font-bold tracking-wider text-neutral-500 mb-2 ml-1">

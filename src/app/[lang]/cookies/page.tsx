@@ -83,14 +83,14 @@ export default async function CookiesPage({
         es: {
             title: "Política de Cookies",
             subtitle: "Versión: 1.0 | Última actualización: 26 de febrero de 2026",
-            intro: "Esta Política de Cookies explica cómo Apix Technologies utiliza cookies e tecnologías similares en su sitio web, de conformidad con la Ley General de Protección de Datos (LGPD). Al continuar navegando, usted acepta el uso de cookies como se describe aquí.",
+            intro: "Esta Política de Cookies explica cómo Apix Technologies utiliza cookies y tecnologías similares en su sitio web, de conformidad con la Ley General de Protección de Datos (LGPD). Al continuar navegando, usted acepta el uso de cookies como se describe aquí.",
             sections: [
                 {
-                    title: "1. ¿Qué son as Cookies?",
+                    title: "1. ¿Qué son las cookies?",
                     text: "Las cookies son pequeños archivos de texto almacenados en su dispositivo que permiten **reconocer preferencias**, mejorar la experiencia de navegación y recopilar *estadísticas de uso* de la plataforma."
                 },
                 {
-                    title: "2. ¿Cómo utilizamos as Cookies?",
+                    title: "2. ¿Cómo utilizamos las cookies?",
                     text: "Utilizamos cookies para **garantizar el funcionamiento adecuado**, mejorar el rendimiento, memorizar preferencias y reforzar la seguridad. *No vendemos ni comercializamos* sus datos personales."
                 },
                 {
@@ -102,7 +102,7 @@ export default async function CookiesPage({
                     text: "El tratamiento ocurre sobre la base del **interés legítimo** (cookies necesarias) o del *consentimiento del usuario* (cookies no esenciales), el cual puede ser revocado en cualquier momento."
                 },
                 {
-                    title: "5. ¿Cómo Administrar as Cookies?",
+                    title: "5. ¿Cómo administrar las cookies?",
                     text: "Puede **controlar, bloquear o eliminar cookies** en la configuración de su navegador (Chrome, Firefox, Edge, Safari). El bloqueo de cookies puede *afectar algunas funcionalidades* del sitio."
                 },
                 {
@@ -118,6 +118,11 @@ export default async function CookiesPage({
     }
 
     const t = content[lang] || content.pt;
+    const footer = {
+        pt: { label: "Validado por Apix Compliance", note: "Este documento tem validade digital e jurídica para todos os fins.", rights: "Todos os direitos reservados" },
+        en: { label: "Validated by Apix Compliance", note: "This document is digitally and legally valid for all applicable purposes.", rights: "All rights reserved" },
+        es: { label: "Validado por Apix Compliance", note: "Este documento tiene validez digital y jurídica para todos los fines aplicables.", rights: "Todos los derechos reservados" },
+    }[lang] || { label: "Validado por Apix Compliance", note: "Este documento tem validade digital e jurídica para todos os fins.", rights: "Todos os direitos reservados" };
 
     return (
         <main className="min-h-screen bg-premium-dark pt-32 pb-20">
@@ -179,12 +184,12 @@ export default async function CookiesPage({
                             />
                         </div>
                         <div>
-                            <p className="text-dark font-outfit font-bold text-sm uppercase tracking-wider">Validado por Apix Compliance</p>
-                            <p className="text-dark/40 text-xs font-inter max-w-[240px]">Este documento tem validade digital e jurídica para todos os fins.</p>
+                            <p className="text-dark font-outfit font-bold text-sm uppercase tracking-wider">{footer.label}</p>
+                            <p className="text-dark/40 text-xs font-inter max-w-[240px]">{footer.note}</p>
                         </div>
                     </div>
                     <div className="text-right">
-                        <p className="text-dark/30 text-[10px] font-inter uppercase tracking-[0.2em]">© 2026 Apix Technologies - Todos os direitos reservados</p>
+                        <p className="text-dark/30 text-[10px] font-inter uppercase tracking-[0.2em]">© 2026 Apix Technologies - {footer.rights}</p>
                     </div>
                 </div>
             </div>

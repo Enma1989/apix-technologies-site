@@ -10,7 +10,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
     const lang = (langParam as Locale) || "pt";
     const dict = await getDictionary(lang);
     return {
-        title: `Blog | Apix Technologies`,
+        title: "Blog",
         description: dict.blogPage.hero.desc
     };
 }
@@ -85,7 +85,7 @@ export default async function BlogPage({
             <section className="bg-white py-20 pb-40">
                 <div className="mx-auto max-w-6xl px-6">
                     <div className="grid gap-12 md:grid-cols-3">
-                        {t.posts.map((post: any) => (
+                        {t.posts.map((post) => (
                             <Link
                                 href={`/${lang}/blog/${post.slug}`}
                                 key={post.slug}

@@ -1,4 +1,4 @@
-import { Locale, siteConfig } from "@/config/siteConfig";
+import { Locale } from "@/config/siteConfig";
 import { getDictionary } from "@/dictionaries";
 import { Section } from "@/components/Section";
 import CaseStudies from "@/components/home/CaseStudies";
@@ -9,7 +9,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
     const lang = (langParam as Locale) || "pt";
     const dict = await getDictionary(lang);
     return {
-        title: `Cases | Apix Technologies`,
+        title: lang === "pt" ? "Cases" : lang === "en" ? "Case Studies" : "Casos",
         description: dict.casesPage.methodology.desc
     };
 }

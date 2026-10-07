@@ -25,6 +25,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
   const dict = await getDictionary(lang);
 
   return {
+    metadataBase: new URL("https://apixtech.com.br"),
     title: {
       default: dict.siteMetadata.title,
       template: "%s | Apix Technologies",
@@ -37,7 +38,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
       siteName: "Apix Technologies",
       images: [
         {
-          url: "/images/og-apix.jpg",
+          url: "/images/blog.jpg",
           width: 1200,
           height: 630,
         },

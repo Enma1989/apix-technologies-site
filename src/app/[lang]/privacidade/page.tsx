@@ -79,7 +79,7 @@ export default async function PrivacyPage({
             sections: [
                 {
                     title: "1. Datos Recopilados",
-                    text: "Recopilamos solo los datos *estrictamente necesarios* para la prestación de nuestros servicios de tecnología, soporte y consultoría. Los datos pueden incluir: **Nome completo, Correo electrónico, Teléfono, Empresa y Cargo**. También recopilamos información técnica como *dirección IP y cookies* para mejorar la experiencia."
+                    text: "Recopilamos solo los datos *estrictamente necesarios* para prestar nuestros servicios de tecnología, soporte y consultoría. Los datos pueden incluir: **nombre completo, correo electrónico, teléfono, empresa y cargo**. También recopilamos información técnica, como *dirección IP y cookies*, para mejorar la experiencia."
                 },
                 {
                     title: "2. Finalidad del Uso de los Datos",
@@ -87,11 +87,11 @@ export default async function PrivacyPage({
                 },
                 {
                     title: "3. Intercambio de Información",
-                    text: "Apix Technologies **no comercializa datos personales**. El intercambio solo ocurre con socios estratégicos necesarios para la ejecución de los servicios (ej: proveedores de nube), bajo *estrictos contratos de confidencialidade*, ou por obrigação legal."
+                    text: "Apix Technologies **no comercializa datos personales**. La información solo se comparte con socios estratégicos necesarios para ejecutar los servicios (por ejemplo, proveedores de nube), bajo *estrictos acuerdos de confidencialidad*, o por obligación legal."
                 },
                 {
                     title: "4. Seguridad y Almacenamiento",
-                    text: "Adoptamos las **mejores práticas de segurança da informação**, incluindo criptografia e controle de acesso rigoroso. Os dados são armazenados em ambientes seguros e retidos apenas pelo tempo necessário para cumprir as finalidades descritas ou exigências legais."
+                    text: "Adoptamos las **mejores prácticas de seguridad de la información**, incluyendo cifrado y un control de acceso riguroso. Los datos se almacenan en entornos seguros y se conservan únicamente durante el tiempo necesario para cumplir las finalidades descritas o las exigencias legales."
                 },
                 {
                     title: "5. Sus Derechos (LGPD)",
@@ -106,6 +106,11 @@ export default async function PrivacyPage({
     }
 
     const t = content[lang] || content.pt;
+    const footer = {
+        pt: { label: "Validado por Apix Compliance", note: "Este documento tem validade digital e jurídica para todos os fins.", rights: "Todos os direitos reservados" },
+        en: { label: "Validated by Apix Compliance", note: "This document is digitally and legally valid for all applicable purposes.", rights: "All rights reserved" },
+        es: { label: "Validado por Apix Compliance", note: "Este documento tiene validez digital y jurídica para todos los fines aplicables.", rights: "Todos los derechos reservados" },
+    }[lang] || { label: "Validado por Apix Compliance", note: "Este documento tem validade digital e jurídica para todos os fins.", rights: "Todos os direitos reservados" };
 
     return (
         <main className="min-h-screen bg-premium-dark pt-32 pb-20">
@@ -167,12 +172,12 @@ export default async function PrivacyPage({
                             />
                         </div>
                         <div>
-                            <p className="text-dark font-outfit font-bold text-sm uppercase tracking-wider">Validado por Apix Compliance</p>
-                            <p className="text-dark/40 text-xs font-inter max-w-[240px]">Este documento tem validade digital e jurídica para todos os fins.</p>
+                            <p className="text-dark font-outfit font-bold text-sm uppercase tracking-wider">{footer.label}</p>
+                            <p className="text-dark/40 text-xs font-inter max-w-[240px]">{footer.note}</p>
                         </div>
                     </div>
                     <div className="text-right">
-                        <p className="text-dark/30 text-[10px] font-inter uppercase tracking-[0.2em]">© 2026 Apix Technologies - Todos os direitos reservados</p>
+                        <p className="text-dark/30 text-[10px] font-inter uppercase tracking-[0.2em]">© 2026 Apix Technologies - {footer.rights}</p>
                     </div>
                 </div>
             </div>

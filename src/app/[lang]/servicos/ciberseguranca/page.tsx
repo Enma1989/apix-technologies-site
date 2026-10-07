@@ -1,8 +1,9 @@
 import { notFound } from "next/navigation";
-import { Locale, siteConfig, locales } from "@/config/siteConfig";
+import { Locale, locales } from "@/config/siteConfig";
 import { Section } from "@/components/Section";
 import Link from "next/link";
 import Image from "next/image";
+import { LocalizedServiceDetail } from "@/components/services/LocalizedServiceDetail";
 
 export async function generateStaticParams() {
     return locales.map((lang) => ({ lang }));
@@ -17,6 +18,7 @@ interface PageProps {
 export default async function CibersegurancaPage({ params }: PageProps) {
     const { lang } = await params;
     if (!locales.includes(lang)) notFound();
+    if (lang !== "pt") return <LocalizedServiceDetail lang={lang} slug="ciberseguranca" />;
 
     return (
         <main className="min-h-screen bg-premium-dark">
