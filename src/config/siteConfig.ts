@@ -4,7 +4,7 @@ export const siteConfig = {
     slogan: {
       pt: "EFICIÊNCIA TÉCNICA. GOVERNANÇA ESTRUTURADA.",
       en: "TECHNICAL EFFICIENCY. STRUCTURED GOVERNANCE.",
-      es: "EFICIENCIA TÉCNICA. GOBERNANZA ESTRUTURADA.",
+      es: "EFICIENCIA TÉCNICA. GOBERNANZA ESTRUCTURADA.",
     },
     colors: {
       primary: "#0B3C5D",
@@ -388,7 +388,7 @@ export const siteConfig = {
     },
     {
       slug: "cftv-seguranca-eletronica",
-      title: { pt: "CFTV & Segurança Física", en: "CCTV & Physical Security", es: "CFTV & Segurança Física" },
+      title: { pt: "CFTV & Segurança Física", en: "CCTV & Physical Security", es: "CCTV y Seguridad Física" },
       desc: {
         pt: "Monitoramento e retenção de evidências integrados ao ecossistema de dados, garantindo proteção física e lógica.",
         en: "Monitoring and evidence retention integrated into the data ecosystem, ensuring physical and logical protection.",
@@ -419,7 +419,7 @@ export const siteConfig = {
       desc: {
         pt: "Ambientes colaborativos organizados e seguros, com governança de acesso e proteção de ativos digitais.",
         en: "Organized and secure collaborative environments, with access governance and digital asset protection.",
-        es: "Entornos colaborativos organizados y seguros, con governança de acesso y proteção de ativos digitales.",
+        es: "Entornos colaborativos organizados y seguros, con gobernanza de acceso y protección de activos digitales.",
       },
     },
     {
@@ -842,7 +842,7 @@ export const siteConfig = {
   },
   architecturePage: {
     meta: {
-      title: { pt: "Arquitetura MaaS™ | Apix Technologies", en: "MaaS™ Architecture | Apix Technologies", es: "Arquitectura MaaS™ | Apix Technologies" },
+      title: { pt: "Arquitetura MaaS™", en: "MaaS™ Architecture", es: "Arquitectura MaaS™" },
       description: { pt: "Governança Tecnológica por Camadas Estruturadas.", en: "Technological Governance through Structured Layers.", es: "Gobernanza Tecnológica por Capas Estructuradas." }
     },
     hero: {

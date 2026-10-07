@@ -130,6 +130,11 @@ export default async function TermsPage({
     }
 
     const t = content[lang] || content.pt;
+    const footer = {
+        pt: { label: "Validado por Apix Compliance", note: "Este documento tem validade digital e jurídica para todos os fins.", rights: "Todos os direitos reservados" },
+        en: { label: "Validated by Apix Compliance", note: "This document is digitally and legally valid for all applicable purposes.", rights: "All rights reserved" },
+        es: { label: "Validado por Apix Compliance", note: "Este documento tiene validez digital y jurídica para todos los fines aplicables.", rights: "Todos los derechos reservados" },
+    }[lang] || { label: "Validado por Apix Compliance", note: "Este documento tem validade digital e jurídica para todos os fins.", rights: "Todos os direitos reservados" };
 
     return (
         <main className="min-h-screen bg-premium-dark pt-32 pb-20">
@@ -191,12 +196,12 @@ export default async function TermsPage({
                             />
                         </div>
                         <div>
-                            <p className="text-dark font-outfit font-bold text-sm uppercase tracking-wider">Validado por Apix Compliance</p>
-                            <p className="text-dark/40 text-xs font-inter max-w-[240px]">Este documento tem validade digital e jurídica para todos os fins.</p>
+                            <p className="text-dark font-outfit font-bold text-sm uppercase tracking-wider">{footer.label}</p>
+                            <p className="text-dark/40 text-xs font-inter max-w-[240px]">{footer.note}</p>
                         </div>
                     </div>
                     <div className="text-right">
-                        <p className="text-dark/30 text-[10px] font-inter uppercase tracking-[0.2em]">© 2026 Apix Technologies - Todos os direitos reservados</p>
+                        <p className="text-dark/30 text-[10px] font-inter uppercase tracking-[0.2em]">© 2026 Apix Technologies - {footer.rights}</p>
                     </div>
                 </div>
             </div>
