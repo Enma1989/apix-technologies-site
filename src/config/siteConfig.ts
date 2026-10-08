@@ -50,8 +50,10 @@ export const siteConfig = {
   },
   navigation: {
     links: [
-      { name: { pt: "Arquitetura MaaS™", en: "MaaS™ Architecture", es: "Arquitectura MaaS™" }, href: "/arquitetura-maas" },
+      { name: { pt: "Arquitetura MaaS®", en: "MaaS® Architecture", es: "Arquitectura MaaS®" }, href: "/arquitetura-maas" },
       { name: { pt: "Serviços", en: "Services", es: "Servicios" }, href: "/servicos" },
+      { name: { pt: "Projetos", en: "Projects", es: "Proyectos" }, href: "/projetos" },
+      { name: { pt: "Segurança da Informação", en: "Information Security", es: "Seguridad de la Información" }, href: "/servicos/ciberseguranca" },
       { name: { pt: "Sobre", en: "About", es: "Sobre nosotros" }, href: "/sobre" },
       { name: { pt: "Cases", en: "Case Studies", es: "Casos" }, href: "/cases" },
       { name: { pt: "Blog", en: "Blog", es: "Blog" }, href: "/blog" },
@@ -370,7 +372,7 @@ export const siteConfig = {
     },
     {
       slug: "ciberseguranca",
-      title: { pt: "Cibersegurança", en: "Cybersecurity", es: "Ciberseguridad" },
+      title: { pt: "Segurança da Informação", en: "Information Security", es: "Seguridad de la Información" },
       desc: {
         pt: "Gestão ativa de riscos e hardening contínuo. Segurança integrada como pilar fundamental da governança tecnológica Apix.",
         en: "Active risk management and continuous hardening. Integrated security as a fundamental pillar of Apix technological governance.",
@@ -460,7 +462,7 @@ export const siteConfig = {
     layers: [
       {
         id: 1,
-        title: { pt: "Camada 1 — Infra & Rede", en: "Layer 1 — Infra & Network", es: "Capa 1 — Infra y Red" },
+        title: { pt: "Camada 1 — Base Estrutural", en: "Layer 1 — Structural Foundation", es: "Capa 1 — Base Estructural" },
         text: {
           pt: "A fundação física e lógica: conectividade de alta performance e disponibilidade.",
           en: "The physical and logical foundation: high-performance connectivity and availability.",
@@ -470,27 +472,27 @@ export const siteConfig = {
       },
       {
         id: 2,
-        title: { pt: "Camada 2 — Segurança & Risco", en: "Layer 2 — Security & Risk", es: "Capa 2 — Seguridad y Riesgo" },
+        title: { pt: "Camada 2 — Blindagem & Identidade", en: "Layer 2 — Shielding & Identity", es: "Capa 2 — Blindaje e Identidad" },
         text: {
-          pt: "Proteção de ativos e mitigação de ameaças através de hardening e resiliência.",
-          en: "Asset protection and threat mitigation through hardening and resilience.",
-          es: "Protección de activos y mitigación de amenazas a través de hardening y resiliencia.",
+          pt: "Proteção de identidades, dispositivos, colaboração e acessos.",
+          en: "Protection of identities, devices, collaboration, and access.",
+          es: "Protección de identidades, dispositivos, colaboración y accesos.",
         },
-        services: ["ciberseguranca", "gestao-de-backup", "continuidade-resiliencia"],
+        services: ["ciberseguranca", "microsoft-365", "google-workspace"],
       },
       {
         id: 3,
-        title: { pt: "Camada 3 — Cloud & Identidade", en: "Layer 3 — Cloud & Identity", es: "Capa 3 — Cloud e Identidad" },
+        title: { pt: "Camada 3 — Continuidade Empresarial", en: "Layer 3 — Business Continuity", es: "Capa 3 — Continuidad Empresarial" },
         text: {
-          pt: "Ecossistemas colaborativos seguros e gestão centralizada de acessos.",
-          en: "Secure collaborative ecosystems and centralized access management.",
-          es: "Ecosistemas colaborativos seguros y gestión centralizada de accesos.",
+          pt: "Recuperação, resiliência e preparação para interrupções relevantes.",
+          en: "Recovery, resilience, and readiness for relevant disruptions.",
+          es: "Recuperación, resiliencia y preparación ante interrupciones relevantes.",
         },
-        services: ["microsoft-365", "google-workspace"],
+        services: ["gestao-de-backup", "continuidade-resiliencia"],
       },
       {
         id: 4,
-        title: { pt: "Camada 4 — Operação & Suporte MaaS™", en: "Layer 4 — Operation & MaaS™ Support", es: "Capa 4 — Operación y Soporte MaaS™" },
+        title: { pt: "Camada 4 — Orquestração & Governança", en: "Layer 4 — Orchestration & Governance", es: "Capa 4 — Orquestación y Gobernanza" },
         text: {
           pt: "Sustentação contínua da governança com SLAs rigorosos e visão executiva.",
           en: "Continuous governance support with strict SLAs and executive vision.",
@@ -1099,3 +1101,4 @@ export const siteConfig = {
 export type Locale = "pt" | "en" | "es";
 export const defaultLocale: Locale = "pt";
 export const locales: Locale[] = ["pt", "en", "es"];
+

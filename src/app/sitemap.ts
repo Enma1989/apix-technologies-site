@@ -14,6 +14,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
         "",
         "/arquitetura-maas",
         "/servicos",
+        "/projetos",
         "/sobre",
         "/cases",
         "/contato",
@@ -41,3 +42,4 @@ export default function sitemap(): MetadataRoute.Sitemap {
         }))
     );
 }
+
