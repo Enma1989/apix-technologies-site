@@ -3,6 +3,7 @@ import { getDictionary } from "@/dictionaries";
 import { Section } from "@/components/Section";
 import CaseStudies from "@/components/home/CaseStudies";
 import { Metadata } from "next";
+import Link from "next/link";
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
     const { lang: langParam } = await params;
@@ -61,9 +62,12 @@ export default async function CasesPage({
                 <h2 className="text-3xl md:text-4xl font-outfit font-bold mb-10 max-w-3xl mx-auto uppercase tracking-tight leading-tight">
                     {t.cta.title}
                 </h2>
-                <button className="bg-secondary text-dark font-bold py-5 px-12 rounded-sm hover:-translate-y-1 transition-all uppercase tracking-widest text-sm">
+                <Link
+                    href={`/${lang}/contato?origem=cases`}
+                    className="inline-flex bg-[#FFD23F] text-[#111111] font-bold py-5 px-12 rounded-sm hover:-translate-y-1 hover:bg-[#ffe06f] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FFD23F] focus-visible:ring-offset-4 focus-visible:ring-offset-[#111111] transition-all uppercase tracking-widest text-sm"
+                >
                     {dict.home.hero.primaryCTA}
-                </button>
+                </Link>
             </Section>
         </main>
     );
