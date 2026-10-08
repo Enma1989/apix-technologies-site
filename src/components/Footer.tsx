@@ -148,7 +148,8 @@ export default function Footer({ lang, dict }: { lang: Locale; dict: Dictionary 
                                     href="https://wa.me/5541991934437"
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="inline-block border border-secondary/40 text-secondary text-[10px] font-bold uppercase tracking-widest px-6 py-3 rounded-full hover:bg-secondary hover:text-dark transition-all transform hover:-translate-y-1"
+                                    aria-label="Abrir conversa com a Apix Technologies no WhatsApp"
+                                    className="inline-flex min-h-11 items-center justify-center rounded-full border border-[#FFD23F] bg-[#FFD23F] px-6 py-3 text-[11px] font-bold uppercase tracking-[0.16em] text-[#111111] shadow-[0_0_0_1px_rgba(255,210,63,0.12),0_8px_28px_rgba(255,210,63,0.14)] transition-all hover:-translate-y-0.5 hover:bg-[#ffe06f] hover:shadow-[0_10px_32px_rgba(255,210,63,0.24)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-4 focus-visible:ring-offset-[#050505]"
                                 >
                                     WhatsApp
                                 </a>

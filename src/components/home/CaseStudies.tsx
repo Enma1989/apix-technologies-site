@@ -1,6 +1,5 @@
 import { Locale } from "@/config/siteConfig";
 import { getDictionary } from "@/dictionaries";
-import { Section } from "../Section";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import Image from "next/image";
@@ -11,46 +10,28 @@ export default async function CaseStudies({ lang }: { lang: Locale }) {
     return (
         <>
             {/* 1. HERO — Full Screen Estratégico */}
-            <section className="relative min-h-screen w-full overflow-hidden">
+            <section className="relative min-h-[100svh] w-full overflow-hidden bg-[#080808]">
                 <Image
-                    src="/images/estrategia.jpg"
-                    alt="Governança Estratégica"
+                    src="/images/cases-monitoring-hero.png"
+                    alt=""
                     fill
                     priority
-                    className="object-cover object-center"
+                    sizes="100vw"
+                    aria-hidden="true"
+                    className="object-cover object-[66%_center] md:object-center"
                 />
 
-                {/* Blur aplicado na metade de cima com máscara */}
-                <div
-                    className="absolute inset-0 z-[1] backdrop-blur-md pointer-events-none"
-                    style={{
-                        maskImage: 'linear-gradient(to bottom, black 0%, black 40%, transparent 80%)',
-                        WebkitMaskImage: 'linear-gradient(to bottom, black 0%, black 40%, transparent 80%)'
-                    }}
-                />
+                {/* Contraste dirigido: protege o texto sem esconder a fotografia. */}
+                <div className="pointer-events-none absolute inset-0 z-[1] bg-[linear-gradient(90deg,rgba(0,0,0,0.90)_0%,rgba(0,0,0,0.76)_36%,rgba(0,0,0,0.28)_64%,rgba(0,0,0,0.08)_100%)] max-md:bg-[linear-gradient(90deg,rgba(0,0,0,0.90)_0%,rgba(0,0,0,0.78)_70%,rgba(0,0,0,0.35)_100%)]" />
+                <div className="pointer-events-none absolute inset-0 z-[2] bg-[linear-gradient(180deg,rgba(0,0,0,0.58)_0%,rgba(0,0,0,0.08)_34%,rgba(0,0,0,0.24)_100%)]" />
 
-                {/* Camada B: overlay vertical linear (escuro no topo, claro embaixo) */}
-                <div
-                    className="absolute inset-0 z-[2] pointer-events-none"
-                    style={{
-                        background: 'linear-gradient(to bottom, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.55) 40%, rgba(0,0,0,0.25) 70%, rgba(0,0,0,0.10) 100%)'
-                    }}
-                />
-
-                {/* Camada A: overlay escuro concentrado no centro (radial) */}
-                <div
-                    className="absolute inset-0 z-[3] pointer-events-none"
-                    style={{
-                        background: 'radial-gradient(circle at center, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.35) 45%, rgba(0,0,0,0.10) 75%, rgba(0,0,0,0) 100%)'
-                    }}
-                />
-
-                <div className="relative z-10 flex min-h-screen items-center">
-                    <div className="mx-auto w-full max-w-5xl px-6 text-white text-left">
-                        <h1 className="text-4xl md:text-5xl lg:text-7xl font-semibold leading-tight tracking-tight whitespace-pre-line text-shadow-premium">
+                <div className="relative z-10 flex min-h-[100svh] items-center">
+                    <div className="container-premium w-full pt-20 text-left text-white md:translate-y-16">
+                        <div className="mb-7 h-px w-14 bg-[#FFD23F]" />
+                        <h1 className="max-w-2xl whitespace-pre-line text-4xl font-semibold leading-[1.05] tracking-tight text-shadow-premium md:text-5xl lg:text-7xl">
                             {caseStudies.heroTitle}
                         </h1>
-                        <p className="mt-8 max-w-2xl text-lg md:text-xl text-white/85 leading-relaxed font-light text-shadow-premium">
+                        <p className="mt-8 max-w-xl text-base font-light leading-relaxed text-white/80 text-shadow-premium md:text-xl">
                             {caseStudies.heroSubtitle}
                         </p>
                     </div>
