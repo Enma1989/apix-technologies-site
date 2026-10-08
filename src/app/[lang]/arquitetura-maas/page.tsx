@@ -6,6 +6,7 @@ import Image from "next/image";
 import { Metadata } from "next";
 
 import { getDictionary } from "@/dictionaries";
+import { getCommercialContent } from "@/content/commercial";
 
 export async function generateStaticParams() {
     return locales.map((lang) => ({ lang }));
@@ -35,6 +36,7 @@ export default async function ArquiteturaMaaSPage({
 
     const dict = await getDictionary(lang);
     const { architecturePage: t } = dict;
+    const commercial = getCommercialContent(lang);
 
     const servicesGrid = dict.services;
 
@@ -296,6 +298,28 @@ export default async function ArquiteturaMaaSPage({
                 </div>
             </Section>
 
+            <Section className="bg-premium-zinc text-dark py-24 border-b border-zinc-200">
+                <div className="grid gap-8 lg:grid-cols-[.8fr_1.2fr] lg:items-center">
+                    <div>
+                        <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#9A7400]">MaaS®</p>
+                        <h2 className="mt-4 font-outfit text-3xl font-bold text-slate-950 md:text-4xl">{commercial.projects.layers.title}</h2>
+                        <p className="mt-5 leading-relaxed text-slate-600">{commercial.projects.layers.intro}</p>
+                    </div>
+                    <div className="grid gap-5 sm:grid-cols-2">
+                        <Link href={`/${lang}/projetos`} className="group rounded-3xl border border-slate-200 bg-white p-7 transition hover:border-secondary hover:shadow-lg">
+                            <h3 className="font-outfit text-2xl font-bold text-slate-950">{commercial.shared.projects}</h3>
+                            <p className="mt-3 text-sm leading-relaxed text-slate-600">{commercial.projects.metadata.description}</p>
+                            <span className="mt-6 inline-flex font-bold text-[#9A7400] group-hover:translate-x-1 transition">{commercial.projects.hero.secondary} →</span>
+                        </Link>
+                        <Link href={`/${lang}/servicos/ciberseguranca`} className="group rounded-3xl bg-slate-950 p-7 text-white transition hover:-translate-y-1">
+                            <h3 className="font-outfit text-2xl font-bold">{commercial.shared.security}</h3>
+                            <p className="mt-3 text-sm leading-relaxed text-slate-300">{commercial.security.metadata.description}</p>
+                            <span className="mt-6 inline-flex font-bold text-[#FFD23F] group-hover:translate-x-1 transition">{commercial.security.hero.secondary} →</span>
+                        </Link>
+                    </div>
+                </div>
+            </Section>
+
             {/* 7. CTA FINAL (Dark Premium) */}
             <section className="bg-zinc-950 text-white py-32 relative overflow-hidden">
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-3xl h-full opacity-[0.03] pointer-events-none bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-[#FFD23F] via-transparent to-transparent blur-3xl"></div>
@@ -320,3 +344,4 @@ export default async function ArquiteturaMaaSPage({
         </main>
     );
 }
+

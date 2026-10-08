@@ -1,8 +1,9 @@
-import { Locale, siteConfig } from "@/config/siteConfig";
+import { Locale } from "@/config/siteConfig";
 import { getDictionary } from "@/dictionaries";
 import { Section } from "@/components/Section";
 import Link from "next/link";
 import Image from "next/image";
+import { getCommercialContent } from "@/content/commercial";
 
 export default async function ServicesPage({
     params,
@@ -13,6 +14,7 @@ export default async function ServicesPage({
     const lang = langParam as Locale;
     const dict = await getDictionary(lang);
     const { methodologyPage, services, home } = dict;
+    const commercial = getCommercialContent(lang);
 
     return (
         <main className="min-h-screen bg-premium-dark overflow-x-hidden">
@@ -61,7 +63,7 @@ export default async function ServicesPage({
                         <h1 className="text-4xl md:text-6xl lg:text-7xl font-outfit font-bold mb-8 tracking-tighter leading-[1.1] uppercase max-w-5xl mx-auto text-shadow-premium">
                             {(() => {
                                 const headline = methodologyPage.intro.headline;
-                                const maasText = "MaaS™";
+                                const maasText = methodologyPage.intro.headline.includes("MaaS®") ? "MaaS®" : "MaaS™";
                                 if (headline.includes(maasText)) {
                                     const parts = headline.split(maasText);
                                     return (
@@ -289,6 +291,23 @@ export default async function ServicesPage({
                 </div>
             </Section>
 
+            <Section className="bg-premium-zinc text-dark py-24 border-t border-zinc-200">
+                <div className="grid gap-6 md:grid-cols-2">
+                    <Link href={`/${lang}/projetos`} className="group rounded-3xl border border-zinc-200 bg-white p-8 transition hover:-translate-y-1 hover:border-secondary md:p-10">
+                        <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#9A7400]">MaaS®</p>
+                        <h2 className="mt-4 font-outfit text-3xl font-bold text-slate-950">{commercial.shared.projects}</h2>
+                        <p className="mt-4 leading-relaxed text-slate-600">{commercial.projects.metadata.description}</p>
+                        <span className="mt-7 inline-flex items-center gap-2 font-bold text-slate-950 group-hover:text-[#9A7400]">{commercial.projects.hero.secondary} →</span>
+                    </Link>
+                    <Link href={`/${lang}/servicos/ciberseguranca`} className="group rounded-3xl border border-zinc-200 bg-slate-950 p-8 text-white transition hover:-translate-y-1 hover:border-secondary md:p-10">
+                        <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#FFD23F]">MaaS®</p>
+                        <h2 className="mt-4 font-outfit text-3xl font-bold">{commercial.shared.security}</h2>
+                        <p className="mt-4 leading-relaxed text-slate-300">{commercial.security.metadata.description}</p>
+                        <span className="mt-7 inline-flex items-center gap-2 font-bold text-[#FFD23F]">{commercial.security.hero.secondary} →</span>
+                    </Link>
+                </div>
+            </Section>
+
             {/* Final CTA within Services */}
             <Section className="bg-premium-dark text-white py-32 relative overflow-hidden border-t border-white/5">
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[600px] aspect-square opacity-[0.05] grayscale brightness-200 pointer-events-none">
@@ -327,3 +346,4 @@ export default async function ServicesPage({
         </main>
     );
 }
+

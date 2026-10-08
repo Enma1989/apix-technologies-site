@@ -1,4 +1,4 @@
-import { Locale, siteConfig } from "@/config/siteConfig";
+import { Locale } from "@/config/siteConfig";
 import { getDictionary } from "@/dictionaries";
 import Image from "next/image";
 import Link from "next/link";
@@ -10,6 +10,7 @@ import Methodology from "@/components/home/Methodology";
 import ConsultativeAuditCTA from "@/components/home/ConsultativeAuditCTA";
 import CredibilitySection from "@/components/home/CredibilitySection";
 import FinalCTA from "@/components/home/FinalCTA";
+import CommercialOffers from "@/components/home/CommercialOffers";
 
 export default async function HomePage({
   params,
@@ -92,6 +93,7 @@ export default async function HomePage({
         <StrategicPillars lang={lang} />
         <AuditCTASection lang={lang} />
         <ServicesOverview lang={lang} />
+        <CommercialOffers lang={lang} />
         <Methodology lang={lang} />
         <ConsultativeAuditCTA lang={lang} />
         <CredibilitySection lang={lang} />
@@ -100,3 +102,4 @@ export default async function HomePage({
     </main>
   );
 }
+

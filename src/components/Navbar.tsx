@@ -4,14 +4,21 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
-import { Menu, X } from "lucide-react";
+import { ChevronDown, Menu, X } from "lucide-react";
 import { Locale } from "@/config/siteConfig";
 import LanguageSwitcher from "./LanguageSwitcher";
 import { Dictionary } from "@/dictionaries";
 
+const SOLUTION_HREFS = new Set(["/servicos", "/projetos", "/servicos/ciberseguranca"]);
+
 export default function Navbar({ lang, dict }: { lang: Locale; dict: Dictionary }) {
     const pathname = usePathname();
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    const solutionLinks = dict.navigation.links.filter((link) => SOLUTION_HREFS.has(link.href));
+    const primaryLinks = dict.navigation.links.filter((link) => !SOLUTION_HREFS.has(link.href));
+    const solutionsLabel = lang === "pt" ? "Soluções" : lang === "es" ? "Soluciones" : "Solutions";
+    const menuOpenLabel = lang === "pt" ? "Abrir menu" : lang === "es" ? "Abrir menú" : "Open menu";
+    const menuCloseLabel = lang === "pt" ? "Fechar menu" : lang === "es" ? "Cerrar menú" : "Close menu";
 
     // Lock body scroll and listen for ESC key when mobile menu is open
     useEffect(() => {
@@ -65,8 +72,8 @@ export default function Navbar({ lang, dict }: { lang: Locale; dict: Dictionary 
 
                     {/* Desktop Navigation & Extras */}
                     <div className="hidden lg:flex items-center">
-                        <div className="flex items-center gap-x-8 xl:gap-x-10">
-                            {dict.navigation.links.map((link) => {
+                        <div className="flex items-center gap-x-7 xl:gap-x-9">
+                            {primaryLinks.slice(0, 1).map((link) => {
                                 const href = `/${lang}${link.href === "/" ? "" : link.href}`;
                                 const isActive = pathname === href || (link.href === "/" && pathname === `/${lang}`);
 
@@ -86,6 +93,27 @@ export default function Navbar({ lang, dict }: { lang: Locale; dict: Dictionary 
                                     </Link>
                                 );
                             })}
+                            <details className="group relative">
+                                <summary className={`flex cursor-pointer list-none items-center gap-1.5 py-2 text-sm font-semibold tracking-wide transition-colors focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#FFD23F] ${solutionLinks.some((link) => pathname.startsWith(`/${lang}${link.href}`)) ? "text-[#FFD23F]" : "text-white/60 hover:text-white"}`}>
+                                    {solutionsLabel}<ChevronDown aria-hidden="true" className="h-4 w-4 transition-transform group-open:rotate-180" />
+                                </summary>
+                                <div className="absolute left-1/2 top-full z-50 mt-3 w-72 -translate-x-1/2 rounded-2xl border border-white/10 bg-[#0B0F14]/95 p-3 shadow-2xl backdrop-blur-xl">
+                                    {solutionLinks.map((link) => (
+                                        <Link key={link.href} href={`/${lang}${link.href}`} className="block rounded-xl px-4 py-3 text-sm font-semibold text-white/75 transition hover:bg-white/5 hover:text-[#FFD23F] focus-visible:outline-2 focus-visible:outline-[#FFD23F]">
+                                            {link.name}
+                                        </Link>
+                                    ))}
+                                </div>
+                            </details>
+                            {primaryLinks.slice(1).map((link) => {
+                                const href = `/${lang}${link.href === "/" ? "" : link.href}`;
+                                const isActive = pathname === href;
+                                return (
+                                    <Link key={link.href} href={href} className={`relative py-2 text-sm font-semibold tracking-wide transition-all duration-300 ${isActive ? "text-[#FFD23F]" : "text-white/60 hover:text-white"}`}>
+                                        {link.name}
+                                    </Link>
+                                );
+                            })}
                         </div>
 
                         {/* Desktop Language Switcher */}
@@ -99,7 +127,7 @@ export default function Navbar({ lang, dict }: { lang: Locale; dict: Dictionary 
                         <button
                             onClick={() => setIsMobileMenuOpen(true)}
                             className="p-2 -mr-2 text-white/90 hover:text-[#FFD23F] transition-colors focus:outline-none focus:ring-2 focus:ring-[#FFD23F]/50 rounded-md"
-                            aria-label="Abrir Menu"
+                            aria-label={menuOpenLabel}
                             aria-expanded={isMobileMenuOpen}
                         >
                             <Menu className="w-7 h-7" />
@@ -147,7 +175,7 @@ export default function Navbar({ lang, dict }: { lang: Locale; dict: Dictionary 
                         <button
                             onClick={() => setIsMobileMenuOpen(false)}
                             className="p-2 -mr-2 text-white/70 hover:text-white focus:outline-none focus:ring-2 focus:ring-white/30 rounded-md"
-                            aria-label="Fechar Menu"
+                            aria-label={menuCloseLabel}
                         >
                             <X className="w-7 h-7" />
                         </button>
@@ -193,3 +221,4 @@ export default function Navbar({ lang, dict }: { lang: Locale; dict: Dictionary 
         </>
     );
 }
+

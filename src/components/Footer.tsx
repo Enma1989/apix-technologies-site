@@ -1,10 +1,12 @@
 import Link from "next/link";
 import Image from "next/image";
-import { Locale, siteConfig } from "@/config/siteConfig";
+import { Locale } from "@/config/siteConfig";
 import { Dictionary } from "@/dictionaries";
+import { getCommercialContent } from "@/content/commercial";
 
 export default function Footer({ lang, dict }: { lang: Locale; dict: Dictionary }) {
     const currentYear = new Date().getFullYear();
+    const commercial = getCommercialContent(lang);
 
     return (
         <footer className="relative z-20 mt-24">
@@ -39,7 +41,7 @@ export default function Footer({ lang, dict }: { lang: Locale; dict: Dictionary 
                                     </div>
                                 </Link>
                                 <h4 className="text-white font-bold text-xs uppercase tracking-[0.2em] mb-4">
-                                    Método MaaS™
+                                    Método MaaS®
                                 </h4>
                                 <p className="text-white/50 text-xs leading-relaxed">
                                     {dict.home.hero.headline.line1}<br />
@@ -72,7 +74,13 @@ export default function Footer({ lang, dict }: { lang: Locale; dict: Dictionary 
                                     {dict.footerData.solutions}
                                 </h4>
                                 <ul className="space-y-4">
-                                    {dict.services.slice(0, 5).map((service) => (
+                                    <li>
+                                        <Link href={`/${lang}/projetos`} className="text-white/60 hover:text-secondary text-sm transition-colors">{commercial.shared.projects}</Link>
+                                    </li>
+                                    <li>
+                                        <Link href={`/${lang}/servicos/ciberseguranca`} className="text-white/60 hover:text-secondary text-sm transition-colors">{commercial.shared.security}</Link>
+                                    </li>
+                                    {dict.services.filter((service) => service.slug !== "ciberseguranca").slice(0, 4).map((service) => (
                                         <li key={service.slug}>
                                             <Link
                                                 href={`/${lang}/servicos/${service.slug}`}
@@ -162,3 +170,4 @@ export default function Footer({ lang, dict }: { lang: Locale; dict: Dictionary 
         </footer>
     );
 }
+
