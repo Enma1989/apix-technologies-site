@@ -22,11 +22,11 @@ export default async function ServicesPage({
             <section className="relative min-h-[100svh] w-full overflow-hidden bg-premium-dark">
 
                 <Image
-                    src="/images/services-governed-hero.png"
+                    src="/images/services-governed-office-hero.png"
                     alt=""
                     fill
                     sizes="100vw"
-                    className="pointer-events-none z-0 object-cover object-[29%_center] sm:object-[36%_center] lg:object-center"
+                    className="pointer-events-none z-0 object-cover object-[76%_center] sm:object-[70%_center] lg:object-center"
                     priority
                     aria-hidden="true"
                 />
@@ -44,6 +44,15 @@ export default async function ServicesPage({
                     style={{
                         background: 'linear-gradient(90deg, rgba(0,0,0,0.12), transparent 24%, transparent 76%, rgba(0,0,0,0.12))'
                     }}
+                />
+
+                <Image
+                    src="/images/apix-logo.svg"
+                    alt=""
+                    width={300}
+                    height={80}
+                    className="pointer-events-none absolute bottom-10 left-10 z-[3] hidden h-auto w-44 opacity-60 drop-shadow-[0_8px_24px_rgba(0,0,0,0.65)] lg:block"
+                    aria-hidden="true"
                 />
 
                 <div className="relative z-10 flex h-full flex-col items-center justify-center pt-24 pb-12">
