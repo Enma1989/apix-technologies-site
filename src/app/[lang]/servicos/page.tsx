@@ -21,33 +21,28 @@ export default async function ServicesPage({
             {/* Services Hero / Intro */}
             <section className="relative min-h-[100svh] w-full overflow-hidden bg-premium-dark">
 
-                <div className="absolute inset-0 z-0 flex items-center justify-center opacity-80 pointer-events-none">
-                    <div className="relative w-full h-full max-w-5xl">
-                        <Image
-                            src="/images/APIX-09.png"
-                            alt="Apix background"
-                            fill
-                            className="object-contain scale-75 md:scale-[0.80] opacity-80"
-                            priority
-                        />
-                    </div>
-                </div>
+                <Image
+                    src="/images/services-governed-hero.png"
+                    alt=""
+                    fill
+                    sizes="100vw"
+                    className="pointer-events-none z-0 object-cover object-[29%_center] sm:object-[36%_center] lg:object-center"
+                    priority
+                    aria-hidden="true"
+                />
 
-                {/* Custom Overlay Premium Apix - Central Radial Gradient */}
+                {/* Keep the generated scene visible while protecting headline contrast. */}
                 <div
                     className="absolute inset-0 z-[1] pointer-events-none"
                     style={{
-                        background: 'radial-gradient(circle at center, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.40) 28%, rgba(0,0,0,0.22) 50%, rgba(0,0,0,0.10) 70%, rgba(0,0,0,0.00) 88%)'
+                        background: 'radial-gradient(ellipse at center, rgba(5,5,5,0.76) 0%, rgba(5,5,5,0.58) 34%, rgba(5,5,5,0.28) 68%, rgba(5,5,5,0.40) 100%), linear-gradient(180deg, rgba(5,5,5,0.52) 0%, rgba(5,5,5,0.10) 45%, rgba(5,5,5,0.66) 100%)'
                     }}
                 />
 
-                {/* Subtle Glass Layer */}
                 <div
                     className="absolute inset-0 z-[2] pointer-events-none"
                     style={{
-                        background: 'rgba(0,0,0,0.08)',
-                        backdropFilter: 'blur(1px)',
-                        border: '1px solid rgba(255,255,255,0.08)'
+                        background: 'linear-gradient(90deg, rgba(0,0,0,0.12), transparent 24%, transparent 76%, rgba(0,0,0,0.12))'
                     }}
                 />
 
