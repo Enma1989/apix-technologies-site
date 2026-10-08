@@ -46,14 +46,18 @@ export default async function ServicesPage({
                     }}
                 />
 
-                <Image
-                    src="/images/apix-logo.svg"
-                    alt=""
-                    width={300}
-                    height={80}
-                    className="pointer-events-none absolute bottom-10 left-10 z-[3] hidden h-auto w-44 opacity-60 drop-shadow-[0_8px_24px_rgba(0,0,0,0.65)] lg:block"
+                <div
+                    className="pointer-events-none absolute bottom-10 left-10 z-[3] hidden opacity-70 drop-shadow-[0_8px_24px_rgba(0,0,0,0.65)] lg:block"
                     aria-hidden="true"
-                />
+                >
+                    <Image
+                        src="/images/apix-07.png"
+                        alt=""
+                        width={64}
+                        height={64}
+                        className="h-12 w-12 object-contain"
+                    />
+                </div>
 
                 <div className="relative z-10 flex h-full flex-col items-center justify-center pt-24 pb-12">
                     <div className="mx-auto w-full max-w-6xl px-6 text-center text-white">
