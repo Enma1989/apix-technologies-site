@@ -34,7 +34,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
             title: projects.metadata.title,
             description: projects.metadata.description,
             url: `${baseUrl}${path}`,
-            images: [{ url: "/images/estrategia.jpg", width: 1200, height: 630 }],
+            images: [{ url: "/images/projects-architecture-hero.png", width: 1800, height: 900 }],
         },
     };
 }
@@ -62,8 +62,9 @@ export default async function ProjectsPage({ params }: { params: Promise<{ lang:
                 primaryHref={`/${lang}/contato?origem=projetos`}
                 secondary={projects.hero.secondary}
                 secondaryHref="#catalogo"
-                image="/images/estrategia.jpg"
+                image="/images/projects-architecture-hero.png"
                 imageAlt=""
+                imageClassName="object-[69%_center] md:object-right"
             />
 
             <section className="bg-white py-24 md:py-32">

@@ -44,6 +44,7 @@ export function CommercialHero({
     secondaryHref,
     image,
     imageAlt,
+    imageClassName = "object-center",
 }: {
     eyebrow: string;
     title: string;
@@ -54,12 +55,13 @@ export function CommercialHero({
     secondaryHref: string;
     image: string;
     imageAlt: string;
+    imageClassName?: string;
 }) {
     return (
-        <section className="relative flex min-h-[82svh] items-center overflow-hidden border-b border-white/10 bg-[#0B0F14] pt-24 text-white">
-            <Image src={image} alt={imageAlt} fill priority sizes="100vw" className="object-cover opacity-35" />
-            <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(3,8,13,.96)_0%,rgba(3,8,13,.82)_52%,rgba(3,8,13,.4)_100%)]" />
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_78%_40%,rgba(255,210,63,.12),transparent_38%)]" />
+        <section className="relative flex min-h-[100svh] items-center overflow-hidden border-b border-white/10 bg-[#0B0F14] pt-24 text-white">
+            <Image src={image} alt={imageAlt} fill priority sizes="100vw" className={`object-cover opacity-80 ${imageClassName}`} />
+            <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(3,8,13,.96)_0%,rgba(3,8,13,.84)_42%,rgba(3,8,13,.36)_68%,rgba(3,8,13,.12)_100%)] max-md:bg-[linear-gradient(90deg,rgba(3,8,13,.94)_0%,rgba(3,8,13,.82)_72%,rgba(3,8,13,.48)_100%)]" />
+            <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(3,8,13,.46)_0%,transparent_34%,rgba(3,8,13,.28)_100%)]" />
             <div className="container-premium relative z-10 py-20 md:py-28">
                 <div className="max-w-4xl">
                     <Eyebrow dark>{eyebrow}</Eyebrow>
