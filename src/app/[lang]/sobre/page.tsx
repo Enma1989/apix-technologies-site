@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Metadata } from "next";
 import MaaSPillarsSection from "@/components/about/MaaSPillarsSection";
 import OperationalPresenceSection from "@/components/about/OperationalPresenceSection";
+import AboutHeroVideo from "@/components/about/AboutHeroVideo";
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
     const { lang: langParam } = await params;
@@ -29,17 +30,7 @@ export default async function AboutPage({
         <main className="min-h-screen bg-white text-zinc-900 selection:bg-[#FFD23F] selection:text-black">
             {/* Bloco 1 - HERO SECTION (Dark / Video) */}
             <section className="relative h-screen min-h-[600px] w-full flex items-center overflow-hidden">
-                {/* Background Video */}
-                <div className="absolute inset-0 w-full h-full z-0 hero-bg-filter">
-                    <iframe
-                        className="absolute w-[300vw] h-[300vh] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none md:w-[150vw] md:h-[150vh] lg:w-[120vw] lg:h-[120vh]"
-                        src="https://www.youtube.com/embed/rYMAlFFZcCY?autoplay=1&mute=1&loop=1&playlist=rYMAlFFZcCY&controls=0&showinfo=0&modestbranding=1&rel=0"
-                        title="Apix Tech Institutional"
-                        frameBorder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowFullScreen
-                    ></iframe>
-                </div>
+                <AboutHeroVideo />
 
                 {/* Overlay Premium Apix */}
                 <div className="hero-overlay-premium" />
