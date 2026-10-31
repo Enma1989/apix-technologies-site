@@ -116,7 +116,7 @@ export default async function ServicesPage({
 
                             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                                 {layer.services.map((slug: string) => {
-                                    const service = services.find((s: any) => s.slug === slug);
+                                    const service = services.find((service) => service.slug === slug);
                                     if (!service) return null;
                                     return (
                                         <Link
@@ -202,33 +202,72 @@ export default async function ServicesPage({
                 </div>
             </Section>
 
+            {/* Editorial visual break between the service catalog and deliverables */}
+            <section className="relative overflow-hidden bg-[#0B0F14] px-4 py-6 md:px-8 md:py-10">
+                <div className="relative mx-auto h-[360px] max-w-[1440px] overflow-hidden rounded-[28px] border border-black/10 shadow-[0_30px_80px_rgba(0,0,0,0.30)] md:h-[520px]">
+                    <Image
+                        src="/images/services-infrastructure-premium.png"
+                        alt={lang === "pt" ? "Infraestrutura de data center governada" : lang === "es" ? "Infraestructura de centro de datos gobernada" : "Governed data center infrastructure"}
+                        fill
+                        sizes="(max-width: 768px) 100vw, 1440px"
+                        className="object-cover object-center"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-transparent to-white/5" />
+                    <div className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-6 p-6 md:p-10">
+                        <div className="max-w-xl">
+                            <p className="text-[10px] font-bold uppercase tracking-[0.24em] text-[#FFD23F] md:text-xs">
+                                {methodologyPage.intro.badge}
+                            </p>
+                            <p className="mt-3 max-w-lg text-sm leading-relaxed text-white/80 md:text-base">
+                                {methodologyPage.intro.subheadline}
+                            </p>
+                        </div>
+                        <div className="hidden h-px w-32 bg-gradient-to-r from-[#FFD23F] to-transparent md:block" />
+                    </div>
+                </div>
+            </section>
+
             {/* Deliverables Section */}
             <Section className="bg-premium-zinc border-y border-zinc-100 py-24">
-                <div className="max-w-4xl mx-auto text-center mb-20">
-                    <h2 className="text-3xl md:text-5xl font-outfit font-bold mb-6 tracking-tight text-slate-900 uppercase">
-                        {methodologyPage.deliverables.title}
-                    </h2>
-                    <div className="w-20 h-1 bg-secondary mx-auto"></div>
-                </div>
+                <div className="grid items-center gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
+                    <div className="relative min-h-[460px] overflow-hidden rounded-[28px] border border-white/10 bg-[#0B0F14] shadow-[0_30px_70px_rgba(15,23,42,0.20)] md:min-h-[620px]">
+                        <Image
+                            src="/images/services-governance-deliverables.png"
+                            alt={lang === "pt" ? "Visual de governança tecnológica e entregáveis executivos" : lang === "es" ? "Visual de gobernanza tecnológica y entregables ejecutivos" : "Technology governance and executive deliverables visual"}
+                            fill
+                            sizes="(max-width: 1024px) 100vw, 48vw"
+                            className="object-cover"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-transparent to-transparent" />
+                    </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 max-w-6xl mx-auto px-4">
-                    {methodologyPage.deliverables.items.map((item, index) => (
-                        <div key={index} className="flex gap-6 items-start group">
-                            <div className="w-12 h-12 shrink-0 bg-white shadow-sm border border-zinc-100 rounded-xl flex items-center justify-center text-secondary group-hover:bg-secondary group-hover:text-dark transition-all duration-300">
-                                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                </svg>
-                            </div>
-                            <div>
-                                <h4 className="text-xl font-outfit font-bold mb-2 text-slate-900 uppercase tracking-tight">
-                                    {item.title}
-                                </h4>
-                                <p className="text-slate-500 font-inter leading-relaxed">
-                                    {item.desc}
-                                </p>
-                            </div>
+                    <div>
+                        <div className="mb-12">
+                            <p className="mb-4 text-[10px] font-bold uppercase tracking-[0.24em] text-[#9A7400]">
+                                MaaS® · {lang === "pt" ? "Entregáveis" : lang === "es" ? "Entregables" : "Deliverables"}
+                            </p>
+                            <h2 className="text-3xl md:text-5xl font-outfit font-bold mb-6 tracking-tight text-slate-900 uppercase">
+                                {methodologyPage.deliverables.title}
+                            </h2>
+                            <div className="h-1 w-20 bg-secondary"></div>
                         </div>
-                    ))}
+
+                        <div className="grid gap-x-8 gap-y-8 sm:grid-cols-2">
+                            {methodologyPage.deliverables.items.map((item, index) => (
+                                <div key={index} className="group border-t border-slate-200 pt-6">
+                                    <div className="mb-4 flex h-9 w-9 items-center justify-center rounded-full border border-[#FFD23F]/45 bg-white text-[#9A7400] shadow-sm transition-all duration-300 group-hover:border-[#FFD23F] group-hover:bg-[#FFD23F] group-hover:text-[#111111]">
+                                        <span className="text-[10px] font-bold">0{index + 1}</span>
+                                    </div>
+                                    <h4 className="text-base font-outfit font-bold mb-2 text-slate-900 uppercase tracking-tight">
+                                        {item.title}
+                                    </h4>
+                                    <p className="text-sm text-slate-500 font-inter leading-relaxed">
+                                        {item.desc}
+                                    </p>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
                 </div>
             </Section>
 
