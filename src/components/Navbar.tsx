@@ -14,6 +14,7 @@ const SOLUTION_HREFS = new Set(["/servicos", "/projetos", "/servicos/cibersegura
 export default function Navbar({ lang, dict }: { lang: Locale; dict: Dictionary }) {
     const pathname = usePathname();
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    const [isSolutionsOpen, setIsSolutionsOpen] = useState(false);
     const solutionLinks = dict.navigation.links.filter((link) => SOLUTION_HREFS.has(link.href));
     const primaryLinks = dict.navigation.links.filter((link) => !SOLUTION_HREFS.has(link.href));
     const solutionsLabel = lang === "pt" ? "Soluções" : lang === "es" ? "Soluciones" : "Solutions";
@@ -93,18 +94,54 @@ export default function Navbar({ lang, dict }: { lang: Locale; dict: Dictionary 
                                     </Link>
                                 );
                             })}
-                            <details className="group relative">
-                                <summary className={`flex cursor-pointer list-none items-center gap-1.5 py-2 text-sm font-semibold tracking-wide transition-colors focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#FFD23F] ${solutionLinks.some((link) => pathname.startsWith(`/${lang}${link.href}`)) ? "text-[#FFD23F]" : "text-white/60 hover:text-white"}`}>
-                                    {solutionsLabel}<ChevronDown aria-hidden="true" className="h-4 w-4 transition-transform group-open:rotate-180" />
-                                </summary>
-                                <div className="absolute left-1/2 top-full z-50 mt-3 w-72 -translate-x-1/2 rounded-2xl border border-white/10 bg-[#0B0F14]/95 p-3 shadow-2xl backdrop-blur-xl">
-                                    {solutionLinks.map((link) => (
-                                        <Link key={link.href} href={`/${lang}${link.href}`} className="block rounded-xl px-4 py-3 text-sm font-semibold text-white/75 transition hover:bg-white/5 hover:text-[#FFD23F] focus-visible:outline-2 focus-visible:outline-[#FFD23F]">
-                                            {link.name}
-                                        </Link>
-                                    ))}
+                            <div
+                                className="relative"
+                                onMouseEnter={() => setIsSolutionsOpen(true)}
+                                onMouseLeave={() => setIsSolutionsOpen(false)}
+                                onFocus={() => setIsSolutionsOpen(true)}
+                                onBlur={(event) => {
+                                    if (!event.currentTarget.contains(event.relatedTarget as Node | null)) {
+                                        setIsSolutionsOpen(false);
+                                    }
+                                }}
+                                onKeyDown={(event) => {
+                                    if (event.key === "Escape") {
+                                        setIsSolutionsOpen(false);
+                                    }
+                                }}
+                            >
+                                <button
+                                    type="button"
+                                    aria-haspopup="menu"
+                                    aria-expanded={isSolutionsOpen}
+                                    onClick={() => setIsSolutionsOpen((isOpen) => !isOpen)}
+                                    className={`flex cursor-pointer items-center gap-1.5 py-2 text-sm font-semibold tracking-wide transition-colors focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#FFD23F] ${solutionLinks.some((link) => pathname.startsWith(`/${lang}${link.href}`)) ? "text-[#FFD23F]" : "text-white/60 hover:text-white"}`}
+                                >
+                                    {solutionsLabel}
+                                    <ChevronDown
+                                        aria-hidden="true"
+                                        className={`h-4 w-4 transition-transform ${isSolutionsOpen ? "rotate-180" : ""}`}
+                                    />
+                                </button>
+                                <div
+                                    role="menu"
+                                    className={`absolute left-1/2 top-full z-50 w-72 -translate-x-1/2 pt-3 transition duration-200 ${isSolutionsOpen ? "visible translate-y-0 opacity-100" : "invisible -translate-y-2 opacity-0 pointer-events-none"}`}
+                                >
+                                    <div className="rounded-2xl border border-white/10 bg-[#0B0F14]/95 p-3 shadow-2xl backdrop-blur-xl">
+                                        {solutionLinks.map((link) => (
+                                            <Link
+                                                key={link.href}
+                                                href={`/${lang}${link.href}`}
+                                                role="menuitem"
+                                                onClick={() => setIsSolutionsOpen(false)}
+                                                className="block rounded-xl px-4 py-3 text-sm font-semibold text-white/75 transition hover:bg-white/5 hover:text-[#FFD23F] focus-visible:outline-2 focus-visible:outline-[#FFD23F]"
+                                            >
+                                                {link.name}
+                                            </Link>
+                                        ))}
+                                    </div>
                                 </div>
-                            </details>
+                            </div>
                             {primaryLinks.slice(1).map((link) => {
                                 const href = `/${lang}${link.href === "/" ? "" : link.href}`;
                                 const isActive = pathname === href;
