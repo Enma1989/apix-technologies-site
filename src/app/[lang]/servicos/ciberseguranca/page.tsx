@@ -34,7 +34,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
             title: security.metadata.title,
             description: security.metadata.description,
             url: `${baseUrl}${path}`,
-            images: [{ url: "/images/security-threat-map-hero.png", width: 1800, height: 900 }],
+            images: [{ url: "/images/security-threat-map-hero-light.png", width: 1800, height: 900 }],
         },
     };
 }
@@ -62,9 +62,11 @@ export default async function InformationSecurityPage({ params }: { params: Prom
                 primaryHref={`/${lang}/contato?origem=seguranca-da-informacao`}
                 secondary={security.hero.secondary}
                 secondaryHref="#frentes"
-                image="/images/security-threat-map-hero.png"
+                image="/images/security-threat-map-hero-light.png"
                 imageAlt=""
                 imageClassName="object-right"
+                imageOpacityClassName="opacity-100"
+                overlayClassName="bg-[linear-gradient(90deg,rgba(3,8,13,.9)_0%,rgba(3,8,13,.72)_44%,rgba(3,8,13,.22)_72%,rgba(3,8,13,.06)_100%)] max-md:bg-[linear-gradient(90deg,rgba(3,8,13,.9)_0%,rgba(3,8,13,.76)_72%,rgba(3,8,13,.38)_100%)]"
             />
 
             <section className="bg-white py-24 md:py-32">
