@@ -46,7 +46,7 @@ export default async function HomePage({
         />
 
         <div className="container-premium relative z-20">
-          <div className="max-w-4xl py-16 md:py-32 lg:-translate-x-12 transition-transform duration-500">
+          <div className="max-w-4xl py-16 md:py-32 transition-transform duration-500">
             {/* Eyebrow Tagline */}
             <div className="mb-8">
               <span className="text-[#FFD23F] font-bold tracking-[0.2em] uppercase text-xs md:text-sm drop-shadow-[0_0_15px_rgba(255,210,63,0.3)]">
