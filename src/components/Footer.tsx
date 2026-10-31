@@ -9,7 +9,7 @@ export default function Footer({ lang, dict }: { lang: Locale; dict: Dictionary 
     const commercial = getCommercialContent(lang);
 
     return (
-        <footer className="relative z-20 mt-24">
+        <footer className="relative z-20 bg-[#0B0F14]">
             {/* Separator premium pra NÃO misturar com a seção anterior */}
             <div className="h-10 bg-gradient-to-b from-transparent to-black/60" />
 
